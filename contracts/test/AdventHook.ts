@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import deploy from "../lib/deploy";
 const { network, unlock, ethers } = require("hardhat");
 
 const expirationDuration = ethers.constants.MaxUint256;
@@ -30,33 +31,7 @@ describe("AdventHook", function () {
     await unlock.deployProtocol();
 
     // deploy all locks
-    const locks = [];
-    for (let i = 1; i < 25; i++) {
-      const { lock } = await unlock.createLock({
-        expirationDuration,
-        maxNumberOfKeys,
-        keyPrice,
-        name: `Unlock Advent Calendar 2022 - day {i}`,
-      });
-      locks.unshift(lock);
-    }
-
-    // deploy hook
-    const Hook = await ethers.getContractFactory("AdventHook");
-    const hook = await Hook.deploy(locks.map((lock) => lock.address));
-
-    // Set hook on locks
-    for (let i = 0; i < 24; i++) {
-      await locks[i].setEventHooks(
-        hook.address,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero
-      );
-    }
+    const [locks, hook] = await deploy(unlock);
 
     // Then purchase day 1 (fail)
     await expect(
@@ -158,5 +133,6 @@ describe("AdventHook", function () {
         )
       ).not.to.reverted;
     }
+    console.log("SUCCESS!");
   });
 });

@@ -1,18 +1,27 @@
-import { ethers } from "hardhat";
+const { network, unlock, ethers, getChainId } = require("hardhat");
+import deploy from "../lib/deploy";
 
+/**
+ * main!
+ * @returns
+ */
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
+  const { chainId } = await ethers.provider.getNetwork();
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  if (chainId === 31337) {
+    await unlock.deployProtocol();
+  }
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
-  await lock.deployed();
-
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+  const [locks, hook] = await deploy(unlock);
+  for (let i = 0; i < locks.length; i++) {
+    console.log("______________");
+    console.log(`Lock`, locks[i].address, await locks[i].name());
+    await locks[i].addLockManager("0xF5C28ce24Acf47849988f147d5C75787c0103534");
+    await locks[i].renounceLockManager();
+    console.log(await hook.lockByDay(i + 1));
+    console.log(await hook.dayByLock(locks[i].address));
+  }
+  console.log(`Hook`, hook.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
