@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Header from "../components/Header";
 
 export default function Home() {
   const start = 0;
@@ -7,16 +8,9 @@ export default function Home() {
 
   return (
     <main>
-      <nav className="px-5 bg-gray-800">
-        <div className="relative text-white flex h-16 items-center justify-end">
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Connect Wallet
-          </button>
-        </div>
-      </nav>
+      <Header />
       <section className="px-5 ">
-        <div className="bg-red">&nbsp;</div>
-        <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
+        <div className="grid pt-4 grid-cols-1 md:grid-cols-7 gap-4">
           {days.map((day, index) => {
             if (day > 0 && day < 25) {
               return (
