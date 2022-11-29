@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Day from "../components/Day";
 import Header from "../components/Header";
 
 export default function Home() {
@@ -13,11 +14,7 @@ export default function Home() {
         <div className="grid pt-4 grid-cols-1 md:grid-cols-7 gap-4">
           {days.map((day, index) => {
             if (day > 0 && day < 25) {
-              return (
-                <div className="day p-4 rounded-lg shadow-lg h-48 bg-red-500">
-                  {day}
-                </div>
-              );
+              return <Day key={index} day={day} />;
             }
             if (index === 0)
               return (
