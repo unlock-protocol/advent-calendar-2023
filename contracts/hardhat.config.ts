@@ -7,14 +7,14 @@ const config: HardhatUserConfig = {
   networks: {
     polygon: {
       url: "https://rpc.unlock-protocol.com/137",
-      accounts: [process.env.PKEY]
-    }
+      accounts: process.env.PKEY ? [process.env.PKEY] : [],
+    },
   },
   etherscan: {
     apiKey: {
-      polygon: "W9TVEYKW2CDTQ94T3A2V93IX6U3IHQN5Y3"
-    }
-  }
+      polygon: "W9TVEYKW2CDTQ94T3A2V93IX6U3IHQN5Y3",
+    },
+  },
 };
 
 export default config;
