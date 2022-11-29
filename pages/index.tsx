@@ -18,13 +18,16 @@ export default function Home() {
             }
             if (index === 0)
               return (
-                <div className="day text-gray-800 flex justify-center items-center h-48 text-center md:col-span-3 justify-center items-center justify-self-auto">
+                <div
+                  key={index}
+                  className="day text-gray-800 flex justify-center items-center h-48 text-center md:col-span-3 justify-center items-center justify-self-auto"
+                >
                   <h1 className="text-5xl font-semibold">
-                    Unlock's Advent Calendar!
+                    Unlock&apos;s Advent Calendar!
                   </h1>
                 </div>
               );
-            return <div className="day" />;
+            return <div key={index} className="day" />;
           })}
         </div>
       </section>
