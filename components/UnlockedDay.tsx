@@ -1,5 +1,8 @@
 import { useState } from "react";
 import BaseDay from "./BaseDay";
+import days from "../lib/days";
+import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 interface UnlockedDayProps {
   day: number;
@@ -7,9 +10,7 @@ interface UnlockedDayProps {
 
 const UnlockedDay = ({ day }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(false);
-  const title = "Welcome to the 2022 Unlock Protocol Advent Calendar! ";
-  const description =
-    "Every day, open a new door, claim a new NFT, and learn something new! You can open today’s door if you opened yesterday’s door. (No peeking ahead!) Best of all, some days will have special gifts for you from Unlock!";
+  const { title, description, link, image, youtube } = days[day - 1];
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>
@@ -19,9 +20,15 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
       </BaseDay>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
             <div className="relative w-auto mx-auto max-w-3xl">
               <div className="rounded-lg shadow-lg relative flex flex-col w-full bg-red text-yellow outline-none focus:outline-none pt-5">
+                <span
+                  onClick={() => setShowModal(false)}
+                  className="absolute text-xl px-4 py-3 right-0 top-0 text-white font-bold cursor-pointer"
+                >
+                  ✕
+                </span>
                 <div className="flex items-center justify-center text-2xl px-5 mb-3">
                   ❄️ ⛄ ❄️ 
                 </div>
@@ -30,19 +37,21 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                 </div>
                 {/*body*/}
                 <div className="relative px-5 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    {description}
-                  </p>
+                  <div className="my-4 text-lg leading-relaxed">
+                    <ReactMarkdown skipHtml={false}>
+                      {description}
+                    </ReactMarkdown>
+                  </div>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end pb-5 rounded-b">
-                  <button
-                    className="w-full background-transparent font-bold text-white px-6 py-2 text-sm"
-                    type="button"
-                    onClick={() => setShowModal(false)}
+                <div className="container min-w-full flex flex-col items-center flex items-center justify-end pb-5 rounded-b">
+                  <Link
+                    className="text-white font-bold py-2 px-4 mt-3 rounded"
+                    href={link}
+                    target="_blank"
                   >
-                    Close
-                  </button>
+                    Learn more
+                  </Link>
                 </div>
               </div>
             </div>
