@@ -21,7 +21,7 @@ export default function Home() {
                 return (
                   <div
                     key={index}
-                    className="bg-[url('/images/header.svg')] bg-no-repeat day flex h-36 lg:col-span-3 flex-col bg-right-top"
+                    className="bg-[url('/images/header.svg')] bg-no-repeat day flex sm:h-36 pt-20 sm:pt-0 lg:col-span-3 flex-col bg-top  sm:bg-right-top h-72"
                   >
                     <h1 className="text-4xl text-white font-semibold">
                       Advent Calendar
@@ -34,7 +34,10 @@ export default function Home() {
                   </div>
                 );
               return (
-                <div key={index} className="day">
+                <div
+                  key={index}
+                  className="day flex items-center justify-center"
+                >
                   <Image
                     alt="cookie"
                     width="269"
