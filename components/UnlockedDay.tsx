@@ -13,8 +13,8 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>
-        <span className="cursor-pointer  w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-3xl invisible group-hover:visible text-white font-bold py-2 px-4 rounded bg-yellow-500">
-          Open!
+        <span className="w-full cursor-pointer absolute left-0 top-0 bottom-0 flex items-center justify-center text-7xl invisible group-hover:visible">
+          🦌
         </span>
       </BaseDay>
       {showModal ? (
@@ -57,19 +57,6 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-    </>
-  );
-  return (
-    <>
-      <div
-        className="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
-        id="my-modal"
-      ></div>
-      <BaseDay day={day}>
-        <span className="cursor-pointer  w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-3xl invisible group-hover:visible text-white font-bold py-2 px-4 rounded bg-yellow-500">
-          Open!
-        </span>
-      </BaseDay>
     </>
   );
 };
