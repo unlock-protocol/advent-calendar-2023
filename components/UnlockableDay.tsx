@@ -12,7 +12,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   const { hasMembership, loading } = useLock(user, day);
 
   if (loading) {
-    return <LoadingDay />;
+    return <LoadingDay day={day} />;
   }
 
   if (hasMembership) {
