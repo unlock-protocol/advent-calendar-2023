@@ -9,6 +9,12 @@ module.exports = {
       center: true,
       padding: '2rem',
     },
+    colors: {
+      red: '#B9464B',
+      green: '#62A8A0',
+      yellow: '#F3EBAC',
+      white: '#ffffff'
+    }
   },
   plugins: [],
 }
