@@ -12,7 +12,7 @@ export default function Home() {
       <div className="container">
         <Header />
         <section>
-          <div className="grid pt-4 grid-cols-1 md:grid-cols-7 gap-4 mb-12">
+          <div className="grid pt-4 grid-cols-1 lg:grid-cols-7 gap-4 mb-12">
             {days.map((day, index) => {
               if (day > 0 && day < 25) {
                 return <Day key={index} day={day} />;
@@ -21,12 +21,16 @@ export default function Home() {
                 return (
                   <div
                     key={index}
-                    className="bg-[url('/images/header.svg')] bg-no-repeat	day flex h-36 md:col-span-3 flex-col pt-16"
+                    className="bg-[url('/images/header.svg')] bg-no-repeat day flex h-36 lg:col-span-3 flex-col bg-right-top"
                   >
                     <h1 className="text-4xl text-white font-semibold">
                       Advent Calendar
                       <br /> presented by Unlock
                     </h1>
+                    <p className="text-xl text-white font-light">
+                      One NFT a day, fun gifts, and some year-in-review
+                      highlights — just for you!
+                    </p>
                   </div>
                 );
               return (
@@ -43,7 +47,7 @@ export default function Home() {
           </div>
         </section>
         <footer className="bg-[url('/images/footer.svg')] bg-repeat-x	pt-16 text-center text-white font-semibold text-4xl w-full pb-16">
-          We wish you wonderful holidays.
+          Wishing you a wonderful holiday season!
         </footer>
       </div>
     </main>
