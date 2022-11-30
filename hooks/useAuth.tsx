@@ -8,7 +8,7 @@ export function useAuth() {
   const code = router.query?.code?.toString();
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [user, setUser] = useLocalStorageState("user", {
-    defaultValue: ""
+    defaultValue: "",
   });
 
   const isAuthenticated = !!user;
@@ -24,7 +24,7 @@ export function useAuth() {
       return {
         message,
         signature,
-        user
+        user,
       };
     },
     [setUser]
@@ -42,7 +42,7 @@ export function useAuth() {
         url.searchParams.delete("code");
         url.searchParams.delete("state");
         router.replace(url.toString(), undefined, {
-          shallow: true
+          shallow: true,
         });
         await authenticate(code);
       } catch (error) {
@@ -57,11 +57,15 @@ export function useAuth() {
     [key: string]: string;
   }
 
+  interface PurchaseParams {
+    [key: string]: string;
+  }
+
   const login = (params: LoginParams = {}) => {
     const url = new URL("https://app.unlock-protocol.com/checkout");
     url.searchParams.set("client_id", window.location.host);
     const redirectUri = new URL(window.location.href);
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
       redirectUri.searchParams.set(key, params[key]);
     });
     url.searchParams.set("redirect_uri", redirectUri.toString());
@@ -72,11 +76,24 @@ export function useAuth() {
     setUser("");
   };
 
+  const purchase = (paywallConfig = {}, params: PurchaseParams = {}) => {
+    const url = new URL("https://app.unlock-protocol.com/checkout");
+    const redirectUri = new URL(window.location.href);
+    Object.keys(params).forEach((key) => {
+      redirectUri.searchParams.set(key, params[key]);
+    });
+
+    url.searchParams.set("redirectUri", redirectUri.toString());
+    url.searchParams.set("paywallConfig", JSON.stringify(paywallConfig));
+    window.location.href = url.toString();
+  };
+
   return {
     user,
     login,
     logout,
     isAuthenticated,
-    isAuthenticating
+    isAuthenticating,
+    purchase,
   };
 }

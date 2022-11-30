@@ -11,24 +11,18 @@ interface DayProps {
 
 const Day = ({ day }: DayProps) => {
   const { isAuthenticated, user } = useAuth();
-  const { hasMembership, loading } = useLock(user, day - 1);
 
   // TODO: Change later!
-  const now = new Date("2022-12-06");
+  const now = new Date("2022-12-02");
 
   if (now.getFullYear() < 2022 || now.getMonth() < 11 || now.getDate() < day) {
     return <FutureDay day={day} />;
   }
 
   if (!user) {
-    return <NotConnectedDay day={day} />;
-  }
-
-  if (loading) {
-    return <LoadingDay day={day} />;
-  }
-
-  if (!hasMembership) {
+    if (day === 1) {
+      return <NotConnectedDay day={day} />;
+    }
     return <FutureDay day={day} />;
   }
 
