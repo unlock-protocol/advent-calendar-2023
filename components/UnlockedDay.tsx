@@ -49,7 +49,7 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                 <div className="relative px-5 flex-auto">
                   <div className="my-4 text-lg leading-relaxed">
                     <ReactMarkdown skipHtml={false}>
-                      {description}
+                      {description!}
                     </ReactMarkdown>
                   </div>
                 </div>
@@ -57,7 +57,7 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                 <div className="container min-w-full flex flex-col items-center flex items-center justify-end pb-5 rounded-b">
                   <Link
                     className="text-white font-bold py-2 px-4 mt-3 rounded"
-                    href={link}
+                    href={link!}
                     target="_blank"
                   >
                     Learn more
