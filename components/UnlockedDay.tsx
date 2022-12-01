@@ -53,15 +53,16 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                     </ReactMarkdown>
                   </div>
                 </div>
-                {/*footer*/}
                 <div className="container min-w-full flex flex-col items-center flex items-center justify-end pb-5 rounded-b">
-                  <Link
-                    className="text-white font-bold py-2 px-4 mt-3 rounded"
-                    href={link!}
-                    target="_blank"
-                  >
-                    Learn more
-                  </Link>
+                  {link && (
+                    <Link
+                      className="text-white font-bold py-2 px-4 mt-3 rounded"
+                      href={link!}
+                      target="_blank"
+                    >
+                      Learn more
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
