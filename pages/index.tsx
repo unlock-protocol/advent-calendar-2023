@@ -35,6 +35,8 @@ export default function Home() {
           property="og:image"
           content="https://advent.unlock-protocol.com/images/advent.png"
         />
+        <meta property="og:url" content="https://advent.unlock-protocol.com/" />
+        <meta property="og:type" content="website" />
       </Head>
 
       <main className="bg-green">
