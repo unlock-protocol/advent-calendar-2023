@@ -14,13 +14,13 @@ interface UnlockableDayProps {
 const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   const {
     hasMembership: previousDayMembership,
-    loading: previousDayLoading,
+    isLoading: previousDayLoading,
   } = useLock(user, day - 1);
   const { purchase } = useAuth();
 
-  const { hasMembership, loading } = useLock(user, day);
+  const { hasMembership, isLoading } = useLock(user, day);
 
-  if (loading || previousDayLoading) {
+  if (isLoading || previousDayLoading) {
     return <LoadingDay day={day} />;
   }
 
@@ -40,6 +40,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
             network: 137,
           },
         },
+        pessimistic: true,
       },
       { day: day.toString() }
     );

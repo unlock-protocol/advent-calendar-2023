@@ -1,16 +1,26 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import BaseDay from "./BaseDay";
 import days from "../lib/days";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-
+import makeItSnow from "../lib/snow";
 interface UnlockedDayProps {
   day: number;
 }
 
 const UnlockedDay = ({ day }: UnlockedDayProps) => {
-  const [showModal, setShowModal] = useState(false);
+  const { query, replace } = useRouter();
+
+  const [showModal, setShowModal] = useState(
+    query && query.day && parseInt(query.day.toString(), 10) === day
+  );
   const { title, description, link, image, youtube } = days[day - 1];
+
+  if (query && query.day && parseInt(query.day.toString(), 10) === day) {
+    makeItSnow();
+    replace("/", undefined, { shallow: true });
+  }
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>

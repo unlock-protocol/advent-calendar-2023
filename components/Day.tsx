@@ -12,8 +12,7 @@ interface DayProps {
 const Day = ({ day }: DayProps) => {
   const { isAuthenticated, user } = useAuth();
 
-  // TODO: Change later!
-  const now = new Date("2022-12-02");
+  const now = new Date();
 
   if (now.getFullYear() < 2022 || now.getMonth() < 11 || now.getDate() < day) {
     return <FutureDay day={day} />;
