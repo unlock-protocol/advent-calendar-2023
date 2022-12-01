@@ -1,11 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
+import { ethers } from "ethers";
+import { useQuery } from "@tanstack/react-query";
 import Day from "../components/Day";
 import Header from "../components/Header";
 
 export default function Home() {
   const start = 0;
   const days = new Array(26).fill(0).map((d, i) => i + start);
+  const { data: now, isLoading } = useQuery(["now"], async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://rpc.unlock-protocol.com/137"
+    );
+    const block = await provider.getBlock("latest");
+    console.log(block.timestamp);
+    console.log(new Date(block.timestamp * 1000).getTime());
+    return new Date(block.timestamp * 1000);
+  });
 
   return (
     <main className="bg-green">
@@ -21,7 +32,9 @@ export default function Home() {
           <div className="mt-0 grid grid-cols-1 lg:grid-cols-7 gap-4 mb-12">
             {days.map((day, index) => {
               if (day > 0 && day < 25) {
-                return <Day key={index} day={day} />;
+                return (
+                  <Day isLoading={isLoading} now={now} key={index} day={day} />
+                );
               }
               if (index === 0)
                 return (

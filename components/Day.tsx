@@ -7,14 +7,22 @@ import UnlockableDay from "./UnlockableDay";
 
 interface DayProps {
   day: number;
+  now: Date;
+  isLoading: boolean;
 }
 
-const Day = ({ day }: DayProps) => {
+const Day = ({ day, now, isLoading }: DayProps) => {
   const { isAuthenticated, user } = useAuth();
 
-  const now = new Date();
+  if (isLoading) {
+    return <LoadingDay day={day} />;
+  }
 
-  if (now.getFullYear() < 2022 || now.getMonth() < 11 || now.getDate() < day) {
+  if (
+    now.getUTCFullYear() < 2022 ||
+    now.getUTCMonth() < 11 ||
+    now.getUTCDate() < day
+  ) {
     return <FutureDay day={day} />;
   }
 
