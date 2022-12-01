@@ -7,14 +7,14 @@ import UnlockableDay from "./UnlockableDay";
 
 interface DayProps {
   day: number;
-  now: Date;
+  now?: Date;
   isLoading: boolean;
 }
 
 const Day = ({ day, now, isLoading }: DayProps) => {
   const { isAuthenticated, user } = useAuth();
 
-  if (isLoading) {
+  if (isLoading || !now) {
     return <LoadingDay day={day} />;
   }
 
