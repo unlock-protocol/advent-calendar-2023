@@ -7,7 +7,7 @@ const days = [
     lock: "0x6B6CbaA6b44D5949A2a6cac24499aa13D6c1798D",
     title: "Welcome to the 2022 Unlock Protocol Advent Calendar!",
     description: `Every day, open a new door, claim a new NFT, and learn something new! You can open today’s door if you opened yesterday’s door. (No peeking ahead!) Best of all, some days will have special gifts for you from Unlock!`,
-    link: "" /** Shall we put the link to NFT on OpenSea? */,
+    link: "https://opensea.io/collection/unlock-advent-calendar-2022",
     image: "",
     youtube: "",
   },
