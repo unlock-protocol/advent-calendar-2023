@@ -39,7 +39,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <main className="bg-green h-screen">
+      <main className="bg-green">
         <div className="container">
           <Header />
           <section>
