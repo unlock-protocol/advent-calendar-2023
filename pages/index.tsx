@@ -13,8 +13,6 @@ export default function Home() {
       "https://rpc.unlock-protocol.com/137"
     );
     const block = await provider.getBlock("latest");
-    console.log(block.timestamp);
-    console.log(new Date(block.timestamp * 1000).getTime());
     return new Date(block.timestamp * 1000);
   });
 
