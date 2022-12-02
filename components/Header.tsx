@@ -1,8 +1,20 @@
 import Link from "next/link";
 import { useAuth } from "../hooks/useAuth";
 
+function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
+  if (text.length > maxLength) {
+    var start = text.substring(0, startChars);
+    var end = text.substring(text.length - endChars, text.length);
+    while (start.length + end.length < maxLength) {
+      start = start + ".";
+    }
+    return start + end;
+  }
+  return text;
+}
+
 const Header = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, user, login, logout } = useAuth();
 
   return (
     <nav className="">
@@ -39,14 +51,14 @@ const Header = () => {
           </svg>
         </Link>
         <span className="grow"></span>
-        {isAuthenticated ? (
+        {isAuthenticated && user ? (
           <button
             className="bg-red text-white font-bold py-2 px-4 rounded-full"
             onClick={() => {
               logout();
             }}
           >
-            Logout
+            Logout ({truncate(user)})
           </button>
         ) : (
           <button
