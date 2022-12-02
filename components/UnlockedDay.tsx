@@ -52,6 +52,16 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                       {description!}
                     </ReactMarkdown>
                   </div>
+                  {youtube && (
+                    <div class="aspect-w-16 aspect-h-9">
+                      <iframe
+                        src={youtube}
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  )}
                 </div>
                 <div className="container min-w-full flex flex-col items-center flex items-center justify-end pb-5 rounded-b">
                   {link && (

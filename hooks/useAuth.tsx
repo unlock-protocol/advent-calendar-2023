@@ -12,6 +12,7 @@ export function useAuth() {
   });
 
   const isAuthenticated = !!user;
+
   const authenticate = useCallback(
     async (_code: string) => {
       const code = JSON.parse(Buffer.from(_code, "base64").toString());

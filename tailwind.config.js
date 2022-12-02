@@ -19,5 +19,7 @@ module.exports = {
       darkred: '#792E31',
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }
