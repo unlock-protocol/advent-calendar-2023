@@ -48,7 +48,7 @@ See you tomorrow!`,
     title: "Just another magic Monday",
     description: "Hey! A little something-something for you today — we’re dropping some USDC to you! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
     link: "",
-    image: "",
+    image: "https://media.tenor.com/k_I4uywWFfQAAAAC/picsou-scrooge.gif",
     youtube: "",
   },
   {
