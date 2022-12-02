@@ -31,7 +31,7 @@ See you tomorrow!`,
       "In 2022, BAFTA-award winning game designer Henry Hoffman integrated Unlock into Unity, enabling Unlock NFTs to be used for membership access, in-game items, and more in the Unity ecosystem — without having to write code. 🤯",
     link: "https://twitter.com/UnlockProtocol/status/1597632023362879488",
     image: "",
-    youtube: "",
+    youtube: "https://www.youtube.com/embed/l4e3L_R4Xwk",
   },
   {
     // Day 4
@@ -40,7 +40,7 @@ See you tomorrow!`,
     description: "Flocker, built with Unlock, is a way your fans and followers can connect with you all across the web. We built it because you should be able to connect directly with them, and not have to rely on centralized platforms like the bird app which may go through some, ahem, changes.",
     link: "https://flocker.app",
     image: "",
-    youtube: "",
+    youtube: "https://www.youtube.com/embed/XFBc1U4wtKg",
   },
   {
     // Day 5
