@@ -19,8 +19,11 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
 
   if (query && query.day && parseInt(query.day.toString(), 10) === day) {
     makeItSnow();
-    replace("/", undefined, { shallow: true });
+    if (!query.admin) {
+      replace("/", undefined, { shallow: true });
+    }
   }
+  console.log("OK", day);
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>
@@ -53,10 +56,10 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                     </ReactMarkdown>
                   </div>
                   {youtube && (
-                    <div class="aspect-w-16 aspect-h-9">
+                    <div className="aspect-w-16 aspect-h-9">
                       <iframe
                         src={youtube}
-                        frameborder="0"
+                        frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                       ></iframe>

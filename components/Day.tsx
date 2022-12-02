@@ -1,9 +1,11 @@
+import { useRouter } from "next/router";
 import { useAuth } from "../hooks/useAuth";
 import { useLock } from "../hooks/useLock";
 import FutureDay from "./FutureDay";
 import LoadingDay from "./LoadingDay";
 import NotConnectedDay from "./NotConnectedDay";
 import UnlockableDay from "./UnlockableDay";
+import UnlockedDay from "./UnlockedDay";
 
 interface DayProps {
   day: number;
@@ -13,9 +15,17 @@ interface DayProps {
 
 const Day = ({ day, now, isLoading }: DayProps) => {
   const { isAuthenticated, user } = useAuth();
+  const { query, replace } = useRouter();
 
   if (isLoading || !now) {
     return <LoadingDay day={day} />;
+  }
+
+  if (
+    query.admin?.toString() === "true" &&
+    day === parseInt(query.day?.toString() || "")
+  ) {
+    return <UnlockedDay day={day} />;
   }
 
   if (
