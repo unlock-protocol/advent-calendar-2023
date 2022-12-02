@@ -23,7 +23,6 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
       replace("/", undefined, { shallow: true });
     }
   }
-  console.log("OK", day);
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>
