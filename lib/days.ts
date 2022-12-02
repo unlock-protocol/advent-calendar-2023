@@ -37,7 +37,7 @@ See you tomorrow!`,
     // Day 4
     lock: "0x7608F73A1dFEb206A3A75aCDad6DC9FbA9Ba83D0",
     title: "Get the flock out of here!",
-    description: "Flocker, built with Unlock, is a way for your fans and followers can connect with you all across the web. We built it because you should be able to connect directly with them, and not have to rely on centralized platforms like the bird app which may go through some, ahem, changes.",
+    description: "Flocker, built with Unlock, is a way your fans and followers can connect with you all across the web. We built it because you should be able to connect directly with them, and not have to rely on centralized platforms like the bird app which may go through some, ahem, changes.",
     link: "https://flocker.app",
     image: "",
     youtube: "https://www.youtube.com/embed/XFBc1U4wtKg",
