@@ -46,7 +46,7 @@ See you tomorrow!`,
     // Day 5
     lock: "0x3e36C285E11DE77e8257Fe7D49e80209C48b295E",
     title: "Just another magic Monday",
-    description: "Hey! A little something-something for you today — we’re dropping a some USDC to you! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
+    description: "Hey! A little something-something for you today — we’re dropping some USDC to you! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
     link: "",
     image: "",
     youtube: "",
