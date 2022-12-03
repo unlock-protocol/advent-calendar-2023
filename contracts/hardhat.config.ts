@@ -5,6 +5,11 @@ import "@unlock-protocol/hardhat-plugin";
 const config: HardhatUserConfig = {
   solidity: "0.8.17",
   networks: {
+    hardhat: {
+      forking: {
+        url: "https://rpc.unlock-protocol.com/137",
+      },
+    },
     polygon: {
       url: "https://rpc.unlock-protocol.com/137",
       accounts: process.env.PKEY ? [process.env.PKEY] : [],

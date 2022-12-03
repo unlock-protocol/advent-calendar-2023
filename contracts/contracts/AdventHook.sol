@@ -3,6 +3,8 @@ pragma solidity ^0.8.9;
 
 import "@unlock-protocol/contracts/dist/PublicLock/IPublicLockV12.sol";
 import "./BokkyPooBahsDateTimeLibrary.sol";
+import "hardhat/console.sol";
+
 
 error TOO_EARLY();
 error MISSING_PREVIOUS_DAY();
@@ -30,10 +32,17 @@ contract AdventHook {
     uint month = BokkyPooBahsDateTimeLibrary.getMonth(block.timestamp);
     uint day = BokkyPooBahsDateTimeLibrary.getDay(block.timestamp);
     uint lock = dayByLock[msg.sender];
+    console.log('_________________________');
+
     if (year < 2022 || month < 12 || day < lock) {
+      console.log('TOO EARLY!');
+      console.log(year, month, day);
+      console.log(lock);
       revert TOO_EARLY();
     }
     if (lock > 1 && IPublicLock(lockByDay[lock-1]).balanceOf(recipient) == 0) {
+      console.log('MISSING PREVIOUS DAY!');
+      console.log(lock);
       revert MISSING_PREVIOUS_DAY();
     }
     return 0; // Free for everyone!
