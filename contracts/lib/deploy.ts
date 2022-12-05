@@ -10,7 +10,7 @@ const keyPrice = 0;
  * @returns
  */
 const deploy = async (unlock: any) => {
-  // deploy all locks
+  // all locks
   const locks = await Promise.all(
     [
       "0x6B6CbaA6b44D5949A2a6cac24499aa13D6c1798D",
@@ -41,34 +41,10 @@ const deploy = async (unlock: any) => {
       return await unlock.getLockContract(address);
     })
   );
-  // for (let i = 1; i < 25; i++) {
-  //   const { lock } = await unlock.createLock({
-  //     expirationDuration,
-  //     maxNumberOfKeys,
-  //     keyPrice,
-  //     name: `Day ${i}: Unlock Advent Calendar 2022`,
-  //   });
-  //   locks.push(lock);
-  //   console.log("lock", i, lock.address);
-  // }
 
   // deploy hook
   const Hook = await ethers.getContractFactory("AdventHook");
-  const hook = await Hook.attach("0x438DA2a938295E7385E6738a7dE42517F48f929A");
-  console.log("hook", hook.address);
-
-  // Set hook on locks
-  for (let i = 0; i < 24; i++) {
-    await locks[i].setEventHooks(
-      hook.address,
-      ethers.constants.AddressZero,
-      ethers.constants.AddressZero,
-      ethers.constants.AddressZero,
-      ethers.constants.AddressZero,
-      ethers.constants.AddressZero,
-      ethers.constants.AddressZero
-    );
-  }
+  const hook = await Hook.deploy(locks.map((lock) => lock.address));
 
   return [locks, hook];
 };
