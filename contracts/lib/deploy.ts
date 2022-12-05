@@ -9,7 +9,7 @@ const keyPrice = 0;
  * @param unlock
  * @returns
  */
-const deploy = async (unlock: any, signer: any) => {
+const deploy = async (unlock: any) => {
   // all locks
   const locks = await Promise.all(
     [
@@ -42,26 +42,9 @@ const deploy = async (unlock: any, signer: any) => {
     })
   );
 
-  console.log("I WAS HERE!");
   // deploy hook
   const Hook = await ethers.getContractFactory("AdventHook");
   const hook = await Hook.deploy(locks.map((lock) => lock.address));
-  console.log("hook", hook.address);
-
-  // Set hook on locks
-  for (let i = 0; i < 24; i++) {
-    await locks[i]
-      .connect(signer)
-      .setEventHooks(
-        hook.address,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero,
-        ethers.constants.AddressZero
-      );
-  }
 
   return [locks, hook];
 };

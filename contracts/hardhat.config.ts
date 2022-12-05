@@ -20,6 +20,9 @@ const config: HardhatUserConfig = {
       polygon: "W9TVEYKW2CDTQ94T3A2V93IX6U3IHQN5Y3",
     },
   },
+  mocha: {
+    timeout: 2000000,
+  },
 };
 
 export default config;
