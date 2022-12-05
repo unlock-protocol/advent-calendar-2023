@@ -52,7 +52,14 @@ See you tomorrow!`,
     youtube: "",
   },
   {
+    // Day 6
     lock: "0x3Ba3470ffAB4D0bE96C75c5A11AA83DB7DC6501a",
+    title: "We ❤️ our frens at Guild.xyz",
+    description: "In 2022, our frens at Guild.xyz integrated Unlock memberships, which can be used to token-gate Discord, Telegram, and other resources with just a few clicks. It’s kinda magical.",
+    link: "https://unlock-protocol.com/guides/how-to-token-gate-telegram-with-unlock-protocol-and-guild-xyz/",
+    image: "",
+    youtube: "",
+  
   },
   {
     lock: "0xd1bc4E5100024428E5573e0Cd7b1EB14e2c2aa73",
