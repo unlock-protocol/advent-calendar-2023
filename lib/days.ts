@@ -59,10 +59,15 @@ See you tomorrow!`,
     link: "https://unlock-protocol.com/guides/how-to-token-gate-telegram-with-unlock-protocol-and-guild-xyz/",
     image: "",
     youtube: "",
-  
   },
   {
+    // Day 7
     lock: "0xd1bc4E5100024428E5573e0Cd7b1EB14e2c2aa73",
+    title: "2022 was hacktastic!",
+    description: "One of the absolute highlights of 2022 was the opportunity to connect up with thousands of hackers at ETHNewYork, ETHSanFrancisco and other hackathons. The creativity of the Locksmith community is amazing!",
+    link: "https://unlock-protocol.com/blog/ethsanfrancisco-2022",
+    image: "https://unlock-protocol.com/images/blog/ethsf22/unlock-6.png",
+    youtube: "",
   },
   {
     lock: "0x412024855fA62752805c96F1dbaD6B4dC0C9AD52",
