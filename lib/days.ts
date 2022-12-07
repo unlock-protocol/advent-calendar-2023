@@ -82,7 +82,7 @@ See you tomorrow!`,
     // Day 9
     lock: "0x2b7cd7B41f3937c09E4242828F08fCBBaf1043a5",
     title: "Fun Sock Protocol",
-    description: "It’s cold in a lot of places, and we want your toesies to be warm! Claim today’s NFT, which will give you access to a form where the first 100 folks can grab a pair of awesome Unlock socks! Click the “Learn More” link below to go to the shipping form (and you need to have today's NFT in your wallet to submit the form).",
+    description: "It’s cold in a lot of places, and we want your toesies to be warm! Claim today’s NFT, which will give you access to a form where the first 100 folks can grab a pair of awesome Unlock socks! Click the “Learn More” link below to go to the shipping form (and you need to have today's NFT in your wallet to submit the form). Fun socks!!!",
     link: "",
     image: "https://i.imgur.com/ZVvjM1h.gif",
     youtube: "",
