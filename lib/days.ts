@@ -84,7 +84,7 @@ See you tomorrow!`,
     title: "Fun Sock Protocol",
     description: "It’s cold in a lot of places, and we want your toesies to be warm! Claim today’s NFT, which will give you access to a form where the first 100 folks can grab a pair of awesome Unlock socks! Click the “Learn More” link below to go to the shipping form (and you need to have today's NFT in your wallet to submit the form).",
     link: "",
-    image: "https://media3.giphy.com/media/9xccJgllsnE8Io61tR/giphy.gif?cid=ecf05e471fuzoonpl61nfivrg6g2jgz7l2di6b6wub2g9pje&rid=giphy.gif&ct=g",
+    image: "https://i.imgur.com/ZVvjM1h.gif",
     youtube: "",
   },
   {
