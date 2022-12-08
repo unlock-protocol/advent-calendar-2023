@@ -90,6 +90,11 @@ See you tomorrow!`,
   {
     // Day 10
     lock: "0xB3903433B3da787a01Aa30b73Ad1C108F632b297",
+    title: "It’s showtime!",
+    description: "Dozens of projects and partners that have used Unlock Protocol are featured in our ever-growing showcase! Want to see them? Are you one of them? Want to be one? Let us know!",
+    link: "https://showcase.unlock-protocol.com",
+    image: "",
+    youtube: "",
   },
   {
     lock: "0x59c55EFD6faa9Dbecb3AdA3d219a898dd42A9Baf",
