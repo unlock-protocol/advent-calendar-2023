@@ -93,7 +93,7 @@ See you tomorrow!`,
     title: "It’s showtime!",
     description: "Dozens of projects and partners that have used Unlock Protocol are featured in our ever-growing showcase! Want to see them? Are you one of them? Want to be one? Let us know!",
     link: "https://showcase.unlock-protocol.com",
-    image: "",
+    image: "/images/showcase-share.png",
     youtube: "",
   },
   {
