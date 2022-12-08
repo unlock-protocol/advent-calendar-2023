@@ -1,3 +1,9 @@
+import { useEffect } from "react";
+import { hotjar } from "react-hotjar";
+import { useRouter } from "next/router";
+import ReactGA from 'react-ga';
+
+
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import {
@@ -8,6 +14,23 @@ import {
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!hotjar.initialized()) {
+      hotjar.initialize(3259412, 6);
+    }
+    ReactGA.initialize('G-EEZ0EF7TJN');
+  }, []);
+
+  useEffect(() => {
+    if (hotjar.initialized()) {
+      hotjar.stateChange(router.asPath);
+    }
+    ReactGA.pageview(router.asPath);
+
+  }, [router.asPath]);
+
   return <QueryClientProvider client={queryClient}>
     <canvas id="Snow" className="absolute	" />
     <Component {...pageProps} />
