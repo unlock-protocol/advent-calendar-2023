@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <nav className="">
-      <div className="flex h-16 items-center mb-8">
+      <div className="pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
         <Link target="_blank" href="https://unlock-protocol.com">
           <svg
             width="147"
@@ -51,6 +51,20 @@ const Header = () => {
           </svg>
         </Link>
         <span className="grow"></span>
+        <Link
+          className="text-white hidden sm:inline-flex hover:underline"
+          target="_blank"
+          href="https://twitter.com/unlockProtocol"
+        >
+          Twitter
+        </Link>
+        <Link
+          className="text-white hidden sm:inline-flex hover:underline"
+          target="_blank"
+          href="https://discord.com/invite/Ah6ZEJyTDp"
+        >
+          Discord
+        </Link>
         {isAuthenticated && user ? (
           <button
             className="bg-red text-white font-bold py-2 px-4 rounded-full"
@@ -62,7 +76,7 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className="bg-red text-white font-bold py-2 px-4 rounded-full"
+            className="bg-red whitespace-nowrap text-white font-bold py-2 px-4 rounded-full"
             onClick={() => {
               login();
             }}
