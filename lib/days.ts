@@ -59,18 +59,36 @@ See you tomorrow!`,
     link: "https://unlock-protocol.com/guides/how-to-token-gate-telegram-with-unlock-protocol-and-guild-xyz/",
     image: "",
     youtube: "",
-  
   },
   {
+    // Day 7
     lock: "0xd1bc4E5100024428E5573e0Cd7b1EB14e2c2aa73",
+    title: "2022 was hacktastic!",
+    description: "One of the absolute highlights of 2022 was the opportunity to connect up with thousands of hackers at ETHNewYork, ETHSanFrancisco and other hackathons. The creativity of the Locksmith community is amazing!",
+    link: "https://unlock-protocol.com/blog/ethsanfrancisco-2022",
+    image: "https://unlock-protocol.com/images/blog/ethsf22/unlock-6.png",
+    youtube: "",
   },
   {
+    // Day 8
     lock: "0x412024855fA62752805c96F1dbaD6B4dC0C9AD52",
+    title: "Certifiably amazing",
+    description: "Did you know: Professional certifications like CDAA (Certified Digital Asset Advisor) and industry leaders like Web3 Academy deliver their on-chain certifications and credentials using Unlock Protocol. It’s very cool, and it just works.",
+    link: "https://unlock-protocol.com/blog/cdaa-unlock-case-study",
+    image: "",
+    youtube: "https://www.youtube.com/embed/MzjiOuXgXSA",
   },
   {
+    // Day 9
     lock: "0x2b7cd7B41f3937c09E4242828F08fCBBaf1043a5",
+    title: "Fun Sock Protocol",
+    description: "It’s cold in a lot of places, and we want your toesies to be warm! Claim today’s NFT, which will give you access to a form where the first 100 folks can grab a pair of awesome Unlock socks! Click the “Learn More” link below to go to the shipping form (and you need to have today's NFT in your wallet to submit the form). Fun socks!!!",
+    link: "https://forms.bueno.art/unlockprotocolday9",
+    image: "https://i.imgur.com/Q0FV0EG.gif", // better aspect ratio
+    youtube: "",
   },
   {
+    // Day 10
     lock: "0xB3903433B3da787a01Aa30b73Ad1C108F632b297",
   },
   {
