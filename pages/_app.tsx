@@ -12,7 +12,7 @@ import {
 } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
-
+ReactGA.initialize('G-EEZ0EF7TJN');
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -20,7 +20,6 @@ export default function App({ Component, pageProps }: AppProps) {
     if (!hotjar.initialized()) {
       hotjar.initialize(3280275, 6);
     }
-    ReactGA.initialize('G-EEZ0EF7TJN');
   }, []);
 
   useEffect(() => {
@@ -28,7 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
       hotjar.stateChange(router.asPath);
     }
     ReactGA.pageview(router.asPath);
-
   }, [router.asPath]);
 
   return <QueryClientProvider client={queryClient}>
