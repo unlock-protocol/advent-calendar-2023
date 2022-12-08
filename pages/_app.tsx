@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (!hotjar.initialized()) {
-      hotjar.initialize(3259412, 6);
+      hotjar.initialize(3280275, 6);
     }
     ReactGA.initialize('G-EEZ0EF7TJN');
   }, []);
