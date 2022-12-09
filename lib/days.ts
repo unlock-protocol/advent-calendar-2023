@@ -97,6 +97,7 @@ See you tomorrow!`,
     youtube: "",
   },
   {
+    // Day 11
     lock: "0x59c55EFD6faa9Dbecb3AdA3d219a898dd42A9Baf",
   },
   {
