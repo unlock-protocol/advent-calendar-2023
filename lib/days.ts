@@ -97,7 +97,13 @@ See you tomorrow!`,
     youtube: "",
   },
   {
+    // Day 11
     lock: "0x59c55EFD6faa9Dbecb3AdA3d219a898dd42A9Baf",
+    title: "thirdweb 🤝 Unlock",
+    description: "thirdweb is a platform that provides a suite of tools for creators, artists, and entrepreneurs, enabling them to easily build, launch and manage web3 projects. Last week, thirdweb’s Ciara Nightingale created this stellar guide that shows you how to deploy an instance of Unlock’s Lock contract and then integrates this contract into a simple app. Check it out!",
+    link: "https://blog.thirdweb.com/guides/build-a-subscription-with-unlock/",
+    image: "/images/thirdweb-guide-min.png",
+    youtube: "",
   },
   {
     lock: "0x82b0728f060919c81F5fa0b74cF0889AC4227DA0",
