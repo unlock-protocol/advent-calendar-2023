@@ -90,12 +90,29 @@ See you tomorrow!`,
   {
     // Day 10
     lock: "0xB3903433B3da787a01Aa30b73Ad1C108F632b297",
+    title: "It’s showtime!",
+    description: "Dozens of projects and partners that have used Unlock Protocol are featured in our ever-growing showcase! Want to see them? Are you one of them? Want to be one? Let us know!",
+    link: "https://showcase.unlock-protocol.com",
+    image: "/images/showcase-share.png",
+    youtube: "",
   },
   {
+    // Day 11
     lock: "0x59c55EFD6faa9Dbecb3AdA3d219a898dd42A9Baf",
+    title: "thirdweb 🤝 Unlock",
+    description: "thirdweb is a platform that provides a suite of tools for creators, artists, and entrepreneurs, enabling them to easily build, launch and manage web3 projects. Last week, thirdweb’s Ciara Nightingale created this stellar guide that shows you how to deploy an instance of Unlock’s Lock contract and then integrates this contract into a simple app. Check it out!",
+    link: "https://blog.thirdweb.com/guides/build-a-subscription-with-unlock/",
+    image: "/images/thirdweb-guide-min.png",
+    youtube: "",
   },
   {
+    // Day 12
     lock: "0x82b0728f060919c81F5fa0b74cF0889AC4227DA0",
+    title: "Let a billion ideas Bloom",
+    description: "Bloom Network is an international community of people and projects working toward regenerative cultures. Bloom hubs around the world grow participation in food security, local economies, celebrations of diversity, art as cultural transformation, and aim to inspire a billion acts of regeneration. Bloom Network is part of the Unlock Protocol ecosystem, and for every Advent NFT claimed today, Unlock will make a $1 donation to Bloom Network, up to a maximum total of USD$250.",
+    link: "https://bloomnetwork.org/",
+    image: "/images/bloom-header.png",
+    youtube: "",
   },
   {
     lock: "0x3DFD892A1806c91663F2F145DcE9980DA92f186E",
