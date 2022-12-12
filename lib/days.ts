@@ -117,6 +117,11 @@ See you tomorrow!`,
   {
     // Day 13
     lock: "0x3DFD892A1806c91663F2F145DcE9980DA92f186E",
+    title: "A free learning webinar for you",
+    description: "This week, we're doing a webinar on the Membership Journey! Learn the basics of how to set up an NFT-based membership program and work through the foundational steps of the membership playbook for projects and brands. This free one-hour webinar will cover: Why memberships matter, key use cases for memberships, a dive into the Membership Journey, and a live demo. Join us! (It's free.) Click *Learn more* below to register.",
+    link: "https://us06web.zoom.us/webinar/register/1216708555427/WN_xqpZql2JRLCfKIuOqhIbTg",
+    image: "/images/journey-16x9.png",
+    youtube: "",
   },
   {
     lock: "0x07791a5C83fec114F4dEd574f62Aa9f78b3F3A73",
