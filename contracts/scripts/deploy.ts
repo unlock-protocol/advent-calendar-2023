@@ -6,9 +6,11 @@ import deploy from "../lib/deploy";
  * @returns
  */
 async function main() {
+  const [user] = await ethers.getSigners();
   const { chainId } = await ethers.provider.getNetwork();
 
   const [locks, hook] = await deploy(unlock);
+
   console.log(`Hook`, hook.address);
 }
 

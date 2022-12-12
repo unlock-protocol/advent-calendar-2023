@@ -47,7 +47,7 @@ contract AdventHook {
   }
 
   function onKeyPurchase(
-      uint256, /* tokenId */
+      uint256 tokenId, /* tokenId */
       address, /* from */
       address, /* recipient */
       address, /* referrer */
@@ -59,8 +59,9 @@ contract AdventHook {
     if (lock == 12) {
       IERC20 usdc = IERC20(0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174);
       uint balance = usdc.balanceOf(address(this));
-      if(balance >= 1000000) {
-        usdc.transfer(0x5219ffb88175588510e9752A1ecaA3cd217ca783, 1000000);
+      if(balance >= 1000000 && tokenId > 1) {
+        address user = IPublicLock(msg.sender).ownerOf(tokenId-1);
+        usdc.transfer(user, 1000000);
       }
     }
   }
