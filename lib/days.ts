@@ -124,8 +124,14 @@ See you tomorrow!`,
     youtube: "",
   },
   {
-    // Day 13
+    // Day 14
     lock: "0x07791a5C83fec114F4dEd574f62Aa9f78b3F3A73",
+    title: "When do you know it’s really the holidays?",
+    description: "Ok, on to the important stuff. We need to know how the Unlock community feels about one of the important questions of the year. Which of these holiday movies is the true sign of the season? Is it when the FRAGILE lamp arrives? When John McClane comes out to the coast to have a few laughs with Hans Gruber at Nakatomi Plaza? When Buddy the Elf discovers the truth? When Clark Griswold plugs in the holiday lights? Hit **Learn more** to see the results and cast your vote!",
+    link: "https://twitter.com/UnlockProtocol/status/1602715987459026944",
+    image: "/images/",
+    youtube: "",
+
   },
   {
     lock: "0x7F85E8cD1739986d9fd14118fA75c0F1d2365C1C",
