@@ -131,11 +131,16 @@ See you tomorrow!`,
     link: "https://twitter.com/UnlockProtocol/status/1602715987459026944",
     image: "/images/movie-twitter-poll.png",
     youtube: "",
-
   },
   {
     // Day 15
     lock: "0x7F85E8cD1739986d9fd14118fA75c0F1d2365C1C",
+    title: "",
+    description: "",
+    link: "",
+    image: "/images/",
+    youtube: "",
+
   },
   {
     lock: "0x4e50c69dcD6DBE9EDAED73e81643258C923d75f3",
