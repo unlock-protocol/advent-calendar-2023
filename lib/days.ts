@@ -131,10 +131,16 @@ See you tomorrow!`,
     link: "https://twitter.com/UnlockProtocol/status/1602715987459026944",
     image: "/images/movie-twitter-poll.png",
     youtube: "",
-
   },
   {
+    // Day 15
     lock: "0x7F85E8cD1739986d9fd14118fA75c0F1d2365C1C",
+    title: "Unlock mints digital collectibles with membership superpowers",
+    description: "You already knew Unlock has always been about memberships, subscriptions, NFT ticketing, on-chain certification, and other real-world use cases. But did you know Unlock makes it easy to mint digital collectibles with membership superpowers as well? It’s true! Here’s how you can set up unique digital art for every piece in a collection — every one of which inherits all the advanced capabilities of Unlock Protocol. It’s kinda like holiday magic. ✨",
+    link: "https://unlock-protocol.com/guides/how-to-use-different-images/",
+    image: "/images/collectibles-16x9.png",
+    youtube: "",
+
   },
   {
     lock: "0x4e50c69dcD6DBE9EDAED73e81643258C923d75f3",
