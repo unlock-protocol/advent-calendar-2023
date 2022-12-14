@@ -140,33 +140,41 @@ See you tomorrow!`,
     link: "https://unlock-protocol.com/guides/how-to-use-different-images/",
     image: "/images/collectibles-16x9.png",
     youtube: "",
-
   },
   {
+    // Day 16
     lock: "0x4e50c69dcD6DBE9EDAED73e81643258C923d75f3",
   },
   {
+    // Day 17
     lock: "0x0a051fD5673F8c317B53B0736676E89b1AF07797",
   },
   {
+    // Day 18
     lock: "0x58D41c526A2D88aE9D08a546d327D3619511B278",
   },
   {
+    // Day 19
     lock: "0x281522e8073bA6746874aa61bDF81DFa9DB833eC",
   },
   {
+    // Day 20
     lock: "0x19b24fF3c0C124B91b672Dc8F8Ae077A96E2551C",
   },
   {
+    // Day 21
     lock: "0x0634905430e4DB8CAaF63b0dd078EEFBF3FC1EdE",
   },
   {
+    // Day 22
     lock: "0xE5D92b4F0953EeE7B250d2DFaeC955ad95161b22",
   },
   {
+    // Day 23
     lock: "0xc9221Cf0004A05f04aB5dF82d58eb63D5307C040",
   },
   {
+    // Day 24
     lock: "0xd8aD6E0C1aa8308e27F537A76032f50d2FE3e65D",
   },
 ];
