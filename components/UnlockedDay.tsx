@@ -5,6 +5,8 @@ import days from "../lib/days";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import makeItSnow from "../lib/snow";
+import { BsTwitter } from "react-icons/bs";
+import { SlMagnifier } from "react-icons/sl";
 interface UnlockedDayProps {
   day: number;
 }
@@ -23,6 +25,14 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
       replace("/", undefined, { shallow: true });
     }
   }
+
+  const tweetIntent = new URL("https://twitter.com/intent/tweet");
+  tweetIntent.searchParams.set(
+    "text",
+    `🎁 I have just unlocked Day ${day} of the @unlockProtocol advent calendar!`
+  );
+  tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
+
   return (
     <>
       <BaseDay day={day} onClick={() => setShowModal(true)}>
@@ -70,16 +80,24 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                     </div>
                   )}
                 </div>
-                <div className="container min-w-full flex flex-col items-center flex items-center justify-end pb-5 rounded-b">
+                <div className="container space-x-2  min-w-full flex flex-row items-center flex items-center justify-center pb-5 rounded-b">
                   {link && (
                     <Link
-                      className="text-white font-bold py-2 px-4 mt-3 rounded"
+                      className="border text-white font-bold py-2 px-4 mt-3 rounded"
                       href={link!}
                       target="_blank"
                     >
-                      Learn more
+                      <SlMagnifier className="inline-block mr-2" />
+                      Learn more!
                     </Link>
                   )}
+                  <Link
+                    className="border whitespace-nowrap	 text-white font-bold py-2 px-4 mt-3 rounded"
+                    href={tweetIntent.toString()}
+                  >
+                    <BsTwitter className="inline-block mr-2" />
+                    Tweet this!
+                  </Link>
                 </div>
               </div>
             </div>
