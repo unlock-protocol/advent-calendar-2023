@@ -136,7 +136,7 @@ See you tomorrow!`,
     // Day 15
     lock: "0x7F85E8cD1739986d9fd14118fA75c0F1d2365C1C",
     title: "Ho Ho ZenGo!",
-    description: "We think the ZenGo Wallet team is pretty neat, and they’ve built something incredible! It’s a new kind of wallet that not only does the things you’d expect, but it also has a **huge** focus on security and recovery options, includes a built-in web3 firewall, features a gorgeous NFT gallery, and — get this — they have actual customer support! Amazing.",
+    description: "Next-gen tech for a new year. Welcome to the future. We think the ZenGo Wallet team is pretty neat, and they’ve built something incredible! It’s a new kind of wallet that not only does the things you’d expect, but it also has a **huge** focus on security and recovery options, includes a built-in web3 firewall, features a gorgeous NFT gallery, and — get this — they have actual customer support! Amazing.",
     link: "https://zengo.com/?utm_source=unlock&utm_medium=adventwebsite&utm_campaign=advent15",
     image: "/images/zengo-nft.png",
     youtube: "",
