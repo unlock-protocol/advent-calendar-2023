@@ -144,7 +144,11 @@ See you tomorrow!`,
   {
     // Day 16
     lock: "0x4e50c69dcD6DBE9EDAED73e81643258C923d75f3",
-
+    title: "Here comes Polygon",
+    description: "One of the big leaps forward this year was in the adoption of faster, more environmentally-friendly, less-expensive blockchains across the industry. In particular, our frens at Polygon have been on a tear, providing infrastructure across huge projects like Starbucks Odyssey and many others. While Unlock works across nearly any EVM-compatible blockchain, we’ve seen incredible adoption across Polygon this year, and have just relaunched our own membership smart contract on the Polygon blockchain.",
+    link: "",
+    image: "",
+    youtube: "https://www.youtube.com/embed/qDQkteJMK6E",
   },
   {
     // Day 17
