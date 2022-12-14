@@ -153,10 +153,20 @@ See you tomorrow!`,
   {
     // Day 17
     lock: "0x0a051fD5673F8c317B53B0736676E89b1AF07797",
+    title: "You can OpenSea your Unlock memberships anywhere",
+    description: "Since Unlock memberships and subscriptions are at their core ERC-721 NFTs, they just work anywhere you’d expect an NFT to work. For example, every Unlock membership key NFT is visible in its collection on OpenSea within minutes after minting or airdropping. And want to configure those collections? If you’re the creator or manager of that collection on Unlock, you can! Here’s how. (Yes, that was a terrible pun in the title. We regret nothing!)",
+    link: "",
+    image: "",
+    youtube: "https://www.youtube.com/embed/tWh597nk3uM",
   },
   {
     // Day 18
     lock: "0x58D41c526A2D88aE9D08a546d327D3619511B278",
+    title: "You can do token-gated events with Beem (feat. Unlock!)",
+    description: "Want to set up a token-gated event? Tess from Beem shows you how to do it in under two minutes, click that **Learn more** link to see how to Beem your fans, followers, and attendees in from anywhere!",
+    link: "https://twitter.com/0xcyp/status/1603035069878521857",
+    image: "/images/beem-demo.png",
+    youtube: "",
   },
   {
     // Day 19
