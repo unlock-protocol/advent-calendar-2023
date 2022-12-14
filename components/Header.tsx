@@ -54,6 +54,13 @@ const Header = () => {
         <Link
           className="text-white hidden sm:inline-flex hover:underline"
           target="_blank"
+          href="https://app.unlock-protocol.com/keychain"
+        >
+          Keychain
+        </Link>
+        <Link
+          className="text-white hidden sm:inline-flex hover:underline"
+          target="_blank"
           href="https://twitter.com/unlockProtocol"
         >
           Twitter
