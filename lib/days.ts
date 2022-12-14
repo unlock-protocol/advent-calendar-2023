@@ -144,6 +144,7 @@ See you tomorrow!`,
   {
     // Day 16
     lock: "0x4e50c69dcD6DBE9EDAED73e81643258C923d75f3",
+
   },
   {
     // Day 17
@@ -160,6 +161,11 @@ See you tomorrow!`,
   {
     // Day 20
     lock: "0x19b24fF3c0C124B91b672Dc8F8Ae077A96E2551C",
+    title: "Unlock mints digital collectibles with membership superpowers",
+    description: "You already knew Unlock has always been about memberships, subscriptions, NFT ticketing, on-chain certification, and other real-world use cases. But did you know Unlock makes it easy to mint digital collectibles with membership superpowers as well? It’s true! Here’s how you can set up unique digital art for every piece in a collection — every one of which inherits all the advanced capabilities of Unlock Protocol. It’s kinda like holiday magic. ✨",
+    link: "https://unlock-protocol.com/guides/how-to-use-different-images/?utm_source=unlock&utm_medium=adventwebsite&utm_campaign=advent20",
+    image: "/images/collectibles-16x9.png",
+    youtube: "",
   },
   {
     // Day 21
