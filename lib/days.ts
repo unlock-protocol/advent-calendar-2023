@@ -171,6 +171,11 @@ See you tomorrow!`,
   {
     // Day 19
     lock: "0x281522e8073bA6746874aa61bDF81DFa9DB833eC",
+    title: "Set up a smart contract in about two minutes",
+    description: "Have a New Year's Eve party, happy hour, meetup, or other event coming up? It's a snap to set up NFT ticketing for it with Unlock. In just over two minutes, you can set up and deploy a smart contract using Unlock and have your ticketing done the web3 way! Want to check out the full guide? Hit that **Learn more** link below!",
+    link: "https://unlock-protocol.com/guides/how-to-sell-nft-tickets-for-an-event/",
+    image: "",
+    youtube: "https://www.youtube.com/embed/1EGjCGfn7aE",
   },
   {
     // Day 20
