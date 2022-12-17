@@ -171,6 +171,11 @@ See you tomorrow!`,
   {
     // Day 19
     lock: "0x281522e8073bA6746874aa61bDF81DFa9DB833eC",
+    title: "",
+    description: "",
+    link: "",
+    image: "",
+    youtube: "",
   },
   {
     // Day 20
