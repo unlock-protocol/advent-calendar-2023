@@ -189,14 +189,29 @@ See you tomorrow!`,
   {
     // Day 21
     lock: "0x0634905430e4DB8CAaF63b0dd078EEFBF3FC1EdE",
+    title: "A tasty treat",
+    description: "Cookbook.dev is a hub for smart contracts where you can find, deploy, and collaborate on any contract in EVM. You can view audits, documentation, and usage, as well as deploy and manage the contracts from the user interface. And the Cookbook community membership is deliciously powered by Unlock — yum! 🍪",
+    link: "https://twitter.com/UnlockProtocol/status/1605050465615429633",
+    image: "/images/cookbook-preview.png",
+    youtube: "",
   },
   {
     // Day 22
     lock: "0xE5D92b4F0953EeE7B250d2DFaeC955ad95161b22",
+    title: "Holiday pints",
+    description: "Boxcar is UK’s best-kept secret in craft beer, known to beer geeks and enthusiasts for pioneering, innovative, and fastidiously well-made beers. In the spirit of innovation and community, Boxcar decided to involve everyone who loves their beers and ethos to join in on the journey and launched the Boxcar Collective, which allows members to join them their journey with a unique membership program powered by Unlock NFTs.",
+    link: "https://twitter.com/jroebuck/status/1595739801809977344",
+    image: "/images/boxcar.gif",
+    youtube: "",
   },
   {
     // Day 23
     lock: "0xc9221Cf0004A05f04aB5dF82d58eb63D5307C040",
+    title: "Tomorrow is the big day!",
+    description: "Tomorrow’s going to be a big day, with incredible gifts for a few lucky Locksmiths. But it’s the last day of the calendar, and we’re going to miss connecting with you every day. We’d love to stay in touch! If you’d like to as well, please [sign up for our newsletter](https://newsletter.unlock-protocol.com) — and see you tomorrow!",
+    link: "https://newsletter.unlock-protocol.com",
+    image: "/images/santa-newsletter.png",
+    youtube: "",
   },
   {
     // Day 24
