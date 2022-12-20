@@ -60,7 +60,7 @@ const UnlockedDay = ({ day }: UnlockedDayProps) => {
                 {/*body*/}
                 <div className="relative px-5 flex-auto">
                   <div className="my-4 text-lg leading-relaxed">
-                    <ReactMarkdown skipHtml={false}>
+                    <ReactMarkdown className="markdown" skipHtml={false}>
                       {description!}
                     </ReactMarkdown>
                   </div>
