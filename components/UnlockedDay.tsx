@@ -53,6 +53,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
           day24.description =
             "We are giving away a few special gifts to three members of the community from Ledger and other friends and — 🍾 congrats, you are one of the winners! Our team will be in touch with you via email with details in the next few days.";
         }
+
         setContent(day24);
       } else {
         setContent(days[day - 1]);
@@ -85,9 +86,28 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
             {/*body*/}
             <div className="relative px-5 flex-auto">
               <div className="my-4 text-lg leading-relaxed">
+                {day == 24 && (
+                  <p className="my-4 text-lg leading-relaxed">
+                    🙏 Thank you for being part of the Unlock Protocol community
+                    this year!
+                  </p>
+                )}
                 <ReactMarkdown className="markdown" skipHtml={false}>
                   {content.description!}
                 </ReactMarkdown>
+                {day == 24 && (
+                  <p className="my-4 text-lg leading-relaxed text-sm">
+                    Please see the{" "}
+                    <Link
+                      target="_blank"
+                      className="underline"
+                      href="https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-1e00ab3d30f24a8fb350a561fddc9f66"
+                    >
+                      official rules
+                    </Link>{" "}
+                    for country and other eligibility.
+                  </p>
+                )}
               </div>
               {content.image && (
                 <div className="aspect-w-16 aspect-h-9">
