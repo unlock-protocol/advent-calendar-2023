@@ -75,20 +75,20 @@ describe("AdventHook", function () {
     const hardwareWallet = await ethers.getSigner(
       "0xF5C28ce24Acf47849988f147d5C75787c0103534"
     );
-    const usdc = await ethers.getContractAt(
-      ERC20,
-      "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-      hardwareWallet
-    );
-    // Send 1 USDC!
-    await usdc.transfer(
-      hook.address,
-      ethers.utils.parseUnits("3", await usdc.decimals())
-    );
+    // const usdc = await ethers.getContractAt(
+    //   ERC20,
+    //   "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    //   hardwareWallet
+    // );
+    // // Send 1 USDC!
+    // await usdc.transfer(
+    //   hook.address,
+    //   ethers.utils.parseUnits("3", await usdc.decimals())
+    // );
 
-    const beforeBalance = await usdc.balanceOf(user.address);
-    console.log(beforeBalance);
-    expect(beforeBalance).lessThanOrEqual(0);
+    // const beforeBalance = await usdc.balanceOf(user.address);
+    // console.log(beforeBalance);
+    // expect(beforeBalance).lessThanOrEqual(0);
 
     // Test in the future only!
     console.log(
@@ -201,8 +201,8 @@ describe("AdventHook", function () {
     console.log("SUCCESS!");
 
     // Verify balance of ERC20 on day 5
-    const balanceAfter = await usdc.balanceOf(user.address);
-    console.log(balanceAfter);
-    expect(beforeBalance).greaterThan(balanceAfter);
+    // const balanceAfter = await usdc.balanceOf(user.address);
+    // console.log(balanceAfter);
+    // expect(beforeBalance).greaterThan(balanceAfter);
   });
 });

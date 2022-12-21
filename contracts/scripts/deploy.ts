@@ -8,7 +8,7 @@ import deploy from "../lib/deploy";
 async function main() {
   const [user] = await ethers.getSigners();
   const { chainId } = await ethers.provider.getNetwork();
-
+  console.log(`Deploying from ${user.address} on ${chainId}`);
   const [locks, hook] = await deploy(unlock);
 
   console.log(`Hook`, hook.address);
