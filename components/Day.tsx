@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../hooks/useAuth";
 import { useLock } from "../hooks/useLock";
 import FutureDay from "./FutureDay";
+import LastDay from "./LastDay";
 import LoadingDay from "./LoadingDay";
 import NotConnectedDay from "./NotConnectedDay";
 import UnlockableDay from "./UnlockableDay";
@@ -26,6 +27,10 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     day === parseInt(query.day?.toString() || "")
   ) {
     return <UnlockedDay day={day} />;
+  }
+
+  if (day == 24) {
+    return <LastDay day={24} user={user} />;
   }
 
   if (
