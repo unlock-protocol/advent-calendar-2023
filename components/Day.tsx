@@ -26,7 +26,7 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     query.admin?.toString() === "true" &&
     day === parseInt(query.day?.toString() || "")
   ) {
-    return <UnlockedDay day={day} />;
+    return <UnlockedDay day={day} user={user} />;
   }
 
   if (day == 24) {

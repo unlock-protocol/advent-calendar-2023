@@ -35,7 +35,7 @@ const LastDay = ({ user, day }: LastDayProps) => {
   }
 
   if (hasMembership) {
-    return <UnlockedDay day={day} />;
+    return <UnlockedDay day={day} user={user} />;
   }
 
   const checkout = () => {
@@ -77,7 +77,9 @@ const LastDay = ({ user, day }: LastDayProps) => {
                   ❄️ ⛄ ❄️ 
                 </div>
                 <div className="flex items-start justify-between px-5">
-                  <h3 className="text-3xl font-semibold">Sweepstakes!</h3>
+                  <h3 className="text-3xl font-semibold">
+                    Spreading holiday cheer!
+                  </h3>
                 </div>
                 {/*body*/}
                 <div className="relative px-5 flex-auto mb-6">
@@ -95,7 +97,7 @@ const LastDay = ({ user, day }: LastDayProps) => {
                     >
                       official rules
                     </Link>
-                    )
+                    . )
                   </p>
                 </div>
                 <div className="container space-x-2  min-w-full flex flex-row items-center flex items-center justify-center pb-5 rounded-b">
@@ -103,7 +105,7 @@ const LastDay = ({ user, day }: LastDayProps) => {
                     className="border whitespace-nowrap	 text-white font-bold py-2 px-4 mt-3 rounded"
                     onClick={checkout}
                   >
-                    Open the last day!
+                    Look under the tree!
                   </button>
                 </div>
               </div>

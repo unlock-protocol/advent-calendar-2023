@@ -29,7 +29,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   }
 
   if (hasMembership) {
-    return <UnlockedDay day={day} />;
+    return <UnlockedDay user={user} day={day} />;
   }
 
   const checkout = () => {

@@ -74,7 +74,7 @@ const Header = () => {
         </Link>
         {isAuthenticated && user ? (
           <button
-            className="bg-red text-white font-bold py-2 px-4 rounded-full"
+            className="bg-red text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
             onClick={() => {
               logout();
             }}
