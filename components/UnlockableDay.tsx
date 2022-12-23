@@ -12,6 +12,8 @@ interface UnlockableDayProps {
 }
 
 const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
+  const now = new Date();
+
   const {
     hasMembership: previousDayMembership,
     isLoading: previousDayLoading,
@@ -33,17 +35,23 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   }
 
   const checkout = () => {
-    purchase(
-      {
-        locks: {
-          [days[day - 1].lock]: {
-            network: 137,
+    if (now.getUTCDate() >= 24) {
+      alert(
+        "Unfortunately, it is too late! You had to start opening the adevent calendar before December 24th! See you next year :)"
+      );
+    } else {
+      purchase(
+        {
+          locks: {
+            [days[day - 1].lock]: {
+              network: 137,
+            },
           },
+          pessimistic: true,
         },
-        pessimistic: true,
-      },
-      { day: day.toString() }
-    );
+        { day: day.toString() }
+      );
+    }
   };
 
   return (
