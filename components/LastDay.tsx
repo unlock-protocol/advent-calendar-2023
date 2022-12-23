@@ -12,9 +12,10 @@ import Link from "next/link";
 interface LastDayProps {
   user: string;
   day: number;
+  isFutureDay: boolean;
 }
 
-const LastDay = ({ user, day }: LastDayProps) => {
+const LastDay = ({ user, day, isFutureDay }: LastDayProps) => {
   const [showModal, setShowModal] = useState(false);
   const { query } = useRouter();
 
@@ -30,7 +31,7 @@ const LastDay = ({ user, day }: LastDayProps) => {
     return <LoadingDay day={day} />;
   }
 
-  if (!previousDayMembership && !query.debug) {
+  if ((!previousDayMembership && !query.debug) || isFutureDay) {
     return <FutureDay day={day} />;
   }
 
@@ -64,16 +65,16 @@ const LastDay = ({ user, day }: LastDayProps) => {
     <>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
-            <div className="relative w-auto mx-auto max-w-3xl">
-              <div className="rounded-lg shadow-lg relative flex flex-col w-full bg-red text-yellow outline-none focus:outline-none pt-5">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-5 overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+            <div className="relative w-auto max-w-3xl mx-auto">
+              <div className="relative flex flex-col w-full pt-5 rounded-lg shadow-lg outline-none bg-red text-yellow focus:outline-none">
                 <span
                   onClick={() => setShowModal(false)}
-                  className="absolute text-xl px-4 py-3 right-0 top-0 text-white font-bold cursor-pointer"
+                  className="absolute top-0 right-0 px-4 py-3 text-xl font-bold text-white cursor-pointer"
                 >
                   ✕
                 </span>
-                <div className="flex items-center justify-center text-2xl px-5 mb-3">
+                <div className="flex items-center justify-center px-5 mb-3 text-2xl">
                   ❄️ ⛄ ❄️ 
                 </div>
                 <div className="flex items-start justify-between px-5">
@@ -82,7 +83,7 @@ const LastDay = ({ user, day }: LastDayProps) => {
                   </h3>
                 </div>
                 {/*body*/}
-                <div className="relative px-5 flex-auto mb-6">
+                <div className="relative flex-auto px-5 mb-6">
                   <p className="my-4 text-lg leading-relaxed">
                     Today is a bit special, and we have some special gifts for a
                     few Locksmiths!
@@ -100,9 +101,9 @@ const LastDay = ({ user, day }: LastDayProps) => {
                     . )
                   </p>
                 </div>
-                <div className="container space-x-2  min-w-full flex flex-row items-center flex items-center justify-center pb-5 rounded-b">
+                <div className="container flex flex-row items-center justify-center min-w-full pb-5 space-x-2 rounded-b">
                   <button
-                    className="border whitespace-nowrap	 text-white font-bold py-2 px-4 mt-3 rounded"
+                    className="px-4 py-2 mt-3 font-bold text-white border rounded whitespace-nowrap"
                     onClick={checkout}
                   >
                     Look under the tree!
@@ -111,11 +112,11 @@ const LastDay = ({ user, day }: LastDayProps) => {
               </div>
             </div>
           </div>
-          <div className="opacity-50 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-50"></div>
         </>
       ) : null}
       <BaseDay onClick={() => setShowModal(true)} day={day}>
-        <span className="cursor-pointer w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-7xl invisible group-hover:visible">
+        <span className="absolute top-0 bottom-0 left-0 flex items-center justify-center invisible w-full cursor-pointer text-7xl group-hover:visible">
           🎁
         </span>
       </BaseDay>

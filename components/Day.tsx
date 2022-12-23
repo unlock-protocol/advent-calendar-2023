@@ -22,6 +22,11 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <LoadingDay day={day} />;
   }
 
+  const isFutureDay =
+    now.getUTCFullYear() < 2022 ||
+    now.getUTCMonth() < 11 ||
+    now.getUTCDate() < day;
+
   if (
     query.admin?.toString() === "true" &&
     day === parseInt(query.day?.toString() || "")
@@ -29,15 +34,11 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <UnlockedDay day={day} user={user} />;
   }
 
-  if (day == 24) {
-    return <LastDay day={24} user={user} />;
+  if (day === 24) {
+    return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
   }
 
-  if (
-    now.getUTCFullYear() < 2022 ||
-    now.getUTCMonth() < 11 ||
-    now.getUTCDate() < day
-  ) {
+  if (isFutureDay) {
     return <FutureDay day={day} />;
   }
 
