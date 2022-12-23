@@ -34,10 +34,6 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <UnlockedDay day={day} user={user} />;
   }
 
-  if (day === 24) {
-    return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
-  }
-
   if (isFutureDay) {
     return <FutureDay day={day} />;
   }
@@ -47,6 +43,10 @@ const Day = ({ day, now, isLoading }: DayProps) => {
       return <NotConnectedDay day={day} />;
     }
     return <FutureDay day={day} />;
+  }
+
+  if (day === 24) {
+    return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
   }
 
   // We should show this only if the user has unlocked the previous day!
