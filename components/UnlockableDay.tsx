@@ -35,7 +35,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   }
 
   const checkout = () => {
-    if (now.getUTCDate() >= 24) {
+    if (now.getUTCDate() >= 24 && day <= 1) {
       alert(
         "Unfortunately, it is too late! You had to start opening the advent calendar before December 24th! See you next year :)"
       );
