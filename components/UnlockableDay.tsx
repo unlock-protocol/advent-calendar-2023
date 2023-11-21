@@ -35,9 +35,9 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   }
 
   const checkout = () => {
-    if (now.getUTCDate() >= 24) {
+    if (now.getUTCDate() >= 24 && day <= 1) {
       alert(
-        "Unfortunately, it is too late! You had to start opening the adevent calendar before December 24th! See you next year :)"
+        "Unfortunately, it is too late! You had to start opening the advent calendar before December 24th! See you next year :)"
       );
     } else {
       purchase(
@@ -56,7 +56,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
 
   return (
     <BaseDay onClick={checkout} day={day}>
-      <span className="cursor-pointer w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-7xl invisible group-hover:visible">
+      <span className="absolute top-0 bottom-0 left-0 flex items-center justify-center invisible w-full cursor-pointer text-7xl group-hover:visible">
         🎁
       </span>
     </BaseDay>
