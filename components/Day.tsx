@@ -22,19 +22,18 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <LoadingDay day={day} />;
   }
 
-  const isFutureDay =
-    now.getUTCFullYear() < 2022 ||
-    now.getUTCMonth() < 11 ||
-    now.getUTCDate() < day;
+  const isFutureDay = false
 
   if (
     query.admin?.toString() === "true" &&
     day === parseInt(query.day?.toString() || "")
   ) {
+    console.log("UnlockedDay", day);
     return <UnlockedDay day={day} user={user} />;
   }
 
   if (isFutureDay) {
+    console.log("FutureDay", day);
     return <FutureDay day={day} />;
   }
 
@@ -46,8 +45,11 @@ const Day = ({ day, now, isLoading }: DayProps) => {
   }
 
   if (day === 24) {
+    console.log("LastDay", day);
+
     return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
   }
+  console.log("UnlockableDay", day);
 
   // We should show this only if the user has unlocked the previous day!
   return <UnlockableDay user={user} day={day} />;
