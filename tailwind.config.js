@@ -9,15 +9,16 @@ module.exports = {
       center: true,
       padding: '2rem',
     },
-    colors: {
-      red: '#B9464B',
-      green: '#3C5B56',
-      yellow: '#F3EBAC',
-      white: '#ffffff',
-      black: '#000000',
-      darkyellow: '#ACA571',
-      darkred: '#792E31',
-    }
+    // colors: {
+    //   transparent: 'transparent',
+    //   red: '#B9464B',
+    //   green: '#3C5B56',
+    //   yellow: '#F3EBAC',
+    //   white: '#ffffff',
+    //   black: '#000000',
+    //   darkyellow: '#ACA571',
+    //   darkred: '#792E31',
+    // }
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

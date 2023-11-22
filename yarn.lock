@@ -2770,11 +2770,6 @@ react-ga4@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-ga4/-/react-ga4-2.1.0.tgz#56601f59d95c08466ebd6edfbf8dede55c4678f9"
   integrity sha512-ZKS7PGNFqqMd3PJ6+C2Jtz/o1iU9ggiy8Y8nUeksgVuvNISbmrQtJiZNvC/TjDsqD0QlU5Wkgs7i+w9+OjHhhQ==
 
-react-hotjar@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/react-hotjar/-/react-hotjar-6.1.0.tgz#910dd5d002f5043a6f34ae7ada545b2aace1edae"
-  integrity sha512-V1UJixDMspAIrbGIFG282U7mH2aK1JBid0YR8F9oscb6lTkjMga+gst2gesxJDsqsax+k+lM1LqRXYzmUu8izA==
-
 react-icons@^4.7.1:
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.12.0.tgz#54806159a966961bfd5cdb26e492f4dafd6a8d78"

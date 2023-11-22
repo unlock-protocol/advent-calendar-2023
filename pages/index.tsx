@@ -4,25 +4,30 @@ import { ethers } from "ethers";
 import { useQuery } from "@tanstack/react-query";
 import Day from "../components/Day";
 import Header from "../components/Header";
+import { Meow_Script } from 'next/font/google'
+// If loading a variable font, you don't need to specify the font weight
+const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
+
 
 export default function Home() {
   const start = 0;
   const days = new Array(26).fill(0).map((d, i) => i + start);
-  const { data: now, isLoading } = useQuery(["now"], async () => {
+  const { data: now, isLoading } = useQuery({
+    queryKey: ["now"], queryFn: async () => {
     const provider = new ethers.providers.JsonRpcProvider(
       "https://rpc.unlock-protocol.com/137"
     );
     const block = await provider.getBlock("latest");
     return new Date(block.timestamp * 1000);
-  });
+  }});
 
   return (
     <>
       <Head>
-        <title>2022 Unlock Advent Calendar</title>
+        <title>2023 Unlock Advent Calendar</title>
         <meta
           property="og:title"
-          content="2022 Unlock Advent Calendar"
+          content="2023 Unlock Advent Calendar"
           key="title"
         />
         <meta
@@ -39,17 +44,16 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <main className="bg-green">
+      <main className="bg-black bg-[url('/images/background.svg')] bg-cover	">
         <div className="container">
           <Header />
           <section>
-            <Image
-              alt="hollidays"
-              width="300"
-              height="100"
-              src="/images/header.svg"
-            />
-            <div className="mt-0 grid grid-cols-1 lg:grid-cols-7 gap-4 mb-12">
+            <div className="text-center text-white flex flex-col">
+            <h1 className={`${meowScript.className} text-8xl bg-gradient-to-b text-transparent from-[#FCF6BA] to-[#BF953F] bg-clip-text `}>Advent Calendar</h1>
+            <h2 className="text-3xl">By Unlock, December 2023</h2>
+            <p>One NFT a day, fun gifts, and some year-in-review highlights — just for you!</p>
+            </div>
+            <div className="place-content-center grid grid-cols-1 sm:grid-cols-[repeat(7,72px)] gap-4 my-8">
               {days.map((day, index) => {
                 if (day > 0 && day < 25) {
                   return (
@@ -65,36 +69,14 @@ export default function Home() {
                   return (
                     <div
                       key={index}
-                      className="day flex sm:h-36 lg:col-span-3 flex-col h-64"
-                    >
-                      <h1 className="text-4xl text-yellow font-semibold">
-                        2022 Advent Calendar
-                        <br /> presented by Unlock
-                      </h1>
-                      <p className="text-xl text-yellow font-light">
-                        One NFT a day, fun gifts, and some year-in-review
-                        highlights — just for you!
-                      </p>
-                    </div>
-                  );
-                return (
-                  <div
-                    key={index}
-                    className="day flex items-center justify-center"
-                  >
-                    <Image
-                      alt="cookie"
-                      width="269"
-                      height="209"
-                      src="/images/cookie.svg"
-                    />
-                  </div>
-                );
+                      className="sm:col-span-4"
+                    />);
+                
               })}
             </div>
           </section>
-          <footer className="bg-[url('/images/footer.svg')] bg-repeat-x	pt-16 text-center text-white font-semibold text-4xl w-full pb-16 flex flex-col">
-            Wishing you a wonderful holiday season!
+          <footer className="pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
+            <h3 className={`${meowScript.className} text-5xl`}>Wishing you a wonderful holiday season!</h3>
             <span className="mt-6 text-lg font-light">Unlock Labs. ♥</span>
           </footer>
         </div>

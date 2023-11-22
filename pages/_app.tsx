@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { hotjar } from "react-hotjar";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
-
-import '../styles/globals.css'
+import { Meow_Script } from 'next/font/google'
+ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import {
   QueryClient,
@@ -13,20 +12,15 @@ import {
 const queryClient = new QueryClient()
 ReactGA.initialize("G-EEZ0EF7TJN");
 
+// If loading a variable font, you don't need to specify the font weight
+const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
+ 
+
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (!hotjar.initialized()) {
-      hotjar.initialize(3280275, 6);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (hotjar.initialized()) {
-      hotjar.stateChange(router.asPath);
-    }
     ReactGA.send("pageview");
   }, [router.asPath]);
 

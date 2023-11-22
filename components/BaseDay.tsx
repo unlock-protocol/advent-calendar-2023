@@ -10,14 +10,14 @@ const BaseDay = ({
   day,
   onClick,
   children,
-  outterClasses,
-  innerClasses,
+  outterClasses = "",
+  innerClasses = "",
 }: BaseDayProps) => {
   if (!outterClasses) {
-    outterClasses = "bg-red border-yellow text-yellow";
+    outterClasses = "";
   }
-  outterClasses = `${outterClasses} border-solid border-2 group day p-4 rounded-lg shadow-lg h-36 relative`;
-  innerClasses = `${innerClasses} w-full absolute left-0 top-0 bottom-0 flex items-center justify-center  text-red-700 visible  text-center flex-col`;
+  outterClasses = `${outterClasses} border-solid border rounded-full h-[72px] w-[72px] relative`;
+  innerClasses = `${innerClasses} w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-center`;
   if (onClick) {
     outterClasses = `${outterClasses} cursor-pointer`;
   }
@@ -27,8 +27,7 @@ const BaseDay = ({
   return (
     <div onClick={onClick} className={outterClasses}>
       <div className={innerClasses}>
-        <span className="text-6xl mb-1">{day}</span>
-        <span className="text-3xl">Dec</span>
+        {day}
       </div>
 
       {children}
