@@ -15,15 +15,14 @@ interface DayProps {
 }
 
 const Day = ({ day, now, isLoading }: DayProps) => {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
   const { query, replace } = useRouter();
 
   if (isLoading || !now) {
     return <LoadingDay day={day} />;
   }
-
-  const isFutureDay = new Date() < new Date(`2023-12-${day}`);
-  console.log({day, isFutureDay})
+  const dayAsDate = new Date(`2023-12-${day} 00:00:00 GMT`);
+  const isFutureDay = now < dayAsDate;
 
   if (
     query.admin?.toString() === "true" &&

@@ -26,6 +26,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
     return <LoadingDay day={day} />;
   }
 
+
   if (!previousDayMembership) {
     return <FutureDay day={day} />;
   }
@@ -55,11 +56,7 @@ const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
   };
 
   return (
-    <BaseDay onClick={checkout} day={day}>
-      <span className="absolute top-0 bottom-0 left-0 flex items-center justify-center invisible w-full cursor-pointer text-7xl group-hover:visible">
-        🎁
-      </span>
-    </BaseDay>
+    <BaseDay outterClasses="bg-white border-none cursor-pointer" onClick={checkout} day={day} />
   );
 };
 

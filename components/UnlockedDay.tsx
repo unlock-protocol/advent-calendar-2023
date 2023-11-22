@@ -153,6 +153,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
 };
 
 const UnlockedDay = ({ user, day }: UnlockedDayProps) => {
+  console.log("Unlocked", { day })
   const { query, replace } = useRouter();
   const [showModal, setShowModal] = useState(
     query && query.day && parseInt(query.day.toString(), 10) === day
@@ -167,11 +168,7 @@ const UnlockedDay = ({ user, day }: UnlockedDayProps) => {
 
   return (
     <>
-      <BaseDay day={day} onClick={() => setShowModal(true)}>
-        <span className="w-full cursor-pointer absolute left-0 top-0 bottom-0 flex items-center justify-center text-7xl invisible group-hover:visible">
-          🦌
-        </span>
-      </BaseDay>
+      <BaseDay outterClasses="bg-[#282A2D] border-[#75797E] text-white cursor-pointer" day={day} onClick={() => setShowModal(true)} />
       {showModal ? (
         <Modal user={user} day={day} setShowModal={setShowModal} />
       ) : null}

@@ -5,22 +5,29 @@ import { useQuery } from "@tanstack/react-query";
 import Day from "../components/Day";
 import Header from "../components/Header";
 import { Meow_Script } from 'next/font/google'
+import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 // If loading a variable font, you don't need to specify the font weight
 const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
 
 
 export default function Home() {
-  const start = 0;
-  const days = new Array(26).fill(0).map((d, i) => i + start);
+  const start = 1;
+  const days = new Array(24).fill(0).map((d, i) => i + start);
+  const searchParams = useSearchParams()
+  
   const { data: now, isLoading } = useQuery({
-    queryKey: ["now"], queryFn: async () => {
+    queryKey: ["now", searchParams.get('now')], queryFn: async () => {
+    if (searchParams.get('now')) {
+      return new Date(searchParams.get('now') as string)
+    }
     const provider = new ethers.providers.JsonRpcProvider(
       "https://rpc.unlock-protocol.com/137"
     );
     const block = await provider.getBlock("latest");
     return new Date(block.timestamp * 1000);
   }});
-
+  
   return (
     <>
       <Head>
