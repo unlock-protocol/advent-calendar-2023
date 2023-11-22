@@ -9,14 +9,7 @@ const NotConnectedDay = ({ day }: NotConnectedDayProps) => {
   const { login } = useAuth();
 
   return (
-    <BaseDay day={day}>
-      <button
-        className="cursor-pointer w-full absolute left-0 top-0 bottom-0 flex items-center justify-center text-3xl invisible group-hover:visible text-white font-bold py-2 px-4 rounded "
-        onClick={() => login()}
-      >
-        Connect!
-      </button>
-    </BaseDay>
+    <BaseDay day={day} outterClasses="bg-white border-none cursor-pointer" onClick={() => login()} />
   );
 };
 

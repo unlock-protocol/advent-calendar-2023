@@ -5,9 +5,10 @@ interface FutureDayProps {
 }
 
 const FutureDay = ({ day }: FutureDayProps) => {
+  console.log('FUture', {day})
   return (
     <BaseDay
-      outterClasses="bg-darkred border-darkyellow text-darkyellow"
+      outterClasses="bg-[#494E53] border-none"
       day={day}
     />
   );

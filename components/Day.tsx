@@ -22,7 +22,8 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <LoadingDay day={day} />;
   }
 
-  const isFutureDay = false
+  const isFutureDay = new Date("2023-12-04") < new Date(`2023-12-${day}`);
+  console.log({day, isFutureDay})
 
   if (
     query.admin?.toString() === "true" &&
@@ -43,7 +44,6 @@ const Day = ({ day, now, isLoading }: DayProps) => {
   }
 
   if (day === 24) {
-
     return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
   }
 

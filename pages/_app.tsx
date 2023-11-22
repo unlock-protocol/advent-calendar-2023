@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import ReactGA from "react-ga4";
-import { Meow_Script } from 'next/font/google'
- import '../styles/globals.css'
+
+
+import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import {
   QueryClient,
@@ -12,8 +13,6 @@ import {
 const queryClient = new QueryClient()
 ReactGA.initialize("G-EEZ0EF7TJN");
 
-// If loading a variable font, you don't need to specify the font weight
-const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
  
 
 
