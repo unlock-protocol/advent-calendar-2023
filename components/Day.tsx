@@ -22,7 +22,7 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <LoadingDay day={day} />;
   }
 
-  const isFutureDay = new Date("2023-12-04") < new Date(`2023-12-${day}`);
+  const isFutureDay = new Date() < new Date(`2023-12-${day}`);
   console.log({day, isFutureDay})
 
   if (
