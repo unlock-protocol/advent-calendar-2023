@@ -17,7 +17,7 @@ const Header = () => {
   const { isAuthenticated, user, login, logout } = useAuth();
 
   return (
-    <nav className="">
+    <nav className="container">
       <div className="pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
         <Link target="_blank" href="https://unlock-protocol.com">
           <svg
