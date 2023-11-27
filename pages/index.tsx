@@ -61,26 +61,20 @@ export default function Home() {
             <p>One NFT a day, fun gifts, and some year-in-review highlights — just for you!</p>
             </div>
             <div className="place-content-center grid grid-cols-1 sm:grid-cols-[repeat(7,72px)] gap-4 my-8">
-              {days.map((day, index) => {
-                if (day > 0 && day < 25) {
-                  return (
-                    <div className="flex flex-col items-center	" key={index}>
-                      <Day
-                        isLoading={isLoading}
-                        now={now}
-                        day={day}
-                      />
-                    </div>
-                  );
-                }
-                if (index === 0)
-                  return (
-                    <div
-                      key={index}
-                      className="sm:col-span-4"
-                    />);
-                
-              })}
+            <div className="sm:col-span-4" />
+            {days.map((day, index) => {
+              if (day > 0 && day < 25) {
+                return (
+                  <div className="flex flex-col items-center	" key={index}>
+                    <Day
+                      isLoading={isLoading}
+                      now={now}
+                      day={day}
+                    />
+                  </div>
+                );
+              }
+            })}
             </div>
           </section>
           <footer className="pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
