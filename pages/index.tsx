@@ -64,12 +64,13 @@ export default function Home() {
               {days.map((day, index) => {
                 if (day > 0 && day < 25) {
                   return (
-                    <Day
-                      isLoading={isLoading}
-                      now={now}
-                      key={index}
-                      day={day}
-                    />
+                    <div className="flex flex-col items-center	" key={index}>
+                      <Day
+                        isLoading={isLoading}
+                        now={now}
+                        day={day}
+                      />
+                    </div>
                   );
                 }
                 if (index === 0)
