@@ -7,11 +7,12 @@ import Header from "../components/Header";
 import { Meow_Script } from 'next/font/google'
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 // If loading a variable font, you don't need to specify the font weight
 const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
 
 
-console.log("Starting advent calendar", process.env.VERCEL_ENV)
+console.log("Starting advent calendar", process.env.NEXT_PUBLIC_VERCEL_ENV)
 
 export default function Home() {
   const start = 1;
@@ -80,7 +81,7 @@ export default function Home() {
         </main>
         <footer className="flex-shrink-0 pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
           <h3 className={`${meowScript.className} text-5xl`}>Wishing you a wonderful holiday season!</h3>
-          <span className="mt-6 text-lg font-light">Unlock Labs. ♥</span>
+          <Link href="https://unlock-protocol.com/" className="mt-6 text-lg font-light">Unlock Labs. ♥</Link>
         </footer>
       </div>
     </>
