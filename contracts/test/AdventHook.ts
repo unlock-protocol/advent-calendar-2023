@@ -36,25 +36,23 @@ const getCurrentTime = async () => {
 
 describe("AdventHook", function () {
   it("should work", async () => {
-    this.timeout(5000000);
     let [user] = await ethers.getSigners();
-
-    await network.provider.request({
-      method: "hardhat_impersonateAccount",
-      params: ["0xF5C28ce24Acf47849988f147d5C75787c0103534"],
-    });
-
-    const signer = await ethers.getSigner(
-      "0xF5C28ce24Acf47849988f147d5C75787c0103534"
-    );
 
     // deploy all locks
     const [locks, hook] = await deploy(unlock);
 
+    // console.log("Buy before");
+    // await expect(
+    //   locks[0]
+    //     .connect(user)
+    //     .purchase([0], [user.address], [user.address], [user.address], [[]])
+    // ).not.to.reverted;
+    // console.log("Buy before cool!");
+
     // Set hook on locks
-    for (let i = 0; i < 24; i++) {
-      await locks[i]
-        .connect(signer)
+    for (let i = 1; i < 25; i++) {
+      await locks[i - 1]
+        .connect(user)
         .setEventHooks(
           hook.address,
           ethers.constants.AddressZero,
@@ -66,37 +64,18 @@ describe("AdventHook", function () {
         );
     }
 
-    // We need to send 100 USDC to the hook so it can pay folks!
-    // Find an address who has 100 USDC => 0xF5C28ce24Acf47849988f147d5C75787c0103534
-    await network.provider.request({
-      method: "hardhat_impersonateAccount",
-      params: ["0xF5C28ce24Acf47849988f147d5C75787c0103534"],
-    });
-    const hardwareWallet = await ethers.getSigner(
-      "0xF5C28ce24Acf47849988f147d5C75787c0103534"
-    );
-    // const usdc = await ethers.getContractAt(
-    //   ERC20,
-    //   "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-    //   hardwareWallet
-    // );
-    // // Send 1 USDC!
-    // await usdc.transfer(
-    //   hook.address,
-    //   ethers.utils.parseUnits("3", await usdc.decimals())
-    // );
-
-    // const beforeBalance = await usdc.balanceOf(user.address);
-    // console.log(beforeBalance);
-    // expect(beforeBalance).lessThanOrEqual(0);
-
     // Test in the future only!
     console.log(
       `We are now ${new Date((await getCurrentTime()) * 1000).toUTCString()}`
     );
+
+    console.log(
+      await locks[0].purchasePriceFor(user.address, user.address, [])
+    );
+
     const now = new Date();
     let currentDay = 1;
-    while (now.getDate() >= currentDay) {
+    while (now.getDate() >= currentDay && currentDay < 24) {
       // We need to buy all the days!
       console.log(`Buy ${currentDay}`);
       await expect(

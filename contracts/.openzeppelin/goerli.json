@@ -1,0 +1,68 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x5AdfaB8B91fC6dE0dF14caf676633c7868bfA9d1",
+    "txHash": "0x9a127198cc62fcaeaf42b8449c046bac3f62ee7272555ccc0f6a2ce5c9632a10"
+  },
+  "proxies": [
+    {
+      "address": "0xd35dFA3BCbb8A99D792FC5EFe0B1bE0844010a55",
+      "txHash": "0xb2cad7d470dfb242437eed6de38d6335a9eeb6c472b752ad12d95e910998db54",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "a16d6f397796ee932cd65dc986063ea53414767a89d8f3c7d82742765c84a766": {
+      "address": "0x529a57BE9c321B3B4905f7EB8F44C67818060539",
+      "txHash": "0xec993dde9701fc29ef11fa90d2c3242eb8b4856bad04e0ad3b0847546bf08003",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "start",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "AdventHook",
+            "src": "contracts/AdventHook.sol:18"
+          },
+          {
+            "label": "dayByLock",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "AdventHook",
+            "src": "contracts/AdventHook.sol:19"
+          },
+          {
+            "label": "lockByDay",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "AdventHook",
+            "src": "contracts/AdventHook.sol:20"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}
