@@ -120,7 +120,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
             <div className="container space-x-2 min-w-full flex-row flex items-center justify-center rounded-b">
               {content.link && (
                 <Link
-                  className="border text-white font-bold py-2 px-4 mt-3 rounded whitespace-nowrap "
+                  className="border bg-white text-black font-bold py-2 px-4 mt-3 rounded whitespace-nowrap "
                   href={content.link!}
                   target="_blank"
                 >
@@ -129,7 +129,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
                 </Link>
               )}
               <Link
-                className="border whitespace-nowrap  text-white font-bold py-2 px-4 mt-3 rounded"
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded"
                 href={tweetIntent.toString()}
               >
                 <BsTwitter className="inline-block mr-2" />
