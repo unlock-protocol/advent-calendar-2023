@@ -25,22 +25,22 @@ See you tomorrow!`,
   {
     // Day 3
     lock: "0x27787E46a701CfFaaD8af059917CF0d626556568",
-    title: "Would you like to play a game?",
+    title: "Subscription Tokens with Unlock Protocol",
     description:
-      "In 2022, BAFTA-award winning game designer Henry Hoffman integrated Unlock into Unity, enabling Unlock NFTs to be used for membership access, in-game items, and more in the Unity ecosystem — without having to write code. 🤯",
-    link: "https://twitter.com/UnlockProtocol/status/1597632023362879488",
-    image: "",
-    youtube: "https://www.youtube.com/embed/l4e3L_R4Xwk",
+      "One of the common questions we get asked is how do memberships and subscription tokens work with Unlock Protocol? Here’s a deep dive into how it works!",
+    link: "https://twitter.com/UnlockProtocol/status/1720459335875350599",
+    image: "public/images/subscription-share.jpeg",
+    youtube: "",
   },
   {
     // Day 4
     lock: "0x7608F73A1dFEb206A3A75aCDad6DC9FbA9Ba83D0",
-    title: "Get the flock out of here!",
+    title: "Let’s get this party started!",
     description:
-      "Flocker, built with Unlock, is a way your fans and followers can connect with you all across the web. We built it because you should be able to connect directly with them, and not have to rely on centralized platforms like the bird app which may go through some, ahem, changes.",
-    link: "https://flocker.app",
-    image: "",
-    youtube: "https://www.youtube.com/embed/XFBc1U4wtKg",
+      "Hey! A little something-something for you today — we’re dropping some USDC to you! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
+    link: "",
+    image: "public/images/scrooge-mcduck,gif",
+    youtube: "",
   },
   {
     // Day 5
