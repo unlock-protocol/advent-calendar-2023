@@ -4,55 +4,69 @@ import LoadingDay from "./LoadingDay";
 import BaseDay from "./BaseDay";
 import FutureDay from "./FutureDay";
 import { useAuth } from "../hooks/useAuth";
-import days from "../lib/days";
+import contracts from "../lib/contracts";
+import { useContractRead, useContractReads } from "wagmi";
 
 interface UnlockableDayProps {
   user: string;
   day: number;
+  lock: string;
+  previousDayLock?: string | null;
+  network: number
 }
 
-const UnlockableDay = ({ user, day }: UnlockableDayProps) => {
-  const now = new Date();
-
-  const {
-    hasMembership: previousDayMembership,
-    isLoading: previousDayLoading,
-  } = useLock(user, day - 1);
+const UnlockableDay = ({ user, day, lock, previousDayLock, network }: UnlockableDayProps) => {
   const { purchase } = useAuth();
 
-  const { hasMembership, isLoading } = useLock(user, day);
+  const {
+    data: memberships,
+    isLoading: membershipsLoading,
+    ...rest
+  } = useContractReads({contracts: [{
+    address: lock as `0x${string}`,
+    // @ts-expect-error
+    abi: contracts.lock.ABI,
+    functionName: "getHasValidKey",
+    chainId: contracts.hook.network,
 
-  if (isLoading || previousDayLoading) {
+    args: [user],
+  }, {
+    address: previousDayLock as `0x${string}`,
+    // @ts-expect-error
+    abi: contracts.lock.ABI,
+    functionName: "getHasValidKey",
+    chainId: contracts.hook.network,
+    args: [user],
+  }]});
+
+  const isLoading = membershipsLoading
+  const [hasMembership, previousDayMembership] = memberships || []
+
+  if (isLoading) {
     return <LoadingDay day={day} />;
   }
 
-
-  if (!previousDayMembership) {
+  if (!previousDayMembership?.result && day > 1) {
     return <FutureDay day={day} />;
   }
 
-  if (hasMembership) {
+  if (hasMembership?.result) {
     return <UnlockedDay user={user} day={day} />;
   }
 
   const checkout = () => {
-    if (now.getUTCDate() >= 24 && day <= 1) {
-      alert(
-        "Unfortunately, it is too late! You had to start opening the advent calendar before December 24th! See you next year :)"
-      );
-    } else {
+    console.log(day)
       purchase(
         {
           locks: {
-            [days[day - 1].lock]: {
-              network: 137,
+            [lock]: {
+              network,
             },
           },
           pessimistic: true,
         },
         { day: day.toString() }
       );
-    }
   };
 
   return (

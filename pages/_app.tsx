@@ -5,15 +5,9 @@ import ReactGA from "react-ga4";
 
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import Provider from "../lib/Provider";
 
-const queryClient = new QueryClient()
 ReactGA.initialize("G-EEZ0EF7TJN");
-
- 
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -23,9 +17,9 @@ export default function App({ Component, pageProps }: AppProps) {
     ReactGA.send("pageview");
   }, [router.asPath]);
 
-  return <QueryClientProvider client={queryClient}>
+  return <Provider>
     <canvas id="Snow" className="absolute	" />
     <Component {...pageProps} />
-  </QueryClientProvider>
+  </Provider>
 
 }

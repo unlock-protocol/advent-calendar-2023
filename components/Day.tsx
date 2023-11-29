@@ -10,19 +10,22 @@ import UnlockedDay from "./UnlockedDay";
 
 interface DayProps {
   day: number;
-  now?: Date;
+  start?: number;
   isLoading: boolean;
+  lock?: string | null;
+  previousDayLock?: string | null;
+  network: number;
 }
 
-const Day = ({ day, now, isLoading }: DayProps) => {
+const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps) => {
   const { user } = useAuth();
-  const { query, replace } = useRouter();
+  const { query } = useRouter();
 
-  if (isLoading || !now) {
+  if (isLoading || !start || !lock ) {
     return <LoadingDay day={day} />;
   }
-  const dayAsDate = new Date(`2023-12-${day} 00:00:00 GMT`);
-  const isFutureDay = now < dayAsDate;
+  const dayAsDate = new Date((Number(start) + day * 24 * 60 * 60) * 1000);
+  const isFutureDay = dayAsDate > new Date();
 
   if (
     query.admin?.toString() === "true" &&
@@ -42,12 +45,7 @@ const Day = ({ day, now, isLoading }: DayProps) => {
     return <FutureDay day={day} />;
   }
 
-  if (day === 24) {
-    return <LastDay isFutureDay={isFutureDay} day={24} user={user} />;
-  }
-
-  // We should show this only if the user has unlocked the previous day!
-  return <UnlockableDay user={user} day={day} />;
+  return <UnlockableDay user={user} day={day} network={network} lock={lock} previousDayLock={previousDayLock} />;
 };
 
 export default Day;

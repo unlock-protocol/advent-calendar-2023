@@ -26,7 +26,7 @@ const deploy = async (
         expirationDuration,
         maxNumberOfKeys,
         keyPrice,
-        name: `day ${i}`,
+        name: `Unlock Advent Calendar 2023 - Day ${i + 1}`,
       });
       locks.push(lock);
     }
@@ -50,7 +50,26 @@ const deploy = async (
   } else {
     // Upgrade?
     hook = await upgrades.upgradeProxy(hookAddress, Hook);
-    console.log(`Deployed Advent hook at ${hook.address}`);
+    console.log(`Upgraded Advent hook at ${hook.address}`);
+  }
+
+  // Check that the hook is set on every lock!
+  for (let i = 0; i < 24; i++) {
+    const existingHook = await locks[i].onKeyPurchaseHook();
+    if (existingHook !== hook.address) {
+      await (
+        await locks[i].setEventHooks(
+          hook.address,
+          ethers.constants.AddressZero,
+          ethers.constants.AddressZero,
+          ethers.constants.AddressZero,
+          ethers.constants.AddressZero,
+          ethers.constants.AddressZero,
+          ethers.constants.AddressZero
+        )
+      ).wait();
+      console.log(`Hook set on lock ${i}`);
+    }
   }
   return [locks, hook];
 };

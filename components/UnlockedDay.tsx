@@ -154,7 +154,6 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
 };
 
 const UnlockedDay = ({ user, day }: UnlockedDayProps) => {
-  console.log("Unlocked", { day })
   const { query, replace } = useRouter();
   const [showModal, setShowModal] = useState(
     query && query.day && parseInt(query.day.toString(), 10) === day
