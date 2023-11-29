@@ -10,7 +10,7 @@ const days = [
     description: `Every day, open a new door, claim a new NFT, and learn something new! You can open today’s door if you opened yesterday’s door. (No peeking ahead!) Best of all, some days will have special gifts for you from Unlock and our partners and community!
 See you tomorrow!`,
     link: "",
-    image: "",
+    image: "/public/images/gift-present-share-tag-text-1120x630a.png",
     youtube: "",
   },
   {
