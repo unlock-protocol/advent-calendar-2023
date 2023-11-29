@@ -17,9 +17,9 @@ See you tomorrow!`,
     // Day 2
     lock: "0xff5446f83fFb3Ccd7D5f798C1F1C1D981E2ff2AE",
     title: "Year in Review",
-    description: `Some days we’ll share great stuff from the the Unlock community’s amazing 2022 accomplishments and adventures. For example — did you know that all the tickets for Paris’s ETH.CC conference in June 2022 (over 1800 tickets!) were powered by Unlock? It’s true!`,
-    link: "https://unlock-protocol.com/blog/ethcc5-2022-ticketing",
-    image: "",
+    description: `Some days we’ll share great stuff from the the Unlock community’s amazing 2023 accomplishments and adventures. For example — did you know there’s an entire showcase of events, subscriptions, memberships, certifications and more that have been built using Unlock Protocol? It’s true!`,
+    link: "https://showcase.unlock-protocol.com",
+    image: "public/images/showcase-share.jpeg",
     youtube: "",
   },
   {
