@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { useAuth } from "../hooks/useAuth";
+import { usePrivy } from "@privy-io/react-auth";
+import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 
 function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
   if (text.length > maxLength) {
@@ -14,7 +16,8 @@ function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
 }
 
 const Header = () => {
-  const { isAuthenticated, user, login, logout } = useAuth();
+  const {login, logout, authenticated: isAuthenticated} = usePrivy();
+  const {wallet: activeWallet, setActiveWallet} = usePrivyWagmi();
 
   return (
     <nav className="container">
@@ -72,14 +75,14 @@ const Header = () => {
         >
           Discord
         </Link>
-        {isAuthenticated && user ? (
+        {isAuthenticated && activeWallet?.address ? (
           <button
             className="bg-red text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
             onClick={() => {
               logout();
             }}
           >
-            Logout ({truncate(user)})
+            Logout ({truncate(activeWallet?.address)})
           </button>
         ) : (
           <button
@@ -88,7 +91,7 @@ const Header = () => {
               login();
             }}
           >
-            Connect Wallet
+            Login
           </button>
         )}
       </div>

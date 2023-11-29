@@ -1,3 +1,4 @@
+import { usePrivy } from "@privy-io/react-auth";
 import { useAuth } from "../hooks/useAuth";
 import BaseDay from "./BaseDay";
 
@@ -6,7 +7,7 @@ interface NotConnectedDayProps {
 }
 
 const NotConnectedDay = ({ day }: NotConnectedDayProps) => {
-  const { login } = useAuth();
+  const {login} = usePrivy();
 
   return (
     <BaseDay day={day} outterClasses="bg-white border-none cursor-pointer" onClick={() => login()} />

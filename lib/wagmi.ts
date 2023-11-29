@@ -2,7 +2,8 @@ import { networks } from "@unlock-protocol/networks";
 import { Chain, createConfig } from "wagmi";
 import { AppConfig } from "./AppConfig";
 import { getDefaultConfig } from "connectkit";
-import contracts from "./contracts";
+import {configureChains} from 'wagmi';
+import {publicProvider} from 'wagmi/providers/public';
 
 const chains = Object.values(networks)
   .map((item: any) => {
@@ -39,3 +40,6 @@ export const wagmiClient = createConfig(
     appUrl: AppConfig.siteUrl,
   }),
 );
+
+export const configureChainsConfig = configureChains(chains, [publicProvider()]);
+
