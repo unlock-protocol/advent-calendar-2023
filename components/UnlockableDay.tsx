@@ -28,6 +28,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const {wallet: activeWallet} = usePrivyWagmi();
 
+
   const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
     address: user as `0x${string}`,
   })
@@ -53,26 +54,27 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
   
   const checkout = async () => {
     try {
-      if (userBalance && userBalance?.value > 0) {
+      if (userBalance && userBalance?.value > 0.0000001) {
         setLoading(true)
         const {hash} = await writeAsync!()
         onMinting(hash)
       } else {
         const service = new LocksmithService();
         const siwe = LocksmithService.createSiweMessage({
-          domain: 'unlock-protocol.com',
-          uri: 'https://unlock-protocol.com',
+          domain: window.location.host,
+          uri: window.location.origin,
           address: user,
           chainId: network,
           version: '1',
         });
         const message = siwe.prepareMessage();
-
-        const signature = await signMessage(message, {
-          title: 'Authenticate with Unlock',
-          description: 'Please sign this message to claim this NFT for free!',
-          buttonText: 'Sign'
-        });
+        const ethersProvider = await activeWallet?.getEthersProvider()
+        if(!ethersProvider) {
+          console.error('No ethers provider')
+          return
+        }
+        const ethersSigner = await ethersProvider.getSigner()
+        const signature = await ethersSigner.signMessage(message);
         setLoading(true)
         const loginResponse = await service.login({
           message,
