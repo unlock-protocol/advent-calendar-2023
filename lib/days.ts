@@ -45,11 +45,11 @@ See you tomorrow!`,
   {
     // Day 5
     lock: "0x3e36C285E11DE77e8257Fe7D49e80209C48b295E",
-    title: "Just another magic Monday",
+    title: "Easy-Peasy Event Tickets and Registration",
     description:
-      "Hey! A little something-something for you today — we’re dropping some USDC to the first 100 folks who get today's gift! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
-    link: "",
-    image: "https://media.tenor.com/k_I4uywWFfQAAAAC/picsou-scrooge.gif",
+      "Did you know you can create event tickets and landing pages for your conference, event, or meetup in under five minutes with Unlock Protocol? Set up your event landing page, sell or airdrop tickets as NFTs and via email, and perform check-in with a dedicated QR code. Easy.",
+    link: "https://events.unlock-protocol.com",
+    image: "public/images/events-share.png",
     youtube: "",
   },
   {
