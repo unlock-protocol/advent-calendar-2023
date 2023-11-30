@@ -29,7 +29,7 @@ See you tomorrow!`,
     description:
       "One of the common questions we get asked is how do memberships and subscription tokens work with Unlock Protocol? Here’s a deep dive into how it works!",
     link: "https://twitter.com/UnlockProtocol/status/1720459335875350599",
-    image: "/images/subscription-share-2.png",
+    image: "/images/subscription-share-2.jpeg",
     youtube: "",
   },
   {
@@ -37,10 +37,9 @@ See you tomorrow!`,
     lock: "0x7608F73A1dFEb206A3A75aCDad6DC9FbA9Ba83D0",
     title: "Let’s get this party started!",
     description:
-      `Hey! A little something-something for you today — we’re dropping some USDC to a number of lucky folks today! If you're chosen, we’ll automatically drop it into the wallet you used to get today's NFT. Enjoy!
-    #### Please see the [official rules](https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-2023-289658e982794a1f8198d28fe7ec134b?pvs=4) for country and other eligibility.`,
+      `Hey! A little something-something for you today — we’re dropping some USDC to a number of lucky folks today! If you're chosen, we’ll automatically drop it into the wallet you used to get today's NFT. Enjoy! Please see the [official rules](https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-2023-289658e982794a1f8198d28fe7ec134b?pvs=4) for country and other eligibility.`,
     link: "",
-    image: "/images/scrooge-mcduck,gif",
+    image: "/images/scrooge-mcduck.gif",
     youtube: "",
   },
   {
