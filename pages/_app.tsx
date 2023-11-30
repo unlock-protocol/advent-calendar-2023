@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.asPath]);
 
   return <Provider>
-    <canvas id="Snow" className="absolute	" />
+    <canvas id="Snow" className="absolute z-0	" />
     <Component {...pageProps} />
   </Provider>
 
