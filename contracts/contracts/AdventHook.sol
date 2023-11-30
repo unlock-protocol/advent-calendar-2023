@@ -2,6 +2,7 @@
 pragma solidity ^0.8.9;
 
 import "@unlock-protocol/contracts/dist/PublicLock/IPublicLockV13.sol";
+import "./iERC20.sol";
 import "hardhat/console.sol";
 
 error TOO_EARLY(uint day);
