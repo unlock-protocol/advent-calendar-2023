@@ -10,7 +10,7 @@ export const Calendar = () => {
     address: contracts.hook.address as `0x${string}`,
     abi: contracts.hook.ABI,
     functionName: "start",
-    chainId: contracts.hook.network,
+    chainId: contracts.network,
     args: [],
   })
   const {linkEmail, authenticated, user} = usePrivy();
@@ -27,7 +27,7 @@ export const Calendar = () => {
       address: contracts.hook.address as `0x${string}`,
       abi: contracts.hook.ABI,
       functionName: "lockByDay",
-      chainId: contracts.hook.network,
+      chainId: contracts.network,
       args: [d],
     })),
   })
@@ -47,7 +47,7 @@ export const Calendar = () => {
             isLoading={isLoading || isLoadingLocks}
             day={day}
             start={start ? Number(start) : undefined}
-            network={contracts.hook.network}
+            network={contracts.network}
           />
         </div>
       );

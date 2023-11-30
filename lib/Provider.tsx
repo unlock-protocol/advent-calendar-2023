@@ -1,9 +1,7 @@
 import {PrivyProvider} from '@privy-io/react-auth';
-import { configureChainsConfig, wagmiClient } from "./wagmi";
-import { ConnectKitProvider } from "connectkit";
+import { configureChainsConfig } from "./wagmi";
 import { ReactNode } from "react";
 import {
-  QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 

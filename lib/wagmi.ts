@@ -1,7 +1,5 @@
 import { networks } from "@unlock-protocol/networks";
-import { Chain, createConfig } from "wagmi";
-import { AppConfig } from "./AppConfig";
-import { getDefaultConfig } from "connectkit";
+import { Chain } from "wagmi";
 import {configureChains} from 'wagmi';
 import {publicProvider} from 'wagmi/providers/public';
 
@@ -14,7 +12,7 @@ const chains = Object.values(networks)
           http: [item?.provider],
         },
         public: {
-          http: [item?.publicProvider],
+          http: [item?.provider],
         },
       },
       name: item.name,
@@ -30,16 +28,6 @@ const chains = Object.values(networks)
     return chain.id === 5;
   });
 
-export const wagmiClient = createConfig(
-  getDefaultConfig({
-    walletConnectProjectId: "ec0bdd791292ffb9b7ec3cfa84469948",
-    chains,
-    autoConnect: true,
-    appName: AppConfig.name,
-    appDescription: AppConfig.description,
-    appUrl: AppConfig.siteUrl,
-  }),
-);
 
 export const configureChainsConfig = configureChains(chains, [publicProvider()]);
 

@@ -9,6 +9,7 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { useEffect, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'
+import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 
 
 
@@ -24,8 +25,8 @@ interface MintableProps {
 const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
   const {wallets} = useWallets();
   const { signMessage } = usePrivy();
-  const [hash,] = useState<string | undefined>()
   const [loading, setLoading] = useState<boolean>(false)
+  const {wallet: activeWallet} = usePrivyWagmi();
 
   const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
     address: user as `0x${string}`,
@@ -38,7 +39,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
     }
   }, [wallets, network])
 
-  const {config, error} = usePrepareContractWrite({
+  const {config} = usePrepareContractWrite({
     address: lock as `0x${string}`,
     abi: contracts.lock.ABI,
     functionName: 'purchase',
@@ -97,7 +98,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
     setLoading(false)
   };
 
-  if (loading) {
+  if (loading || !writeAsync) {
     return <LoadingDay day={day} />;
   }
 
@@ -123,7 +124,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
       address: lock as `0x${string}`,
       abi: contracts.lock.ABI,
     functionName: "getHasValidKey",
-    chainId: contracts.hook.network,
+    chainId: contracts.network,
     args: [user],
   }]
   if(day >1) {
@@ -131,7 +132,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
       address: previousDayLock as `0x${string}`,
       abi: contracts.lock.ABI,
       functionName: "getHasValidKey",
-      chainId: contracts.hook.network,
+      chainId: contracts.network,
       args: [user],
     })
   }
@@ -146,7 +147,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   });
 
   const { data } = useWaitForTransaction({
-    chainId: contracts.hook.network,
+    chainId: contracts.network,
     hash: hash as `0x${string}`,
     enabled: !!hash
   })

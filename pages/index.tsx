@@ -11,8 +11,6 @@ import { Calendar } from "../components/Calendar";
 const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
 
 
-console.log("Starting advent calendar", process.env.NEXT_PUBLIC_VERCEL_ENV)
-
 export default function Home() {
   const start = 1;
   const days = new Array(24).fill(0).map((d, i) => i + start);

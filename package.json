@@ -20,7 +20,6 @@
     "@unlock-protocol/paywall": "^0.6.8",
     "@unlock-protocol/unlock-js": "^0.40.2",
     "autoprefixer": "^10.4.13",
-    "connectkit": "1.5.2",
     "eslint": "8.54.0",
     "eslint-config-next": "14.0.3",
     "ethers": "^5.7.2",
