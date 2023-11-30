@@ -16,6 +16,33 @@ const contracts = {
         stateMutability: "view",
         type: "function",
       },
+      {
+        "inputs": [
+          { "internalType": "uint256[]", "name": "_values", "type": "uint256[]" },
+          {
+            "internalType": "address[]",
+            "name": "_recipients",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_referrers",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "_keyManagers",
+            "type": "address[]"
+          },
+          { "internalType": "bytes[]", "name": "_data", "type": "bytes[]" }
+        ],
+        "name": "purchase",
+        "outputs": [
+          { "internalType": "uint256[]", "name": "", "type": "uint256[]" }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+      },
     ]
   }
 }

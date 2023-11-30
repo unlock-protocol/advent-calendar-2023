@@ -7,6 +7,8 @@ import LoadingDay from "./LoadingDay";
 import NotConnectedDay from "./NotConnectedDay";
 import UnlockableDay from "./UnlockableDay";
 import UnlockedDay from "./UnlockedDay";
+import { usePrivyWagmi } from "@privy-io/wagmi-connector";
+import { usePrivy } from "@privy-io/react-auth";
 
 interface DayProps {
   day: number;
@@ -18,8 +20,8 @@ interface DayProps {
 }
 
 const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps) => {
-  const { user } = useAuth();
-  const { query } = useRouter();
+  const {authenticated} = usePrivy();
+  const {wallet: activeWallet} = usePrivyWagmi();
 
   if (isLoading || !start || !lock ) {
     return <LoadingDay day={day} />;
@@ -27,25 +29,18 @@ const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps
   const dayAsDate = new Date((Number(start) + day * 24 * 60 * 60) * 1000);
   const isFutureDay = dayAsDate > new Date();
 
-  if (
-    query.admin?.toString() === "true" &&
-    day === parseInt(query.day?.toString() || "")
-  ) {
-    return <UnlockedDay day={day} user={user} />;
-  }
-
   if (isFutureDay) {
     return <FutureDay day={day} />;
   }
 
-  if (!user) {
+  if (!activeWallet || !authenticated) {
     if (day === 1) {
       return <NotConnectedDay day={day} />;
     }
     return <FutureDay day={day} />;
   }
 
-  return <UnlockableDay user={user} day={day} network={network} lock={lock} previousDayLock={previousDayLock} />;
+  return <UnlockableDay user={activeWallet.address} day={day} network={network} lock={lock} previousDayLock={previousDayLock} />;
 };
 
 export default Day;

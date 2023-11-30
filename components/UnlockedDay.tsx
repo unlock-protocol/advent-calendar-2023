@@ -5,7 +5,7 @@ import BaseDay from "./BaseDay";
 import days from "../lib/days";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import makeItSnow from "../lib/snow";
+import snow from "../lib/snow";
 import { BsTwitter } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { ethers } from "ethers";
@@ -13,6 +13,7 @@ import isWinner from "../lib/getWinners";
 interface UnlockedDayProps {
   day: number;
   user: any;
+  justUnlocked?: boolean;
 }
 
 interface ModalProps {
@@ -153,24 +154,27 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   );
 };
 
-const UnlockedDay = ({ user, day }: UnlockedDayProps) => {
+const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
   const { query, replace } = useRouter();
-  const [showModal, setShowModal] = useState(
-    query && query.day && parseInt(query.day.toString(), 10) === day
-  );
+  const [showModal, setShowModal] = useState(justUnlocked);
 
-  if (query && query.day && parseInt(query.day.toString(), 10) === day) {
-    makeItSnow();
-    if (!query.admin) {
-      replace("/", undefined, { shallow: true });
+  
+  useEffect(() => {
+    if(justUnlocked) {
+      snow.start();
     }
-  }
+  }, [justUnlocked])
 
   return (
     <>
-      <BaseDay outterClasses="bg-[#282A2D] border-[#75797E] text-white cursor-pointer" day={day} onClick={() => setShowModal(true)} />
+      <BaseDay outterClasses="bg-[#282A2D] border-[#75797E] text-white cursor-pointer" day={day} onClick={() => {
+        setShowModal(true)}
+      } />
       {showModal ? (
-        <Modal user={user} day={day} setShowModal={setShowModal} />
+        <Modal user={user} day={day} setShowModal={(showModal) => {
+          snow.stop()
+          setShowModal(showModal)
+        }} />
       ) : null}
     </>
   );

@@ -27,15 +27,12 @@ export const Provider = ({ children }: { children?: ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-          <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns" onSuccess={() => console.log('Success!')}>
-          <PrivyWagmiConnector wagmiChainsConfig={configureChainsConfig}>
-
+      <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns" >
+        <PrivyWagmiConnector wagmiChainsConfig={configureChainsConfig}>
           <DefaultSeo {...seo} />
           {children}
-          </PrivyWagmiConnector>
-
-          </PrivyProvider>
-
+        </PrivyWagmiConnector>
+      </PrivyProvider>
     </QueryClientProvider>
   );
 };
