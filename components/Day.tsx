@@ -1,12 +1,7 @@
-import { useRouter } from "next/router";
-import { useAuth } from "../hooks/useAuth";
-import { useLock } from "../hooks/useLock";
 import FutureDay from "./FutureDay";
-import LastDay from "./LastDay";
 import LoadingDay from "./LoadingDay";
 import NotConnectedDay from "./NotConnectedDay";
 import UnlockableDay from "./UnlockableDay";
-import UnlockedDay from "./UnlockedDay";
 import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 import { usePrivy } from "@privy-io/react-auth";
 
