@@ -6,51 +6,50 @@ const days = [
   {
     // Day 1
     lock: "0x6B6CbaA6b44D5949A2a6cac24499aa13D6c1798D",
-    title: "🍾 Congrats! You have opened the first day of the advent calendar!",
-    description: `Come back **every** day, open a new door, claim a new NFT, and learn something new! You can open today’s door if you opened yesterday’s door. (No peeking ahead!) Best of all, some days will have special gifts for you from Unlock! 
-
+    title: "🍾 Welcome to the 2023 Unlock Protocol Advent Calendar!",
+    description: `Every day, open a new door, claim a new NFT, and learn something new! You can open today’s door if you opened yesterday’s door. (No peeking ahead!) Best of all, some days will have special gifts for you from Unlock and our partners and community!
 See you tomorrow!`,
     link: "",
-    image: "",
+    image: "public/images/gift-present-share-tag-text-1120x630a.png",
     youtube: "",
   },
   {
     // Day 2
     lock: "0xff5446f83fFb3Ccd7D5f798C1F1C1D981E2ff2AE",
     title: "Year in Review",
-    description: `Some days we’ll share great stuff from the the Unlock community’s amazing 2022 accomplishments and adventures. For example — did you know that all the tickets for Paris’s ETH.CC conference in June 2022 (over 1800 tickets!) were powered by Unlock? It’s true!`,
-    link: "https://unlock-protocol.com/blog/ethcc5-2022-ticketing",
-    image: "",
+    description: `Some days we’ll share great stuff from the the Unlock community’s amazing 2023 accomplishments and adventures. For example — did you know there’s an entire showcase of events, subscriptions, memberships, certifications and more that have been built using Unlock Protocol? It’s true!`,
+    link: "https://showcase.unlock-protocol.com",
+    image: "public/images/showcase-share-2.png",
     youtube: "",
   },
   {
     // Day 3
     lock: "0x27787E46a701CfFaaD8af059917CF0d626556568",
-    title: "Would you like to play a game?",
+    title: "Subscription Tokens with Unlock Protocol",
     description:
-      "In 2022, BAFTA-award winning game designer Henry Hoffman integrated Unlock into Unity, enabling Unlock NFTs to be used for membership access, in-game items, and more in the Unity ecosystem — without having to write code. 🤯",
-    link: "https://twitter.com/UnlockProtocol/status/1597632023362879488",
-    image: "",
-    youtube: "https://www.youtube.com/embed/l4e3L_R4Xwk",
+      "One of the common questions we get asked is how do memberships and subscription tokens work with Unlock Protocol? Here’s a deep dive into how it works!",
+    link: "https://twitter.com/UnlockProtocol/status/1720459335875350599",
+    image: "public/images/subscription-share-2.png",
+    youtube: "",
   },
   {
     // Day 4
     lock: "0x7608F73A1dFEb206A3A75aCDad6DC9FbA9Ba83D0",
-    title: "Get the flock out of here!",
+    title: "Let’s get this party started!",
     description:
-      "Flocker, built with Unlock, is a way your fans and followers can connect with you all across the web. We built it because you should be able to connect directly with them, and not have to rely on centralized platforms like the bird app which may go through some, ahem, changes.",
-    link: "https://flocker.app",
-    image: "",
-    youtube: "https://www.youtube.com/embed/XFBc1U4wtKg",
+      "Hey! A little something-something for you today — we’re dropping some USDC to a number of lucky folks today! If you're chosen, we’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
+    link: "",
+    image: "public/images/scrooge-mcduck,gif",
+    youtube: "",
   },
   {
     // Day 5
     lock: "0x3e36C285E11DE77e8257Fe7D49e80209C48b295E",
-    title: "Just another magic Monday",
+    title: "Easy-Peasy Event Tickets and Registration",
     description:
-      "Hey! A little something-something for you today — we’re dropping some USDC to the first 100 folks who get today's gift! We’ll automatically drop it into the wallet you used to get today’s NFT. Enjoy!",
-    link: "",
-    image: "https://media.tenor.com/k_I4uywWFfQAAAAC/picsou-scrooge.gif",
+      "Did you know you can create event tickets and landing pages for your conference, event, or meetup in under five minutes with Unlock Protocol? Set up your event landing page, sell or airdrop tickets as NFTs and via email, and perform check-in with a dedicated QR code. Easy.",
+    link: "https://events.unlock-protocol.com",
+    image: "public/images/events-share.png",
     youtube: "",
   },
   {
