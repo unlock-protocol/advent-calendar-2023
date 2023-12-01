@@ -66,6 +66,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
           address: user,
           chainId: network,
           version: '1',
+          statement: "I'd like to mint an NFT from the Unlock Protocol Advent Calendar!"
         });
         const message = siwe.prepareMessage();
         const ethersProvider = await activeWallet?.getEthersProvider()
