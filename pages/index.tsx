@@ -39,8 +39,9 @@ export default function Home() {
         <meta property="og:url" content={AppConfig.siteUrl} />
         <meta property="og:type" content="website" />
 
-        <Head>
         <meta property="eth:nft:collection" content={AppConfig.name} />
+        {/* Day1 contract address */}
+        <meta property="eth:nft:contract_address" content="0x31291b6bccc00e4c10c769746671448498fea2d7" />
         <meta
           property="eth:nft:creator_address"
           content="unlock-protocol.eth"
@@ -50,7 +51,6 @@ export default function Home() {
         <meta property="eth:nft:schema" content="erc721" />
         <meta property="eth:nft:chain" content="base" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-      </Head>
 
       </Head>
 
