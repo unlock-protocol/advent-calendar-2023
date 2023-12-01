@@ -20,8 +20,8 @@ const Header = () => {
   const {wallet: activeWallet, setActiveWallet} = usePrivyWagmi();
 
   return (
-    <nav className="container z-10">
-      <div className="z-100 pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
+    <nav className="container relative">
+      <div className="pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
         <Link target="_blank" href="https://unlock-protocol.com">
           <svg
             width="147"

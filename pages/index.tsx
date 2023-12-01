@@ -43,7 +43,7 @@ export default function Home() {
       <div className=" bg-black bg-[url('/images/background.svg')] bg-cover h-screen flex flex-col">
         <div className="bg-[url('/images/background.svg')] bg-cover ">
         <Header />
-        <main className="container flex-1 flex flex-col gap-8 ">
+        <main className="container relative flex-1 flex flex-col gap-8 ">
           <div className="text-center text-white flex flex-col">
             <h1 className={`${meowScript.className} text-8xl bg-gradient-to-b text-transparent from-[#FCF6BA] to-[#BF953F] bg-clip-text `}>Advent Calendar</h1>
             <h2 className="text-3xl">By Unlock, December 2023</h2>
@@ -51,7 +51,7 @@ export default function Home() {
           </div>
           <Calendar />
         </main>
-        <footer className="flex-shrink-0 pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
+        <footer className="flex-shrink-0 relative pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
           <h3 className={`${meowScript.className} text-5xl`}>Wishing you a wonderful holiday season!</h3>
           <Link href="https://unlock-protocol.com/" className="mt-6 text-lg font-light">Unlock Labs. ♥</Link>
         </footer>

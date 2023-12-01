@@ -157,7 +157,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
 
 const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(justUnlocked);
-  
+
   useEffect(() => {
     if(justUnlocked) {
       snow.start();

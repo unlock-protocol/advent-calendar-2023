@@ -39,8 +39,7 @@ export const Calendar = () => {
         return
       }
       return (
-        <div className="flex flex-col items-center	" key={index}>
-
+        <div className="flex flex-col items-center" key={index}>
           <Day
             lock={lockAddresses[day -1].result as `0x${string}`}
             previousDayLock={day > 1 ? lockAddresses![day-2].result as `0x${string}` : undefined}
