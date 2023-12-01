@@ -16,18 +16,7 @@ export default function Home() {
   const start = 1;
   const days = new Array(24).fill(0).map((d, i) => i + start);
   const searchParams = useSearchParams()
-  
-  const { data: now, isLoading } = useQuery({
-    queryKey: ["now", searchParams.get('now')], queryFn: async () => {
-    if (searchParams.get('now')) {
-      return new Date(searchParams.get('now') as string)
-    }
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://rpc.unlock-protocol.com/137"
-    );
-    const block = await provider.getBlock("latest");
-    return new Date(block.timestamp * 1000);
-  }});
+
   
   return (
     <>
@@ -35,7 +24,7 @@ export default function Home() {
         <title>2023 Unlock Advent Calendar</title>
         <meta
           property="og:title"
-          content="2023 Unlock Advent Calendar"
+          content={AppConfig.name}
           key="title"
         />
         <meta
