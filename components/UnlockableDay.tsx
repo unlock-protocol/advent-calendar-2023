@@ -6,12 +6,12 @@ import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'
 import { usePrivyWagmi } from "@privy-io/wagmi-connector";
-
-
+import { AppConfig } from "../lib/AppConfig";
+import ReCaptcha from 'react-google-recaptcha'
 
 interface MintableProps {
   user: string;
@@ -24,9 +24,9 @@ interface MintableProps {
 // There should only be one!
 const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
   const {wallets} = useWallets();
-  const { signMessage } = usePrivy();
   const [loading, setLoading] = useState<boolean>(false)
   const {wallet: activeWallet} = usePrivyWagmi();
+  const recaptchaRef = useRef<any>()
 
 
   const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
@@ -59,6 +59,8 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
         const {hash} = await writeAsync!()
         onMinting(hash)
       } else {
+        await recaptchaRef.current?.reset()
+        const captcha = await recaptchaRef.current?.executeAsync()
         const service = new LocksmithService();
         const siwe = LocksmithService.createSiweMessage({
           domain: window.location.host,
@@ -82,7 +84,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
           signature,
         });
         const { accessToken } = loginResponse.data;
-        const response = await service.claim(network, lock, '', {
+        const response = await service.claim(network, lock, captcha, {
           recipient: user,
           data: '',
         }, 
@@ -106,7 +108,15 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
   }
 
   return (
+    <>
+          <ReCaptcha
+        ref={recaptchaRef}
+        sitekey={AppConfig.recaptchaKey}
+        size="invisible"
+        badge="bottomleft"
+      />
     <BaseDay outterClasses="bg-white border-none cursor-pointer" onClick={checkout} day={day} />
+    </>
   );
 
 }

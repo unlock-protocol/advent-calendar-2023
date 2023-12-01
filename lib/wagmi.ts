@@ -2,6 +2,7 @@ import { networks } from "@unlock-protocol/networks";
 import { Chain } from "wagmi";
 import {configureChains} from 'wagmi';
 import {publicProvider} from 'wagmi/providers/public';
+import contracts from "./contracts";
 
 const chains = Object.values(networks)
   .map((item: any) => {
@@ -25,7 +26,7 @@ const chains = Object.values(networks)
     } as Chain;
   })
   .filter((chain) => {
-    return chain.id === 8453;
+    return chain.id === contracts.network;
   });
 
 export const configureChainsConfig = configureChains(chains, [publicProvider()]);
