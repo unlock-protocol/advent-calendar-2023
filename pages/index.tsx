@@ -7,6 +7,7 @@ import { Meow_Script } from 'next/font/google'
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Calendar } from "../components/Calendar";
+import { AppConfig } from "../lib/AppConfig";
 // If loading a variable font, you don't need to specify the font weight
 const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
 
@@ -45,9 +46,9 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://advent.unlock-protocol.com/images/advent-2023.png"
+          content={`${AppConfig.siteUrl}/images/advent-2023.png`}
         />
-        <meta property="og:url" content="https://advent.unlock-protocol.com/" />
+        <meta property="og:url" content={AppConfig.siteUrl} />
         <meta property="og:type" content="website" />
       </Head>
 
