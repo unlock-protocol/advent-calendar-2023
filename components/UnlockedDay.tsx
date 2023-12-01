@@ -34,7 +34,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
     "text",
-    `🎁 I have just unlocked Day ${day} of the @unlockProtocol advent calendar!`
+    `🎁 I have just unlocked Day ${day} of the @UnlockProtocol advent calendar!`
   );
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
