@@ -130,6 +130,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
                 </Link>
               )}
               <Link
+                target="_blank"
                 className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded"
                 href={tweetIntent.toString()}
               >
