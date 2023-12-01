@@ -21,7 +21,7 @@ const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps
   if (isLoading || !start || !lock ) {
     return <LoadingDay day={day} />;
   }
-  const dayAsDate = new Date((Number(start) + day * 24 * 60 * 60) * 1000);
+  const dayAsDate = new Date((Number(start) + (day -1) * 24 * 60 * 60) * 1000);
   const isFutureDay = dayAsDate > new Date();
 
   if (isFutureDay) {

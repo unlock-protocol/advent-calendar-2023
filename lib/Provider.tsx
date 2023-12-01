@@ -1,4 +1,5 @@
 import {PrivyProvider} from '@privy-io/react-auth';
+
 import { configureChainsConfig } from "./wagmi";
 import { ReactNode } from "react";
 import {
@@ -25,7 +26,7 @@ export const Provider = ({ children }: { children?: ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns" >
+      <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns">
         <PrivyWagmiConnector wagmiChainsConfig={configureChainsConfig}>
           <DefaultSeo {...seo} />
           {children}
