@@ -2,14 +2,13 @@ import type { DefaultSeoProps, NextSeoProps } from "next-seo";
 import { AppConfig } from "./AppConfig";
 
 export const DEFAULT_SEO: DefaultSeoProps = {
-  title: "Play Coinage’s Onchain Scavenger Hunt to Win 5 ETH",
-  description:
-    "Compete to solve clues and win 5 ETH in the first onchain Scavenger Hunt.",
+  title: AppConfig.name,
+  description: AppConfig.description,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: AppConfig.siteUrl,
-    site_name: "Play Coinage’s Onchain Scavenger Hunt to Win 5 ETH",
+    site_name: AppConfig.name,
     images: [],
   },
   twitter: {
