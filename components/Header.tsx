@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <nav className="container z-10">
-      <div className="pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
+      <div className="z-100 pr-4 flex space-x-4 sm:space-x-8 h-16 items-center mb-8">
         <Link target="_blank" href="https://unlock-protocol.com">
           <svg
             width="147"
