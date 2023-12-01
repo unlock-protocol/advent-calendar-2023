@@ -13,16 +13,7 @@ import { useRouter } from "next/router";
 import { PrivyWagmiConnector } from "@privy-io/wagmi-connector";
 
 export const Provider = ({ children }: { children?: ReactNode }) => {
-  const router = useRouter();
   const seo = { ...DEFAULT_SEO };
-
-  if (
-    router.query.day &&
-    seo?.openGraph?.images &&
-    seo?.openGraph?.images.length > 0
-  ) {
-    seo.openGraph.images[0].url = ``;
-  }
 
   return (
     <QueryClientProvider client={queryClient}>
