@@ -51,7 +51,7 @@ export default function Home() {
         <meta property="og:type" content="website" />
       </Head>
 
-      <div className=" bg-black bg-[url('/images/background.svg')] bg-cover h-screen flex flex-col">
+      <div className=" bg-black bg-[url('/images/background.svg')] bg-cover h-fit	 flex flex-col">
         <Header />
         <main className="container flex-1 flex flex-col gap-8">
           <div className="text-center text-white flex flex-col">
