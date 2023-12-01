@@ -19,7 +19,7 @@ See you tomorrow!`,
     title: "Year in Review",
     description: `Some days we’ll share great stuff from the the Unlock community’s amazing 2023 accomplishments and adventures. For example — did you know there’s an entire showcase of events, subscriptions, memberships, certifications and more that have been built using Unlock Protocol? It’s true!`,
     link: "https://showcase.unlock-protocol.com",
-    image: "/images/showcase-share-2.png",
+    image: "/images/showcase-share-3.png",
     youtube: "",
   },
   {
@@ -29,7 +29,7 @@ See you tomorrow!`,
     description:
       "One of the common questions we get asked is how do memberships and subscription tokens work with Unlock Protocol? Here’s a deep dive into how it works!",
     link: "https://twitter.com/UnlockProtocol/status/1720459335875350599",
-    image: "/images/subscription-share-2.jpeg",
+    image: "/images/subscription-share-3.jpeg",
     youtube: "",
   },
   {
@@ -39,7 +39,7 @@ See you tomorrow!`,
     description:
       `Hey! A little something-something for you today — we’re dropping some USDC to a number of lucky folks today! If you're chosen, we’ll automatically drop it into the wallet you used to get today's NFT. Enjoy! Please see the [official rules](https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-2023-289658e982794a1f8198d28fe7ec134b?pvs=4) for country and other eligibility.`,
     link: "",
-    image: "/images/scrooge-mcduck.gif",
+    image: "https://media.tenor.com/k_I4uywWFfQAAAAC/picsou-scrooge.gif",
     youtube: "",
   },
   {
@@ -49,7 +49,7 @@ See you tomorrow!`,
     description:
       "Did you know you can create event tickets and landing pages for your conference, event, or meetup in under five minutes with Unlock Protocol? Set up your event landing page, sell or airdrop tickets as NFTs and via email, and perform check-in with a dedicated QR code. Easy.",
     link: "https://events.unlock-protocol.com",
-    image: "/images/events-share.png",
+    image: "/images/event-share-3.png",
     youtube: "",
   },
   {
