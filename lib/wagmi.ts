@@ -25,9 +25,8 @@ const chains = Object.values(networks)
     } as Chain;
   })
   .filter((chain) => {
-    return chain.id === 5;
+    return chain.id === 8453;
   });
-
 
 export const configureChainsConfig = configureChains(chains, [publicProvider()]);
 
