@@ -38,6 +38,20 @@ export default function Home() {
         />
         <meta property="og:url" content={AppConfig.siteUrl} />
         <meta property="og:type" content="website" />
+
+        <Head>
+        <meta property="eth:nft:collection" content={AppConfig.name} />
+        <meta
+          property="eth:nft:creator_address"
+          content="unlock-protocol.eth"
+        />
+        <meta property="eth:nft:mint_url" content={AppConfig.siteUrl} />
+        <meta property="eth:nft:mint_status" content="live" />
+        <meta property="eth:nft:schema" content="erc721" />
+        <meta property="eth:nft:chain" content="base" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+      </Head>
+
       </Head>
 
       <div className=" bg-black bg-[url('/images/background.svg')] bg-cover h-screen flex flex-col">
