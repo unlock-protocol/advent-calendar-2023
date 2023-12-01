@@ -103,4 +103,6 @@ describe("AdventHook", function () {
       currentDay += 1;
     }
   });
+
+  it("should support the ability to set the maximum number of winners per day", () => {});
 });
