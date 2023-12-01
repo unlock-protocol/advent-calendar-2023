@@ -104,5 +104,65 @@ describe("AdventHook", function () {
     }
   });
 
-  it("should support the ability to set the maximum number of winners per day", () => {});
+  it("should support the ability to set the maximum number of winners per day", async () => {
+    let [user, anotherUser] = await ethers.getSigners();
+
+    const now = await getCurrentTime();
+    const start = new Date((now + 60 * 60 * 24 * 3) * 1000); // in 3 days!
+    // deploy all locks
+    const [locks, hook] = await deploy(
+      unlock,
+      undefined,
+      start.getTime() / 1000
+    );
+
+    await expect(hook.connect(anotherUser).setMaxNumberOfWinners(1, 10)).to
+      .reverted;
+
+    await hook.connect(user).setMaxNumberOfWinners(1, 10);
+    expect(await hook.maxNumberOfWinnersByDay(1)).to.equal(10);
+  });
+
+  it("should support the ability to set a prize per day", async () => {
+    let [user, anotherUser] = await ethers.getSigners();
+
+    const now = await getCurrentTime();
+    const start = new Date(now * 1000); // now
+    // deploy all locks
+    const [locks, hook] = await deploy(
+      unlock,
+      undefined,
+      start.getTime() / 1000
+    );
+
+    await expect(hook.connect(anotherUser).setPrize(1, 10)).to.reverted;
+
+    await hook.connect(user).setPrize(1, 10);
+    expect(await hook.prizeByDay(1)).to.equal(10);
+  });
+
+  describe.skip("isWinner", async () => {
+    it("should have correct odds based on time", async () => {
+      let [user, anotherUser] = await ethers.getSigners();
+      const now = await getCurrentTime();
+      const start = new Date(now * 1000); // Now
+      // deploy all locks
+      const [locks, hook] = await deploy(
+        unlock,
+        undefined,
+        start.getTime() / 1000
+      );
+
+      // for a day that has not started yet (day 2)
+      // expect(await hook.draw(3, user.address, 1, 1)).to.beGreaterThan(0);
+
+      // Move in time
+      await moveToTime(
+        new Date(
+          start.getTime() + 1000 * 60 * 60 * 24 * 3 - 1000 * 60 * 60 * 24
+        )
+      );
+      expect(await hook.draw(3, user.address, 1, 1)).to.equal(0);
+    });
+  });
 });

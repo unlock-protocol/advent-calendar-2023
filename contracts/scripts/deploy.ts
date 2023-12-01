@@ -19,7 +19,7 @@ async function main() {
     const [locks, hook] = await deploy(
       unlock,
       undefined, // No network yet!
-      new Date("2023-12-01").getTime() / 1000
+      new Date("2023-12-01 12:00:00").getTime() / 1000
     );
   } else if (chainId === 31337) {
     const [locks, hook] = await deploy(

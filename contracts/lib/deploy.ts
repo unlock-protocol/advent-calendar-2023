@@ -66,6 +66,21 @@ const deploy = async (unlock: any, hookAddress?: string, start?: number) => {
       ).wait();
     }
   }
+
+  // Check that the metadata is set on every lock correctly
+  for (let i = 0; i < 24; i++) {
+    const tokenUri = await locks[i].tokenURI(1);
+    if (tokenUri !== `https://advent.unlock-protocol.com/api/${i + 1}/1`) {
+      console.log(locks[i].address, tokenUri);
+      await (
+        await locks[i].setLockMetadata(
+          `Unlock Advent Calendar 2023 - Day ${i + 1}`,
+          `GIFT`,
+          `https://advent.unlock-protocol.com/api/${i + 1}/`
+        )
+      ).wait();
+    }
+  }
   return [locks, hook];
 };
 

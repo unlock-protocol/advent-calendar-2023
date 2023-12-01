@@ -11,7 +11,7 @@ const unlockNetworks = Object.keys(networks).reduce((prev, current) => {
     [network.chain]: {
       chainId: Number(network.id),
       url: network.provider,
-      gasPrice: 1000000000,
+      gasPrice: 1000000,
       accounts:
         process.env.DEPLOYER_PRIVATE_KEY || process.env.TESTER_PRIVATE_KEY
           ? [process.env.DEPLOYER_PRIVATE_KEY || process.env.TESTER_PRIVATE_KEY]

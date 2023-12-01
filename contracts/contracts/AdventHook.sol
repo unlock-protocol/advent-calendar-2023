@@ -11,6 +11,14 @@ error BAD_DAY(uint day);
 error NOT_ALLOWED();
 
 contract AdventHookNext {
+    event Draw(
+        uint indexed day,
+        address indexed _from,
+        uint _value,
+        uint indexed _tokenId
+    );
+    event Winner(uint indexed day, uint _tokenId);
+
     event Random(
         address indexed player,
         uint indexed random,
@@ -22,6 +30,7 @@ contract AdventHookNext {
     mapping(uint => address) public lockByDay;
     mapping(uint => uint) public maxNumberOfWinnersByDay;
     mapping(uint => uint[]) public winnersByDay;
+    mapping(uint => uint) public prizeByDay;
 
     function initialize(address[] memory _locks, uint _start) external {
         for (uint j = 0; j < _locks.length; j++) {
@@ -58,10 +67,31 @@ contract AdventHookNext {
         return IPublicLockV13(msg.sender).keyPrice();
     }
 
+    function odds(uint _day, uint _now) public view returns (uint) {
+        uint startOfDay = start + (_day - 1) * 1 days;
+        if (_now <= startOfDay) {
+            return 2 ** 256 - 1; // max uint
+        }
+        return 1 + (60 * 60 * 24) ** 4 / (_now - startOfDay) ** 4;
+    }
+
+    function draw(
+        uint day,
+        address player,
+        uint tokenId,
+        uint numberOfWinnersLeft
+    ) public view returns (uint) {
+        uint rawOdds = odds(day, block.timestamp);
+        return
+            uint(
+                keccak256(abi.encodePacked(block.timestamp, player, tokenId))
+            ) % (rawOdds / numberOfWinnersLeft);
+    }
+
     function onKeyPurchase(
-        uint256 tokenId /* tokenId */,
-        address from /* from */,
-        address /* recipient */,
+        uint256 tokenId,
+        address /* from */,
+        address recipient,
         address /* referrer */,
         bytes calldata /* data */,
         uint256 /* minKeyPrice */,
@@ -73,8 +103,27 @@ contract AdventHookNext {
         }
         if (maxNumberOfWinnersByDay[day] > 0) {
             if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
-                // Ok let's see if we have a winner!
-                // If we do, save it!
+                uint result = draw(
+                    day,
+                    recipient,
+                    tokenId,
+                    maxNumberOfWinnersByDay[day] - winnersByDay[day].length
+                );
+                emit Draw(day, recipient, result, tokenId);
+                if (result == 0) {
+                    emit Winner(day, tokenId);
+                    winnersByDay[day].push(tokenId);
+                    uint prize = prizeByDay[day];
+                    if (prize > 0) {
+                        IERC20 usdc = IERC20(
+                            0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
+                        );
+                        uint balance = usdc.balanceOf(address(this));
+                        if (balance >= prize) {
+                            usdc.transfer(recipient, prize);
+                        }
+                    }
+                }
             }
         }
     }
@@ -85,5 +134,13 @@ contract AdventHookNext {
             revert NOT_ALLOWED();
         }
         maxNumberOfWinnersByDay[day] = maxNumberOfWinners;
+    }
+
+    function setPrize(uint day, uint prize) external {
+        address lock = lockByDay[day];
+        if (!IPublicLockV13(lock).isLockManager(msg.sender)) {
+            revert NOT_ALLOWED();
+        }
+        prizeByDay[day] = prize;
     }
 }

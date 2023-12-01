@@ -148,6 +148,94 @@
         },
         "namespaces": {}
       }
+    },
+    "313435263cecfab39e7906e1297d50699e7b30cee2680874eff4682370eea4c9": {
+      "address": "0x7Fa3eEae1896cdEa833d4783da16c43eb2537A37",
+      "txHash": "0xd278d2b75871e2ec24c16d7a21ed5881a7af12372a245c90f77c6c16c0167911",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "start",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:28"
+          },
+          {
+            "label": "dayByLock",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:29"
+          },
+          {
+            "label": "lockByDay",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:30"
+          },
+          {
+            "label": "maxNumberOfWinnersByDay",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:31"
+          },
+          {
+            "label": "winnersByDay",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:32"
+          },
+          {
+            "label": "prizeByDay",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:33"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
     }
   }
 }
