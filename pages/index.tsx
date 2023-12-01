@@ -45,7 +45,7 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://advent.unlock-protocol.com/images/advent.png"
+          content="https://advent.unlock-protocol.com/images/advent-2023.png"
         />
         <meta property="og:url" content="https://advent.unlock-protocol.com/" />
         <meta property="og:type" content="website" />
