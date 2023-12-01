@@ -3,13 +3,14 @@ pragma solidity ^0.8.9;
 
 import "@unlock-protocol/contracts/dist/PublicLock/IPublicLockV13.sol";
 import "./IERC20.sol";
-import "hardhat/console.sol";
+// import "hardhat/console.sol";
 
 error TOO_EARLY(uint day);
 error MISSING_PREVIOUS_DAY(uint day);
 error BAD_DAY(uint day);
+error NOT_ALLOWED();
 
-contract AdventHook {
+contract AdventHookNext {
     event Random(
         address indexed player,
         uint indexed random,
@@ -19,6 +20,8 @@ contract AdventHook {
     uint public start;
     mapping(address => uint) public dayByLock;
     mapping(uint => address) public lockByDay;
+    mapping(uint => uint) public maxNumberOfWinnersByDay;
+    mapping(uint => uint[]) public winnersByDay;
 
     function initialize(address[] memory _locks, uint _start) external {
         for (uint j = 0; j < _locks.length; j++) {
@@ -35,14 +38,13 @@ contract AdventHook {
         bytes calldata /*data*/
     ) external view returns (uint256 minKeyPrice) {
         uint day = dayByLock[msg.sender];
-        console.log("IN THE HOOK!");
+
         if (day == 0) {
             revert BAD_DAY(day);
         }
 
         // Check that we are not too early!
         if (block.timestamp < start + (day - 1) * 1 days) {
-            console.log("IN TOO_EARLY HOOK!");
             revert TOO_EARLY(day);
         }
 
@@ -52,7 +54,6 @@ contract AdventHook {
                 revert MISSING_PREVIOUS_DAY(day - 1);
             }
         }
-        console.log("FINE!");
 
         return IPublicLockV13(msg.sender).keyPrice();
     }
@@ -66,11 +67,23 @@ contract AdventHook {
         uint256 /* minKeyPrice */,
         uint256 /* pricePaid */
     ) external {
-        // uint day = dayByLock[msg.sender];
-        // // Check that this is called on the 24th only!
-        // if (day != 24) {
-        //     revert TOO_EARLY(day);
-        // }
-        // Winner!
+        uint day = dayByLock[msg.sender];
+        if (day == 0) {
+            revert BAD_DAY(day);
+        }
+        if (maxNumberOfWinnersByDay[day] > 0) {
+            if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
+                // Ok let's see if we have a winner!
+                // If we do, save it!
+            }
+        }
+    }
+
+    function setMaxNumberOfWinners(uint day, uint maxNumberOfWinners) external {
+        address lock = lockByDay[day];
+        if (!IPublicLockV13(lock).isLockManager(msg.sender)) {
+            revert NOT_ALLOWED();
+        }
+        maxNumberOfWinnersByDay[day] = maxNumberOfWinners;
     }
 }

@@ -29,7 +29,7 @@
             "slot": "0",
             "type": "t_uint256",
             "contract": "AdventHook",
-            "src": "contracts/AdventHook.sol:18"
+            "src": "contracts/AdventHook.sol:19"
           },
           {
             "label": "dayByLock",
@@ -37,7 +37,7 @@
             "slot": "1",
             "type": "t_mapping(t_address,t_uint256)",
             "contract": "AdventHook",
-            "src": "contracts/AdventHook.sol:19"
+            "src": "contracts/AdventHook.sol:20"
           },
           {
             "label": "lockByDay",
@@ -45,7 +45,7 @@
             "slot": "2",
             "type": "t_mapping(t_uint256,t_address)",
             "contract": "AdventHook",
-            "src": "contracts/AdventHook.sol:20"
+            "src": "contracts/AdventHook.sol:21"
           }
         ],
         "types": {
@@ -59,6 +59,86 @@
           },
           "t_mapping(t_uint256,t_address)": {
             "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "06ba1b76e3a777f6d5a925e22f83479343d399aa4d2b821922f7102c13a8473d": {
+      "address": "0x18A5f5DebC471652f1e685b636948368c1F81744",
+      "txHash": "0x700d532f46d2ad1ada3c74f547a5fb083eb1144256a70422c51396cc4f4c6cc4",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "start",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:19"
+          },
+          {
+            "label": "dayByLock",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:20"
+          },
+          {
+            "label": "lockByDay",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:21"
+          },
+          {
+            "label": "maxNumberOfWinnersByDay",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:22"
+          },
+          {
+            "label": "winnersByDay",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_uint256)dyn_storage)": {
+            "label": "mapping(uint256 => uint256[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
             "numberOfBytes": "32"
           },
           "t_uint256": {

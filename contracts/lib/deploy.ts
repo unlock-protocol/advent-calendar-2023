@@ -1,4 +1,4 @@
-const { ethers, network, upgrades } = require("hardhat");
+const { ethers, network, upgrades, artifacts } = require("hardhat");
 
 const expirationDuration = ethers.constants.MaxUint256;
 const maxNumberOfKeys = ethers.constants.MaxUint256;
@@ -9,18 +9,27 @@ const keyPrice = 0;
  * @param unlock
  * @returns
  */
-const deploy = async (
-  unlock: any,
-  lockAddresses?: string[],
-  hookAddress?: string
-) => {
+const deploy = async (unlock: any, hookAddress?: string, start?: number) => {
   let locks = [];
 
   if (network.config.chainId === 31337) {
     await unlock.deployProtocol();
   }
 
-  if (!lockAddresses) {
+  const Hook = await ethers.getContractFactory("AdventHookNext");
+  let hook;
+  if (hookAddress) {
+    // Upgrade?
+    hook = await upgrades.upgradeProxy(hookAddress, Hook);
+    console.log(`Upgraded Advent hook at ${hook.address}`);
+    // Then get all the locks!
+    for (let i = 0; i < 24; i++) {
+      const lockAddress = await hook.lockByDay(i + 1);
+      const lock = await unlock.getLockContract(lockAddress);
+      locks.push(lock);
+    }
+  } else {
+    // deploy locks
     for (let i = 0; i < 24; i++) {
       const { lock } = await unlock.createLock({
         expirationDuration,
@@ -30,27 +39,14 @@ const deploy = async (
       });
       locks.push(lock);
     }
-  } else {
-    locks = await Promise.all(
-      lockAddresses.map(async (address) => {
-        return await unlock.getLockContract(address);
-      })
-    );
-  }
 
-  const Hook = await ethers.getContractFactory("AdventHook");
-  let hook;
-  if (!hookAddress) {
     // deploy hook
     hook = await upgrades.deployProxy(Hook, [
       locks.map((lock) => lock.address),
-      new Date("2023-11-01").getTime() / 1000,
+      start,
     ]);
+    await hook.deployed();
     console.log(`Deployed Advent hook at ${hook.address}`);
-  } else {
-    // Upgrade?
-    hook = await upgrades.upgradeProxy(hookAddress, Hook);
-    console.log(`Upgraded Advent hook at ${hook.address}`);
   }
 
   // Check that the hook is set on every lock!
@@ -68,7 +64,6 @@ const deploy = async (
           ethers.constants.AddressZero
         )
       ).wait();
-      console.log(`Hook set on lock ${i}`);
     }
   }
   return [locks, hook];
