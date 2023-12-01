@@ -1,6 +1,6 @@
 export const AppConfig = {
-  name: "Unlock Advent Calendar 2023",
-  description: "Unlock Advent Calendar 2023",
+  name: "Unlock Advent Calendar 2023 🎁",
+  description: "One NFT a day, fun gifts, and some year-in-review highlights — just for you! 🎁",
   production: process.env.NODE_ENV === "production",
   environment: process.env.NODE_ENV!,
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL! || "http://localhost:3000",

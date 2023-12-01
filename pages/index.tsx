@@ -40,8 +40,7 @@ export default function Home() {
         />
         <meta
           property="og:description"
-          content="One NFT a day, fun gifts, and some year-in-review highlights — just for you! 
-"
+          content={AppConfig.description}
           key="description"
         />
         <meta
