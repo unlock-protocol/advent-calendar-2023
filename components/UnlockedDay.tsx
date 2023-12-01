@@ -156,9 +156,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
 };
 
 const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
-  const { query, replace } = useRouter();
   const [showModal, setShowModal] = useState(justUnlocked);
-
   
   useEffect(() => {
     if(justUnlocked) {

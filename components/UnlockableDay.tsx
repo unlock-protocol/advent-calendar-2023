@@ -122,7 +122,6 @@ interface UnlockableDayProps {
 const UnlockableDay = ({ user, day, lock, previousDayLock, network }: UnlockableDayProps) => {
   const [hash, setHash] = useState('');
   
-  
   const contractReads = [{
       address: lock as `0x${string}`,
       abi: contracts.lock.ABI,
@@ -156,6 +155,10 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   })
 
 
+  const justUnlocked = data?.status == 'success' 
+
+
+
   const isLoading = membershipsLoading || (hash && !data)
   const [hasMembership, previousDayMembership] = memberships || []
 
@@ -168,8 +171,9 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   }
 
   if (hasMembership?.result) {
-    return <UnlockedDay justUnlocked={data?.status == 'success'} user={user} day={day} />;
+    return <UnlockedDay justUnlocked={justUnlocked} user={user} day={day} />;
   }
+
 
   return (
     <Mintable onMinting={(hash: string) => {
