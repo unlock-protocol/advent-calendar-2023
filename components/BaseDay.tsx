@@ -16,8 +16,8 @@ const BaseDay = ({
   if (!outterClasses) {
     outterClasses = "";
   }
-  outterClasses = `${outterClasses} border-solid border rounded-full h-[72px] w-[72px] relative`;
-  innerClasses = `${innerClasses} text-2xl w-full absolute left-0 top-0 bottom-0 font flex items-center justify-center text-center font-bold	`;
+  outterClasses = `${outterClasses} border-solid border rounded-full sm:h-[72px] sm:w-[72px] h-[45px] w-[45px] relative`;
+  innerClasses = `${innerClasses} text-lg sm:text-2xl w-full absolute left-0 top-0 bottom-0 font flex items-center justify-center text-center font-bold	`;
   if (onClick) {
     outterClasses = `${outterClasses} cursor-pointer`;
   }
