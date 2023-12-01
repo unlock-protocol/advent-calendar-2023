@@ -82,7 +82,7 @@ const Header = () => {
               logout();
             }}
           >
-            Logout ({truncate(activeWallet?.address)})
+            Logout <span className="hidden md:inline">({truncate(activeWallet?.address)})</span>
           </button>
         ) : (
           <button
