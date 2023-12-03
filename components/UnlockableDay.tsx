@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import UnlockedDay from "./UnlockedDay";
 import LoadingDay from "./LoadingDay";
 import BaseDay from "./BaseDay";
@@ -5,7 +6,7 @@ import FutureDay from "./FutureDay";
 import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
-import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { useWallets } from "@privy-io/react-auth";
 import { useEffect, useRef, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'
@@ -14,38 +15,36 @@ import { AppConfig } from "../lib/AppConfig";
 import ReCaptcha from 'react-google-recaptcha'
 
 interface MintableProps {
-  user: string;
   day: number;
   lock: string;
   network: number
   onMinting: (hash:string) => void
 }
 
-// There should only be one!
-const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
-  const {wallets} = useWallets();
+const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const {wallet: activeWallet} = usePrivyWagmi();
   const recaptchaRef = useRef<any>()
 
 
   const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
-    address: user as `0x${string}`,
+    address: activeWallet?.address as `0x${string}`,
   })
 
   // Switch network if required
   useEffect(() => {
-    if(wallets[0] && wallets[0].chainId !== `eip155:${network}}`) {
-      wallets[0].switchChain(network)
+    if(activeWallet && activeWallet.chainId !== `eip155:${network}}`) {
+      activeWallet.switchChain(network)
     }
-  }, [wallets, network])
+  }, [activeWallet, network])
 
   const {config} = usePrepareContractWrite({
     address: lock as `0x${string}`,
     abi: contracts.lock.ABI,
     functionName: 'purchase',
     chainId: network,
-    args: [[0], [user], [user], [user], ['']],
+    account: activeWallet?.address as `0x${string}`,
+    args: [[0], [activeWallet?.address], [activeWallet?.address], [activeWallet?.address], ['']],
   })
   
   const { writeAsync } = useContractWrite({
@@ -56,8 +55,13 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
     try {
       if (userBalance && userBalance?.value > 0.0000001) {
         setLoading(true)
-        const {hash} = await writeAsync!()
-        onMinting(hash)
+        try {
+          const {hash} = await writeAsync!()
+          toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
+          onMinting(hash)
+        } catch(e) {
+          toast.error("It looks like the transaction to mint today\'s NFT could not be submitted! Please try again!")
+        }
       } else {
         await recaptchaRef.current?.reset()
         const captcha = await recaptchaRef.current?.executeAsync()
@@ -65,7 +69,7 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
         const siwe = LocksmithService.createSiweMessage({
           domain: window.location.host,
           uri: window.location.origin,
-          address: user,
+          address: activeWallet?.address,
           chainId: network,
           version: '1',
           statement: "I'd like to mint an NFT from the Unlock Protocol Advent Calendar!"
@@ -77,7 +81,14 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
           return
         }
         const ethersSigner = await ethersProvider.getSigner()
-        const signature = await ethersSigner.signMessage(message);
+        let signature
+        try {
+          signature = await ethersSigner.signMessage(message);
+        } catch (error) {
+          toast.error("Please make sure you sign this message to confirm you want to open today's gift!")
+          setLoading(false)
+          return
+        }
         setLoading(true)
         const loginResponse = await service.login({
           message,
@@ -85,18 +96,21 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
         });
         const { accessToken } = loginResponse.data;
         const response = await service.claim(network, lock, captcha, {
-          recipient: user,
+          recipient: activeWallet?.address,
           data: '',
         }, 
-        user,
+        activeWallet?.address,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         })
+        toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
         onMinting(response.data.transactionHash)
       }        
     } catch (error) {
+      toast.error("There was an error minting your NFT. Please refresh the page and try again!")
+      setLoading(false)
       console.error(error)
       return false
     }
@@ -109,13 +123,13 @@ const Mintable = ({user, lock, network, day, onMinting}: MintableProps) => {
 
   return (
     <>
-          <ReCaptcha
+      <ReCaptcha
         ref={recaptchaRef}
         sitekey={AppConfig.recaptchaKey}
         size="invisible"
         badge="bottomleft"
       />
-    <BaseDay outterClasses="bg-white border-none cursor-pointer" onClick={checkout} day={day} />
+      <BaseDay outterClasses="bg-white border-none cursor-pointer" onClick={checkout} day={day} />
     </>
   );
 
@@ -164,11 +178,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
     enabled: !!hash
   })
 
-
   const justUnlocked = data?.status == 'success' 
-
-
-
   const isLoading = membershipsLoading || (hash && !data)
   const [hasMembership, previousDayMembership] = memberships || []
 
@@ -188,7 +198,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   return (
     <Mintable onMinting={(hash: string) => {
       setHash(hash)
-    }} user={user} lock={lock} network={network} day={day}/>
+    }} lock={lock} network={network} day={day}/>
   );
 };
 

@@ -15,8 +15,8 @@ interface DayProps {
 }
 
 const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps) => {
-  const {authenticated} = usePrivy();
-  const {wallet: activeWallet} = usePrivyWagmi();
+  const { authenticated } = usePrivy();
+  const { wallet: activeWallet } = usePrivyWagmi();
 
   if (isLoading || !start || !lock ) {
     return <LoadingDay day={day} />;
