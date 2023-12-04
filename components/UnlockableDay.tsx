@@ -6,7 +6,6 @@ import FutureDay from "./FutureDay";
 import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
-import { useWallets } from "@privy-io/react-auth";
 import { useEffect, useRef, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'
@@ -45,6 +44,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     chainId: network,
     account: activeWallet?.address as `0x${string}`,
     args: [[0], [activeWallet?.address], [activeWallet?.address], [activeWallet?.address], ['']],
+    gas: BigInt(700_000), // This is high, just in case they win!
   })
   
   const { writeAsync } = useContractWrite({
