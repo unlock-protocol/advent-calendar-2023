@@ -12,6 +12,7 @@ import { ethers } from "ethers";
 import isWinner from "../lib/getWinners";
 import { useContractRead } from "wagmi";
 import contracts from "../lib/contracts";
+import Image from "next/image";
 interface UnlockedDayProps {
   day: number;
   user: any;
@@ -170,9 +171,17 @@ const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProp
 
   return (
     <>
-      <BaseDay outterClasses={`bg-cover bg-[url('https://advent.unlock-protocol.com/images/nft/${day}.png')] border-[#75797E] text-white cursor-pointer`} day={day} hideDay={true} onClick={() => {
+      <BaseDay outterClasses={`border-[#75797E] text-white cursor-pointer`} day={day} hideDay={true} onClick={() => {
         setShowModal(true)}
-      } />
+      }>
+        <Image
+          src={`/images/nft/${day}.png`}
+          alt={`NFT image for Day ${day}`}
+          width={500}
+          height={500}
+          className="rounded-full"
+></Image>
+      </BaseDay>
       {showModal ? (
         <Modal user={user} day={day} setShowModal={(showModal) => {
           snow.stop()
