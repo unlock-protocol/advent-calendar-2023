@@ -47,8 +47,9 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   );
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
+  console.log(network)
   
-  const openSeaLink = network === 5423 ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
+  const openSeaLink = network === 8453 ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
 
   useEffect(() => {
     setContent(days[day - 1]);
