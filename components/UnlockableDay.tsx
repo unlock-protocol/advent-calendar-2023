@@ -192,7 +192,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   }
 
   if (hasMembership?.result) {
-    return <UnlockedDay justUnlocked={justUnlocked} user={user} day={day} />;
+    return <UnlockedDay lock={lock} network={network} justUnlocked={justUnlocked} user={user} day={day} />;
   }
 
 

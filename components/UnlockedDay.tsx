@@ -10,9 +10,13 @@ import { BsTwitter } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { ethers } from "ethers";
 import isWinner from "../lib/getWinners";
+import { useContractRead } from "wagmi";
+import contracts from "../lib/contracts";
 interface UnlockedDayProps {
   day: number;
   user: any;
+  lock: string;
+  network: number;
   justUnlocked?: boolean;
 }
 
@@ -155,7 +159,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   );
 };
 
-const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
+const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(justUnlocked);
 
   useEffect(() => {
@@ -166,7 +170,7 @@ const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
 
   return (
     <>
-      <BaseDay outterClasses="bg-[#282A2D] border-[#75797E] text-white cursor-pointer" day={day} onClick={() => {
+      <BaseDay outterClasses={`bg-cover bg-[url('https://advent.unlock-protocol.com/images/nft/${day}.png')] border-[#75797E] text-white cursor-pointer`} day={day} hideDay={true} onClick={() => {
         setShowModal(true)}
       } />
       {showModal ? (
