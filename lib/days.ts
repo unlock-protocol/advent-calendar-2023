@@ -50,12 +50,12 @@ See you tomorrow!`,
   },
   {
     // Day 6
-    title: "We ❤️ our frens at Guild.xyz",
+    title: "We ❤️ our frens at Web3 Academy",
     description:
-      "In 2022, our frens at Guild.xyz integrated Unlock memberships, which can be used to token-gate Discord, Telegram, and other resources with just a few clicks. It’s kinda magical.",
-    link: "https://unlock-protocol.com/guides/how-to-token-gate-telegram-with-unlock-protocol-and-guild-xyz/",
+      "Our frens at Web3 Academy, the #1 trusted resource to make sense of an onchain world in constant transformation, integrated Unlock memberships this year. They are the go-to resource for weekly onchain analysis, industry insights & market analysis to you build and invest successfully in web3. Today, some lucky Locksmiths will pick up a Web3 Academy PRO Membership ($180 value) or a Web3 Investing Masterclass ($250 value)!",
+    link: "https://paragraph.xyz/@web3academy",
     image: "",
-    youtube: "",
+    youtube: "https://www.youtube.com/embed/-fE64lkvUmg",
   },
   {
     // Day 7
