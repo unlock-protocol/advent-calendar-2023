@@ -1,6 +1,7 @@
 interface BaseDayProps {
   day: number;
   children?: JSX.Element;
+  hideDay?: boolean;
   onClick?: () => void;
   outterClasses?: string;
   innerClasses?: string;
@@ -12,6 +13,7 @@ const BaseDay = ({
   children,
   outterClasses = "",
   innerClasses = "",
+  hideDay = false,
 }: BaseDayProps) => {
   if (!outterClasses) {
     outterClasses = "";
@@ -26,9 +28,9 @@ const BaseDay = ({
   }
   return (
     <div onClick={onClick} className={outterClasses}>
-      <div className={innerClasses}>
+      {!hideDay && <div className={innerClasses}>
         {day}
-      </div>
+      </div>}
 
       {children}
     </div>

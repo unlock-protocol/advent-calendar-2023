@@ -83,6 +83,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const ethersSigner = await ethersProvider.getSigner()
         let signature
         try {
+          toast.error("Please sign the message in your wallet!")
           signature = await ethersSigner.signMessage(message);
         } catch (error) {
           toast.error("Please make sure you sign this message to confirm you want to open today's gift!")
@@ -191,7 +192,7 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   }
 
   if (hasMembership?.result) {
-    return <UnlockedDay justUnlocked={justUnlocked} user={user} day={day} />;
+    return <UnlockedDay lock={lock} network={network} justUnlocked={justUnlocked} user={user} day={day} />;
   }
 
 

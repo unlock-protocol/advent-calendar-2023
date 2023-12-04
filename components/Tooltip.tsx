@@ -7,7 +7,6 @@ interface Props {
 }
 
 const ToolTip = ({ children, content }: Props) => {
-  console.log('tooltip to render!')
   return (
     <RadixToolTip.Root>
       <RadixToolTip.Trigger className="cursor-pointer" asChild>

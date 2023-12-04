@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BaseDay from "./BaseDay";
 import days from "../lib/days";
@@ -8,11 +7,17 @@ import ReactMarkdown from "react-markdown";
 import snow from "../lib/snow";
 import { BsTwitter } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
-import { ethers } from "ethers";
-import isWinner from "../lib/getWinners";
+import { SiOpensea } from "react-icons/si";
+
+import { useContractRead } from "wagmi";
+import contracts from "../lib/contracts";
+
+import Image from "next/image";
 interface UnlockedDayProps {
   day: number;
   user: any;
+  lock: string;
+  network: number;
   justUnlocked?: boolean;
 }
 
@@ -20,6 +25,9 @@ interface ModalProps {
   user: any;
   day: number;
   setShowModal: (show: boolean) => void;
+  network: number;
+  lock: string;
+  tokenId: string;
 }
 
 interface Content {
@@ -30,7 +38,7 @@ interface Content {
   link?: string;
 }
 
-const Modal = ({ day, setShowModal, user }: ModalProps) => {
+const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   const [content, setContent] = useState<Content | null>(null);
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
@@ -39,37 +47,27 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   );
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
-  useEffect(() => {
-    const checkStatus = async () => {
-      if (day == 24) {
-        const day24 = {
-          title: "A special something for some special Locksmiths",
-          description:
-            "Unfortunately, you have not won a gift. :( That said, thank you so much for being part of Unlock’s 2022, please do stay in touch, and wishing you a prosperous 2023.",
-          image: "/images/advent-day24.png",
-        };
-        // check if user is winner!
-        const winner = await isWinner(user);
-        if (winner > -1) {
-          day24.description =
-            "We are giving away a few special gifts to three members of the community from Ledger and other friends and — 🍾 congrats, you are one of the winners! Our team will be in touch with you via email with details in the next few days.";
-        }
+  
+  const openSeaLink = network === 5423 ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
 
-        setContent(day24);
-      } else {
-        setContent(days[day - 1]);
-      }
-    };
-    checkStatus();
+  useEffect(() => {
+    setContent(days[day - 1]);
   }, [day]);
 
+  const {data: hasWon} = useContractRead({
+    address: contracts.hook.address as `0x${string}`,
+    abi: contracts.hook.ABI,
+    functionName: "haswOnByDay",
+    args: [day, tokenId],
+  })
+
   if (!content) {
-    return <>Loading...</>;
+    return <></>;
   }
 
   return (
     <>
-      <div className="backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
+      <div className="backdrop-blur-sm justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
         <div className="relative w-auto mx-auto max-w-3xl  bg-[url('/images/modal-background.png')] rounded-2xl border-8">
           <div className="rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none p-8 ">
             
@@ -78,7 +76,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
               <div className="rounded-2xl overflow-hidden">
               {content.image && (
                 <div className="aspect-w-16 aspect-h-9">
-                  <img alt="money" src={content.image} />
+                  <Image width="1080" height="768" alt="money" src={content.image} />
                 </div>
               )}
               {content.youtube && (
@@ -94,34 +92,21 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
               </div>
               <h3 className="text-3xl mt-8 font-semibold">{content.title}</h3>
               <div className="my-4 text-lg leading-relaxed">
-                {day == 24 && (
-                  <p className="my-4 text-lg leading-relaxed">
-                    🙏 Thank you for being part of the Unlock Protocol community
-                    this year!
+                {!!hasWon && (
+                  <p className="my-4 text-lg leading-relaxed bold">
+                    🥳 Congratulations! You are a prize winner today!
                   </p>
                 )}
                 <ReactMarkdown className="markdown" skipHtml={false}>
                   {content.description!}
                 </ReactMarkdown>
-                {day == 24 && (
-                  <p className="my-4 text-lg leading-relaxed text-sm">
-                    Please see the{" "}
-                    <Link
-                      target="_blank"
-                      className="underline"
-                      href="https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-1e00ab3d30f24a8fb350a561fddc9f66"
-                    >
-                      official rules
-                    </Link>{" "}
-                    for country and other eligibility.
-                  </p>
-                )}
+               
               </div>
             </div>
-            <div className="container space-x-2 min-w-full flex-row flex items-center justify-center rounded-b">
+            <div className="container min-w-full sm:flex-row flex items-center justify-center rounded-b flex-col gap-4">
               {content.link && (
                 <Link
-                  className="border bg-white text-black font-bold py-2 px-4 mt-3 rounded whitespace-nowrap "
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
                   href={content.link!}
                   target="_blank"
                 >
@@ -131,11 +116,20 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
               )}
               <Link
                 target="_blank"
-                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded"
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
                 href={tweetIntent.toString()}
               >
                 <BsTwitter className="inline-block mr-2" />
                 Tweet this
+              </Link>
+
+              <Link
+                target="_blank"
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
+                href={openSeaLink}
+              >
+                <SiOpensea className="inline-block mr-2" />
+                Check your NFT
               </Link>
             </div>
           </div>
@@ -155,7 +149,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   );
 };
 
-const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
+const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(justUnlocked);
 
   useEffect(() => {
@@ -164,13 +158,29 @@ const UnlockedDay = ({ user, day, justUnlocked }: UnlockedDayProps) => {
     }
   }, [justUnlocked])
 
+
+  const {data: tokenId} = useContractRead({
+    address: lock as `0x${string}`,
+    abi: contracts.lock.ABI,
+    functionName: "tokenOfOwnerByIndex",
+    args: [user, 0],
+  })
+
   return (
     <>
-      <BaseDay outterClasses="bg-[#282A2D] border-[#75797E] text-white cursor-pointer" day={day} onClick={() => {
+      <BaseDay outterClasses={`border-[#75797E] text-white cursor-pointer`} day={day} hideDay={true} onClick={() => {
         setShowModal(true)}
-      } />
+      }>
+        <Image
+          src={`/images/nft/${day}.png`}
+          alt={`NFT image for Day ${day}`}
+          width={500}
+          height={500}
+          className="rounded-full"
+        ></Image>
+      </BaseDay>
       {showModal ? (
-        <Modal user={user} day={day} setShowModal={(showModal) => {
+        <Modal lock={lock} network={network} tokenId={tokenId as string} user={user} day={day} setShowModal={(showModal) => {
           snow.stop()
           setShowModal(showModal)
         }} />
