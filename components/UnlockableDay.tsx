@@ -44,6 +44,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     chainId: network,
     account: activeWallet?.address as `0x${string}`,
     args: [[0], [activeWallet?.address], [activeWallet?.address], [activeWallet?.address], ['']],
+    gas: BigInt(700_000), // This is high, just in case they win!
   })
   
   const { writeAsync } = useContractWrite({
