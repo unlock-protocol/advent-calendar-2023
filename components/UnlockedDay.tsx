@@ -12,6 +12,7 @@ import { ethers } from "ethers";
 import isWinner from "../lib/getWinners";
 import { useContractRead } from "wagmi";
 import contracts from "../lib/contracts";
+
 import Image from "next/image";
 interface UnlockedDayProps {
   day: number;
@@ -35,7 +36,7 @@ interface Content {
   link?: string;
 }
 
-const Modal = ({ day, setShowModal, user }: ModalProps) => {
+const Modal = ({ day, setShowModal }: ModalProps) => {
   const [content, setContent] = useState<Content | null>(null);
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
@@ -45,36 +46,19 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
   useEffect(() => {
-    const checkStatus = async () => {
-      if (day == 24) {
-        const day24 = {
-          title: "A special something for some special Locksmiths",
-          description:
-            "Unfortunately, you have not won a gift. :( That said, thank you so much for being part of Unlock’s 2022, please do stay in touch, and wishing you a prosperous 2023.",
-          image: "/images/advent-day24.png",
-        };
-        // check if user is winner!
-        const winner = await isWinner(user);
-        if (winner > -1) {
-          day24.description =
-            "We are giving away a few special gifts to three members of the community from Ledger and other friends and — 🍾 congrats, you are one of the winners! Our team will be in touch with you via email with details in the next few days.";
-        }
-
-        setContent(day24);
-      } else {
-        setContent(days[day - 1]);
-      }
-    };
-    checkStatus();
+    setContent(days[day - 1]);
   }, [day]);
 
+  // Lets show a link to the NFT on OpenSea!
+  // And check if the user is a winner for that day!
+
   if (!content) {
-    return <>Loading...</>;
+    return <></>;
   }
 
   return (
     <>
-      <div className="backdrop-blur-sm justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
+      <div className="backdrop-blur-sm justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none p-5">
         <div className="relative w-auto mx-auto max-w-3xl  bg-[url('/images/modal-background.png')] rounded-2xl border-8">
           <div className="rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none p-8 ">
             
@@ -83,7 +67,7 @@ const Modal = ({ day, setShowModal, user }: ModalProps) => {
               <div className="rounded-2xl overflow-hidden">
               {content.image && (
                 <div className="aspect-w-16 aspect-h-9">
-                  <img alt="money" src={content.image} />
+                  <Image width="1080" height="768" alt="money" src={content.image} />
                 </div>
               )}
               {content.youtube && (
@@ -180,7 +164,7 @@ const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProp
           width={500}
           height={500}
           className="rounded-full"
-></Image>
+        ></Image>
       </BaseDay>
       {showModal ? (
         <Modal user={user} day={day} setShowModal={(showModal) => {
