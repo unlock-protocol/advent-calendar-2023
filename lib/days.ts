@@ -40,7 +40,6 @@ See you tomorrow!`,
   },
   {
     // Day 5
-    lock: "0x3e36C285E11DE77e8257Fe7D49e80209C48b295E",
     title: "Easy-Peasy Event Tickets and Registration",
     description:
       "Did you know you can create event tickets and landing pages for your conference, event, or meetup in under five minutes with Unlock Protocol? Set up your event landing page, sell or airdrop tickets as NFTs and via email, and perform check-in with a dedicated QR code. Easy.",
