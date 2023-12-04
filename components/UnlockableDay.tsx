@@ -83,6 +83,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const ethersSigner = await ethersProvider.getSigner()
         let signature
         try {
+          toast.error("Please sign the message in your wallet!")
           signature = await ethersSigner.signMessage(message);
         } catch (error) {
           toast.error("Please make sure you sign this message to confirm you want to open today's gift!")
