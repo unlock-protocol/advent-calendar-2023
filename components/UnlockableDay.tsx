@@ -6,7 +6,6 @@ import FutureDay from "./FutureDay";
 import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
-import { useWallets } from "@privy-io/react-auth";
 import { useEffect, useRef, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'

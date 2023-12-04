@@ -1265,10 +1265,10 @@
     web3-core-helpers "^1.8.0"
     wicg-inert "^3.1.2"
 
-"@privy-io/wagmi-connector@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@privy-io/wagmi-connector/-/wagmi-connector-0.1.6.tgz#17244c4d1440360b85bf4d5f81acd34e638585aa"
-  integrity sha512-DyFXHQUkJvyG04e4HfUoyndGNNCJflm6qufISLGKq1wBfOgyoVHBOOhdUsJ/azbgCfimIWdoYUuj4Rt0rkPE1Q==
+"@privy-io/wagmi-connector@^0.1.7-beta.7":
+  version "0.1.7-beta.7"
+  resolved "https://registry.yarnpkg.com/@privy-io/wagmi-connector/-/wagmi-connector-0.1.7-beta.7.tgz#182c9b733d2b7801292984dafa702ec91958122a"
+  integrity sha512-7S1QrFXzktAs1axEUcFazRDHrvw+QJn6ha9z1fo6Dia2hE6uo8LDB/FpdhkIfORI9OQZhpmfR9u4gzMHKd2+eA==
 
 "@radix-ui/colors@^3.0.0":
   version "3.0.0"

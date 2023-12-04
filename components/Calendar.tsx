@@ -13,11 +13,18 @@ export const Calendar = () => {
     chainId: contracts.network,
     args: [],
   })
-  const {linkEmail, authenticated, user} = usePrivy();
+  const {linkEmail, authenticated, user, ready} = usePrivy();
+
+  console.log({ready, authenticated, user})
 
   useEffect(() => {
     if (authenticated && !user?.email) {
-      linkEmail();
+      if (user?.google?.email) {
+        console.log("We have a google email but not user email!")
+      } else {
+        linkEmail();
+      }
+      
     }
   }, [authenticated])
   

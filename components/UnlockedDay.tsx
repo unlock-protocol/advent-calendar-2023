@@ -46,8 +46,6 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
     `🎁 I have just unlocked Day ${day} of the @UnlockProtocol advent calendar!`
   );
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
-
-  console.log(network)
   
   const openSeaLink = network === 8453 ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
 

@@ -16,8 +16,8 @@ function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
 }
 
 const Header = () => {
-  const {login, logout, authenticated: isAuthenticated} = usePrivy();
-  const {wallet: activeWallet, setActiveWallet} = usePrivyWagmi();
+  const { login, logout, authenticated} = usePrivy();
+  const { wallet: activeWallet, setActiveWallet } = usePrivyWagmi();
 
   return (
     <nav className="container relative">
@@ -75,7 +75,7 @@ const Header = () => {
         >
           Discord
         </Link>
-        {isAuthenticated && activeWallet?.address ? (
+        {authenticated && activeWallet?.address ? (
           <button
             className="bg-red text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
             onClick={() => {
