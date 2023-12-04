@@ -25,6 +25,9 @@ interface ModalProps {
   user: any;
   day: number;
   setShowModal: (show: boolean) => void;
+  network: number;
+  lock: string;
+  tokenId: string;
 }
 
 interface Content {
@@ -45,7 +48,7 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
   
-  const openSeaLink = network === '5423' ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
+  const openSeaLink = network === 5423 ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
 
   useEffect(() => {
     setContent(days[day - 1]);
@@ -57,11 +60,6 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
     functionName: "haswOnByDay",
     args: [day, tokenId],
   })
-
-  console.log({hasWon})
-
-  // Lets show a link to the NFT on OpenSea!
-  // And check if the user is a winner for that day!
 
   if (!content) {
     return <></>;
@@ -94,9 +92,9 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
               </div>
               <h3 className="text-3xl mt-8 font-semibold">{content.title}</h3>
               <div className="my-4 text-lg leading-relaxed">
-                {hasWon && (
+                {!!hasWon && (
                   <p className="my-4 text-lg leading-relaxed bold">
-                    🥳 Congratulations! You are a winner of this day's prize 🎁!
+                    🥳 Congratulations! You are a prize winner today!
                   </p>
                 )}
                 <ReactMarkdown className="markdown" skipHtml={false}>
@@ -153,7 +151,6 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
 
 const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(justUnlocked);
-  console.log(lock, network)
 
   useEffect(() => {
     if(justUnlocked) {
@@ -183,7 +180,7 @@ const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProp
         ></Image>
       </BaseDay>
       {showModal ? (
-        <Modal lock={lock} network={network} tokenId={tokenId} user={user} day={day} setShowModal={(showModal) => {
+        <Modal lock={lock} network={network} tokenId={tokenId as string} user={user} day={day} setShowModal={(showModal) => {
           snow.stop()
           setShowModal(showModal)
         }} />
