@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useAuth } from "../hooks/useAuth";
 import { usePrivy } from "@privy-io/react-auth";
 import { usePrivyWagmi } from "@privy-io/wagmi-connector";
+import { toast } from "react-hot-toast";
 
 function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
   if (text.length > maxLength) {
@@ -86,8 +86,9 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className="bg-red whitespace-nowrap text-white font-bold py-2 px-4 rounded-full"
+            className="cursor-pointer bg-red whitespace-nowrap text-white font-bold py-2 px-4 rounded-full"
             onClick={() => {
+              toast("Loading Privy to log in you in...")
               login();
             }}
           >
