@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import BaseDay from "./BaseDay";
 import days from "../lib/days";
@@ -8,8 +7,8 @@ import ReactMarkdown from "react-markdown";
 import snow from "../lib/snow";
 import { BsTwitter } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
-import { ethers } from "ethers";
-import isWinner from "../lib/getWinners";
+import { SiOpensea } from "react-icons/si";
+
 import { useContractRead } from "wagmi";
 import contracts from "../lib/contracts";
 
@@ -36,7 +35,7 @@ interface Content {
   link?: string;
 }
 
-const Modal = ({ day, setShowModal }: ModalProps) => {
+const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   const [content, setContent] = useState<Content | null>(null);
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
@@ -45,9 +44,21 @@ const Modal = ({ day, setShowModal }: ModalProps) => {
   );
   tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
 
+  
+  const openSeaLink = network === '5423' ? `https://opensea.io/assets/base/${lock}/${tokenId}` : `https://testnets.opensea.io/assets/goerli/${lock}/${tokenId}`
+
   useEffect(() => {
     setContent(days[day - 1]);
   }, [day]);
+
+  const {data: hasWon} = useContractRead({
+    address: contracts.hook.address as `0x${string}`,
+    abi: contracts.hook.ABI,
+    functionName: "haswOnByDay",
+    args: [day, tokenId],
+  })
+
+  console.log({hasWon})
 
   // Lets show a link to the NFT on OpenSea!
   // And check if the user is a winner for that day!
@@ -83,34 +94,21 @@ const Modal = ({ day, setShowModal }: ModalProps) => {
               </div>
               <h3 className="text-3xl mt-8 font-semibold">{content.title}</h3>
               <div className="my-4 text-lg leading-relaxed">
-                {day == 24 && (
-                  <p className="my-4 text-lg leading-relaxed">
-                    🙏 Thank you for being part of the Unlock Protocol community
-                    this year!
+                {hasWon && (
+                  <p className="my-4 text-lg leading-relaxed bold">
+                    🥳 Congratulations! You are a winner of this day's prize 🎁!
                   </p>
                 )}
                 <ReactMarkdown className="markdown" skipHtml={false}>
                   {content.description!}
                 </ReactMarkdown>
-                {day == 24 && (
-                  <p className="my-4 text-lg leading-relaxed text-sm">
-                    Please see the{" "}
-                    <Link
-                      target="_blank"
-                      className="underline"
-                      href="https://unlockprotocol.notion.site/Unlock-Contests-and-Sweepstakes-Standard-Terms-and-Conditions-1e00ab3d30f24a8fb350a561fddc9f66"
-                    >
-                      official rules
-                    </Link>{" "}
-                    for country and other eligibility.
-                  </p>
-                )}
+               
               </div>
             </div>
-            <div className="container space-x-2 min-w-full flex-row flex items-center justify-center rounded-b">
+            <div className="container min-w-full sm:flex-row flex items-center justify-center rounded-b flex-col gap-4">
               {content.link && (
                 <Link
-                  className="border bg-white text-black font-bold py-2 px-4 mt-3 rounded whitespace-nowrap "
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
                   href={content.link!}
                   target="_blank"
                 >
@@ -120,11 +118,20 @@ const Modal = ({ day, setShowModal }: ModalProps) => {
               )}
               <Link
                 target="_blank"
-                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded"
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
                 href={tweetIntent.toString()}
               >
                 <BsTwitter className="inline-block mr-2" />
                 Tweet this
+              </Link>
+
+              <Link
+                target="_blank"
+                className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
+                href={openSeaLink}
+              >
+                <SiOpensea className="inline-block mr-2" />
+                Check your NFT
               </Link>
             </div>
           </div>
@@ -146,12 +153,21 @@ const Modal = ({ day, setShowModal }: ModalProps) => {
 
 const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProps) => {
   const [showModal, setShowModal] = useState(justUnlocked);
+  console.log(lock, network)
 
   useEffect(() => {
     if(justUnlocked) {
       snow.start();
     }
   }, [justUnlocked])
+
+
+  const {data: tokenId} = useContractRead({
+    address: lock as `0x${string}`,
+    abi: contracts.lock.ABI,
+    functionName: "tokenOfOwnerByIndex",
+    args: [user, 0],
+  })
 
   return (
     <>
@@ -167,7 +183,7 @@ const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProp
         ></Image>
       </BaseDay>
       {showModal ? (
-        <Modal user={user} day={day} setShowModal={(showModal) => {
+        <Modal lock={lock} network={network} tokenId={tokenId} user={user} day={day} setShowModal={(showModal) => {
           snow.stop()
           setShowModal(showModal)
         }} />

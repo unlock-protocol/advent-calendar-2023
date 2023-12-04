@@ -31,6 +31,7 @@ contract AdventHookNext {
     mapping(uint => uint) public maxNumberOfWinnersByDay;
     mapping(uint => uint[]) public winnersByDay;
     mapping(uint => uint) public prizeByDay;
+    mapping(uint => mapping(uint => bool)) public haswOnByDay;
 
     function initialize(address[] memory _locks, uint _start) external {
         for (uint j = 0; j < _locks.length; j++) {
@@ -85,7 +86,7 @@ contract AdventHookNext {
         return
             uint(
                 keccak256(abi.encodePacked(block.timestamp, player, tokenId))
-            ) % (rawOdds / numberOfWinnersLeft);
+            ) % ((rawOdds / (numberOfWinnersLeft + 1)) + 1);
     }
 
     function onKeyPurchase(
@@ -113,6 +114,7 @@ contract AdventHookNext {
                 if (result == 0) {
                     emit Winner(day, tokenId);
                     winnersByDay[day].push(tokenId);
+                    haswOnByDay[day][tokenId] = true;
                     uint prize = prizeByDay[day];
                     if (prize > 0) {
                         IERC20 usdc = IERC20(
