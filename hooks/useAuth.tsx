@@ -1,100 +1,58 @@
-import { useRouter } from "next/router";
-import { useEffect, useMemo, useCallback, useState } from "react";
-import { ethers } from "ethers";
-import useLocalStorageState from "use-local-storage-state";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
+import { usePrivyWagmi } from "@privy-io/wagmi-connector";
+import { useEffect } from "react";
 
 export function useAuth() {
-  const router = useRouter();
-  const code = router.query?.code?.toString();
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const [user, setUser] = useLocalStorageState("user", {
-    defaultValue: "",
-  });
+  const { linkEmail, user, login, logout } = usePrivy();
+  const { wallet, setActiveWallet } = usePrivyWagmi();
+  const { wallets } = useWallets();
 
-  const isAuthenticated = !!user;
-
-  const authenticate = useCallback(
-    async (_code: string) => {
-      const code = JSON.parse(Buffer.from(_code, "base64").toString());
-      const message = code.d;
-      const signature = code.s;
-      const user = ethers.utils.verifyMessage(message, signature);
-
-      setUser(user);
-
-      return {
-        message,
-        signature,
-        user,
-      };
-    },
-    [setUser]
-  );
 
   useEffect(() => {
-    if (!code) {
-      return;
-    }
-    const onCode = async () => {
-      setIsAuthenticating(true);
-      try {
-        // We just need to remove the code!
-        const url = new URL(window.location.toString());
-        url.searchParams.delete("code");
-        url.searchParams.delete("state");
-        router.replace(url.toString(), undefined, {
-          shallow: true,
-        });
-        await authenticate(code);
-      } catch (error) {
-        console.error(error);
+    if(user) {
+      if (!user?.wallet?.address) {
+        // We have no wallet for that user. What can we do?
+        console.error("No wallet for user!")
+      } else {
+        // We have a wallet address. Let's ensure that the connected wallet matches it!
+        if(user?.wallet?.address !== wallet?.address) {
+          let found = false
+          // If not, circle thru until we find the right one!
+          wallets.forEach((w) => {
+            if (w.address === user?.wallet?.address) {
+              found = true
+              setActiveWallet(w)
+            }
+          })
+          if(!found) {
+            console.error("No wallet matches the user's wallet!")
+            // We have a user that is connected but no matching wallet. What do we do?
+          }
+        } else {
+          // All good, user connected to the right wallet!
+        }
       }
-      setIsAuthenticating(false);
-    };
-    onCode();
-  }, [router, code, authenticate]);
+    } else {
+      // No privy user. If we have a wallet, disconnect it
+      if (wallet) {
+        // Disconnect any wallet!
+        setActiveWallet(undefined)
+      } else {
+        // No wallet, no user. All good!
+      }
+    }
+  }, [wallet, user, wallets])
 
-  interface LoginParams {
-    [key: string]: string;
-  }
 
-  interface PurchaseParams {
-    [key: string]: string;
-  }
+  useEffect(() => {
+    if (user && !user?.email) {
+      if (user?.google?.email) {
+        console.log("We have a google email but not user email!")
+      } else {
+        linkEmail();
+      }
+    }
+  }, [user])
 
-  const login = (params: LoginParams = {}) => {
-    const url = new URL("https://app.unlock-protocol.com/checkout");
-    url.searchParams.set("client_id", window.location.host);
-    const redirectUri = new URL(window.location.href);
-    Object.keys(params).forEach((key) => {
-      redirectUri.searchParams.set(key, params[key]);
-    });
-    url.searchParams.set("redirect_uri", redirectUri.toString());
-    window.location.href = url.toString();
-  };
-
-  const logout = () => {
-    setUser("");
-  };
-
-  const purchase = (paywallConfig = {}, params: PurchaseParams = {}) => {
-    const url = new URL("https://app.unlock-protocol.com/checkout");
-    const redirectUri = new URL(window.location.href);
-    Object.keys(params).forEach((key) => {
-      redirectUri.searchParams.set(key, params[key]);
-    });
-
-    url.searchParams.set("redirectUri", redirectUri.toString());
-    url.searchParams.set("paywallConfig", JSON.stringify(paywallConfig));
-    window.location.href = url.toString();
-  };
-
-  return {
-    user,
-    login,
-    logout,
-    isAuthenticated,
-    isAuthenticating,
-    purchase,
-  };
+  return {linkEmail, user, login, logout, wallet}
 }

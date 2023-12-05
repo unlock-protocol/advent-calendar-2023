@@ -1,32 +1,17 @@
 import { useContractRead, useContractReads } from "wagmi";
 import Day from "./Day";
 import contracts from "../lib/contracts";
-import { useEffect, useState } from "react";
-import { usePrivy } from "@privy-io/react-auth";
 
 export const Calendar = () => {
   const days = new Array(24).fill(0).map((d, i) => i + 1);
-  const {data: start, isLoading} =useContractRead({
+  
+  const {data: start, isLoading: isLoadingStart} =useContractRead({
     address: contracts.hook.address as `0x${string}`,
     abi: contracts.hook.ABI,
     functionName: "start",
     chainId: contracts.network,
     args: [],
   })
-  const {linkEmail, authenticated, user, ready} = usePrivy();
-
-  console.log({ready, authenticated, user})
-
-  useEffect(() => {
-    if (authenticated && !user?.email) {
-      if (user?.google?.email) {
-        console.log("We have a google email but not user email!")
-      } else {
-        linkEmail();
-      }
-      
-    }
-  }, [authenticated])
   
   const {data: lockAddresses, isLoading: isLoadingLocks} = useContractReads({
     // @ts-expect-error
@@ -50,7 +35,7 @@ export const Calendar = () => {
           <Day
             lock={lockAddresses[day -1].result as `0x${string}`}
             previousDayLock={day > 1 ? lockAddresses![day-2].result as `0x${string}` : undefined}
-            isLoading={isLoading || isLoadingLocks}
+            isLoading={isLoadingStart || isLoadingLocks}
             day={day}
             start={start ? Number(start) : undefined}
             network={contracts.network}
