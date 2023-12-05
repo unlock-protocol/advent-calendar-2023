@@ -24,8 +24,6 @@ export const Calendar = () => {
     })),
   })
 
-  console.log({isLoadingLocks, isLoadingStart})
-
   return <div className="place-content-center grid grid-cols-[repeat(7,45px)] sm:grid-cols-[repeat(7,72px)] gap-2 sm:gap-4 my-8">
   <div className="col-span-4" />
   {days.map((day, index) => {
