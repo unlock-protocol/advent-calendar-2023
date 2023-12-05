@@ -11,9 +11,9 @@ const contracts = {
   }
 }
 
-// if (AppConfig.environment !== "production") {
-//   contracts.network = 5
-//   contracts.hook.address = '0x29eE24817a3aA5A89be094728558A3E3511a1eb6'
-// }
+if (AppConfig.environment !== "production") {
+  contracts.network = 5
+  contracts.hook.address = '0x29eE24817a3aA5A89be094728558A3E3511a1eb6'
+}
 
 export default contracts
