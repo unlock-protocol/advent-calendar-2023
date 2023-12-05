@@ -40,7 +40,6 @@ See you tomorrow!`,
   },
   {
     // Day 5
-    lock: "0x3e36C285E11DE77e8257Fe7D49e80209C48b295E",
     title: "Easy-Peasy Event Tickets and Registration",
     description:
       "Did you know you can create event tickets and landing pages for your conference, event, or meetup in under five minutes with Unlock Protocol? Set up your event landing page, sell or airdrop tickets as NFTs and via email, and perform check-in with a dedicated QR code. Easy.",
@@ -50,20 +49,20 @@ See you tomorrow!`,
   },
   {
     // Day 6
-    title: "We ❤️ our frens at Guild.xyz",
+    title: "We ❤️ our frens at Web3 Academy",
     description:
-      "In 2022, our frens at Guild.xyz integrated Unlock memberships, which can be used to token-gate Discord, Telegram, and other resources with just a few clicks. It’s kinda magical.",
-    link: "https://unlock-protocol.com/guides/how-to-token-gate-telegram-with-unlock-protocol-and-guild-xyz/",
+      "Our frens at Web3 Academy, the #1 trusted resource to make sense of an onchain world in constant transformation, integrated Unlock memberships this year. They are the go-to resource for weekly onchain analysis, industry insights & market analysis to help you build and invest successfully in web3. Today, some lucky Locksmiths will pick up a Web3 Academy PRO Membership ($180 value) or a Web3 Investing Masterclass ($250 value)!",
+    link: "https://paragraph.xyz/@web3academy",
     image: "",
-    youtube: "",
+    youtube: "https://www.youtube.com/embed/-fE64lkvUmg",
   },
   {
     // Day 7
-    title: "2022 was hacktastic!",
+    title: "Unleash Your Inner Degen",
     description:
-      "One of the absolute highlights of 2022 was the opportunity to connect up with thousands of hackers at ETHNewYork, ETHSanFrancisco and other hackathons. The creativity of the Locksmith community is amazing!",
-    link: "https://unlock-protocol.com/blog/ethsanfrancisco-2022",
-    image: "https://unlock-protocol.com/images/blog/ethsf22/unlock-6.png",
+      "🎉 Holiday goodness from the folks at Decypt! Decrypt is gifting 10 Shark Membership Passes, each worth $99.99, to 10 lucky Locksmiths. Winners can use the passes (built with Unlock Protocol, naturally) to plunge into a world of exclusive access and thrilling experiences. Dive into members-only poker tournaments, fantasy football, basketball leagues, and unique competitions to showcase your degen prowess. It's the ultimate holiday activity to get your adrenaline pumping! 🦈 Plus, don't miss out: 20 lucky participants will also win access to the “Mastering NFT Trading” Course at Degen U, valued at $9.99 each. Embrace the holiday spirit with a chance to learn, compete, and win! 🌟",
+    link: "https://decrypt.co/1000x",
+    image: "/images/decrypt-1000x-share.png",
     youtube: "",
   },
   {
