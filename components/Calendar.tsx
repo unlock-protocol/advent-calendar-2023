@@ -1,8 +1,6 @@
 import { useContractRead, useContractReads } from "wagmi";
 import Day from "./Day";
 import contracts from "../lib/contracts";
-import { useEffect, useState } from "react";
-import { usePrivy } from "@privy-io/react-auth";
 
 export const Calendar = () => {
   const days = new Array(24).fill(0).map((d, i) => i + 1);
@@ -13,20 +11,6 @@ export const Calendar = () => {
     chainId: contracts.network,
     args: [],
   })
-  const {linkEmail, authenticated, user, ready} = usePrivy();
-
-  console.log({ready, authenticated, user})
-
-  useEffect(() => {
-    if (authenticated && !user?.email) {
-      if (user?.google?.email) {
-        console.log("We have a google email but not user email!")
-      } else {
-        linkEmail();
-      }
-      
-    }
-  }, [authenticated])
   
   const {data: lockAddresses, isLoading: isLoadingLocks} = useContractReads({
     // @ts-expect-error

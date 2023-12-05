@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { usePrivy } from "@privy-io/react-auth";
-import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 import { toast } from "react-hot-toast";
+import { useAuth } from "../hooks/useAuth";
 
 function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
   if (text.length > maxLength) {
@@ -16,8 +15,7 @@ function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
 }
 
 const Header = () => {
-  const { login, logout, authenticated} = usePrivy();
-  const { wallet: activeWallet, setActiveWallet } = usePrivyWagmi();
+  const { login, logout, wallet} = useAuth();
 
   return (
     <nav className="container relative">
@@ -75,18 +73,18 @@ const Header = () => {
         >
           Discord
         </Link>
-        {authenticated && activeWallet?.address ? (
+        {wallet?.address ? (
           <button
-            className="bg-red text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
+            className="w-48 cursor-pointer text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
             onClick={() => {
               logout();
             }}
           >
-            Logout <span className="hidden md:inline">({truncate(activeWallet?.address)})</span>
+            Logout <span className="hidden md:inline">({truncate(wallet?.address)})</span>
           </button>
         ) : (
           <button
-            className="cursor-pointer bg-red whitespace-nowrap text-white font-bold py-2 px-4 rounded-full"
+            className="w-48 cursor-pointer text-white font-bold py-2 px-4 rounded-full whitespace-nowrap "
             onClick={() => {
               toast("Loading Privy to log in you in...")
               login();

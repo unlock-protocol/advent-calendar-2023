@@ -9,9 +9,9 @@ import { useContractReads } from "wagmi";
 import { useEffect, useRef, useState } from "react";
 import { LocksmithService } from "@unlock-protocol/unlock-js";
 import { useWaitForTransaction } from 'wagmi'
-import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 import { AppConfig } from "../lib/AppConfig";
 import ReCaptcha from 'react-google-recaptcha'
+import { useAuth } from "../hooks/useAuth";
 
 interface MintableProps {
   day: number;
@@ -22,28 +22,28 @@ interface MintableProps {
 
 const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
-  const {wallet: activeWallet} = usePrivyWagmi();
+  const { wallet } = useAuth();
   const recaptchaRef = useRef<any>()
 
 
   const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
-    address: activeWallet?.address as `0x${string}`,
+    address: wallet?.address as `0x${string}`,
   })
 
   // Switch network if required
   useEffect(() => {
-    if(activeWallet && activeWallet.chainId !== `eip155:${network}}`) {
-      activeWallet.switchChain(network)
+    if(wallet && wallet.chainId !== `eip155:${network}}`) {
+      wallet.switchChain(network)
     }
-  }, [activeWallet, network])
+  }, [wallet, network])
 
   const {config} = usePrepareContractWrite({
     address: lock as `0x${string}`,
     abi: contracts.lock.ABI,
     functionName: 'purchase',
     chainId: network,
-    account: activeWallet?.address as `0x${string}`,
-    args: [[0], [activeWallet?.address], [activeWallet?.address], [activeWallet?.address], ['']],
+    account: wallet?.address as `0x${string}`,
+    args: [[0], [wallet?.address], [wallet?.address], [wallet?.address], ['']],
     gas: BigInt(700_000), // This is high, just in case they win!
   })
   
@@ -69,13 +69,13 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const siwe = LocksmithService.createSiweMessage({
           domain: window.location.host,
           uri: window.location.origin,
-          address: activeWallet?.address,
+          address: wallet?.address,
           chainId: network,
           version: '1',
           statement: "I'd like to mint an NFT from the Unlock Protocol Advent Calendar!"
         });
         const message = siwe.prepareMessage();
-        const ethersProvider = await activeWallet?.getEthersProvider()
+        const ethersProvider = await wallet?.getEthersProvider()
         if(!ethersProvider) {
           console.error('No ethers provider')
           return
@@ -97,10 +97,10 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         });
         const { accessToken } = loginResponse.data;
         const response = await service.claim(network, lock, captcha, {
-          recipient: activeWallet?.address,
+          recipient: wallet?.address,
           data: '',
         }, 
-        activeWallet?.address,
+        wallet?.address,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
