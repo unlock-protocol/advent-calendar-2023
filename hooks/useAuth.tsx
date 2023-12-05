@@ -3,7 +3,7 @@ import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 import { useEffect } from "react";
 
 export function useAuth() {
-  const { linkEmail, user, login, logout, ...rest } = usePrivy();
+  const { linkEmail, user, login, logout } = usePrivy();
   const { wallet, setActiveWallet } = usePrivyWagmi();
   const { wallets } = useWallets();
 
@@ -12,8 +12,9 @@ export function useAuth() {
     if(user) {
       if (!user?.wallet?.address) {
         // We have no wallet for that user. What can we do?
+        console.error("No wallet for user!")
       } else {
-        // We have a wallet address. Let's ensure that they connected wallet matches it!
+        // We have a wallet address. Let's ensure that the connected wallet matches it!
         if(user?.wallet?.address !== wallet?.address) {
           let found = false
           // If not, circle thru until we find the right one!
@@ -24,10 +25,11 @@ export function useAuth() {
             }
           })
           if(!found) {
+            console.error("No wallet matches the user's wallet!")
             // We have a user that is connected but no matching wallet. What do we do?
           }
         } else {
-          // All good!
+          // All good, user connected to the right wallet!
         }
       }
     } else {
@@ -35,9 +37,11 @@ export function useAuth() {
       if (wallet) {
         // Disconnect any wallet!
         setActiveWallet(undefined)
+      } else {
+        // No wallet, no user. All good!
       }
     }
-  }, [wallet, user])
+  }, [wallet, user, wallets])
 
 
   useEffect(() => {
