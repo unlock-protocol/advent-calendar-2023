@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
+import useClipboard from 'react-use-clipboard';
 import BaseDay from "./BaseDay";
 import days from "../lib/days";
 import Link from "next/link";
@@ -8,12 +9,14 @@ import snow from "../lib/snow";
 import { BsTwitter } from "react-icons/bs";
 import { SlMagnifier } from "react-icons/sl";
 import { SiOpensea } from "react-icons/si";
+import { FaClipboard, FaClipboardCheck } from "react-icons/fa";
 
 import { useContractRead } from "wagmi";
 import contracts from "../lib/contracts";
 
 import Image from "next/image";
 import { AppConfig } from "../lib/AppConfig";
+import toast from "react-hot-toast";
 interface UnlockedDayProps {
   day: number;
   user: any;
@@ -42,6 +45,8 @@ interface Content {
 const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   const [content, setContent] = useState<Content | null>(null);
   const shareUrl = `${AppConfig.siteUrl}?d=${day}&r=${tokenId}`
+
+  const [isCopied, setCopied] = useClipboard(shareUrl);
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
     "text",
@@ -64,6 +69,11 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
 
   if (!content) {
     return <></>;
+  }
+
+  const copyToClipboard = () => {
+    setCopied()
+    toast.success('Copied URL to clipboard! Share away!')
   }
 
   return (
@@ -105,6 +115,19 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
               </div>
             </div>
             <div className="container min-w-full sm:flex-row flex items-center justify-center rounded-b flex-col gap-4">
+              
+              {day == 8 && 
+                <button
+                  className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
+                  onClick={copyToClipboard}
+                >
+                  {isCopied ? <FaClipboardCheck className="inline-block mr-2" /> : <FaClipboard className="inline-block mr-2" />}
+                  
+                  Copy URL to share!
+                </button>
+              }
+
+              
               {content.link && (
                 <Link
                 className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
@@ -115,6 +138,7 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
                   Learn more
                 </Link>
               )}
+
               <Link
                 target="_blank"
                 className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"

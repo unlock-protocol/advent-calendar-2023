@@ -36,6 +36,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.7.1",
     "react-markdown": "^9.0.1",
+    "react-use-clipboard": "^1.0.9",
     "tailwindcss": "^3.2.4",
     "typescript": "5.3.2",
     "use-local-storage-state": "^19.1.0",
