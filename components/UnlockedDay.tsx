@@ -13,6 +13,7 @@ import { useContractRead } from "wagmi";
 import contracts from "../lib/contracts";
 
 import Image from "next/image";
+import { AppConfig } from "../lib/AppConfig";
 interface UnlockedDayProps {
   day: number;
   user: any;
@@ -40,12 +41,13 @@ interface Content {
 
 const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
   const [content, setContent] = useState<Content | null>(null);
+  const shareUrl = `${AppConfig.siteUrl}?d=${day}&r=${tokenId}`
   const tweetIntent = new URL("https://twitter.com/intent/tweet");
   tweetIntent.searchParams.set(
     "text",
     `🎁 I have just unlocked Day ${day} of the @UnlockProtocol advent calendar!`
   );
-  tweetIntent.searchParams.set("url", "https://advent.unlock-protocol.com");
+  tweetIntent.searchParams.set("url", shareUrl);
   
   const openSeaLink = network === 8453 ? `https://opensea.io/assets/base/${lock}` : `https://testnets.opensea.io/assets/goerli/${lock}`
 
