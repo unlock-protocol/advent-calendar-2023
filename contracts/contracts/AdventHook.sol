@@ -32,6 +32,7 @@ contract AdventHookNext {
     mapping(uint => uint[]) public winnersByDay;
     mapping(uint => uint) public prizeByDay;
     mapping(uint => mapping(uint => bool)) public haswOnByDay;
+    mapping(uint => address) public prizeCurrencyByDay;
 
     function initialize(address[] memory _locks, uint _start) external {
         for (uint j = 0; j < _locks.length; j++) {
@@ -102,17 +103,22 @@ contract AdventHookNext {
         if (day == 0) {
             revert BAD_DAY(day);
         }
-        IERC20 usdc = IERC20(0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913);
         uint prize = prizeByDay[day];
+        address currency = prizeCurrencyByDay[day];
+        if (currency == address(0)) {
+            // defaults to USDc
+            currency = 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913;
+        }
         if (maxNumberOfWinnersByDay[day] > 0) {
             if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
                 if (day == 8) {
                     // We pay the referrer!
-                    if (referrer != address(0)) {
+                    if (referrer != address(0) && prize > 0) {
                         winnersByDay[day].push(tokenId);
-                        uint balance = usdc.balanceOf(address(this));
+                        IERC20 token = IERC20(currency);
+                        uint balance = token.balanceOf(address(this));
                         if (balance >= prize) {
-                            usdc.transfer(referrer, prize);
+                            token.transfer(referrer, prize);
                         }
                     }
                 } else {
@@ -128,9 +134,10 @@ contract AdventHookNext {
                         winnersByDay[day].push(tokenId);
                         haswOnByDay[day][tokenId] = true;
                         if (prize > 0) {
-                            uint balance = usdc.balanceOf(address(this));
+                            IERC20 token = IERC20(currency);
+                            uint balance = token.balanceOf(address(this));
                             if (balance >= prize) {
-                                usdc.transfer(recipient, prize);
+                                token.transfer(recipient, prize);
                             }
                         }
                     }
@@ -147,11 +154,12 @@ contract AdventHookNext {
         maxNumberOfWinnersByDay[day] = maxNumberOfWinners;
     }
 
-    function setPrize(uint day, uint prize) external {
+    function setPrize(uint day, uint prize, address currency) external {
         address lock = lockByDay[day];
         if (!IPublicLockV13(lock).isLockManager(msg.sender)) {
             revert NOT_ALLOWED();
         }
         prizeByDay[day] = prize;
+        prizeCurrencyByDay[day] = currency;
     }
 }

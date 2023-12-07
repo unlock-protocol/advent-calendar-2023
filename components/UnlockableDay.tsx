@@ -124,7 +124,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const response = await service.claim(network, lock, captcha, {
           recipient: wallet?.address,
           data: '',
-          referrer: referrer || '0x0000000000000000000000000000000000000000'
+          referrer: referrer as string || '0x0000000000000000000000000000000000000000'
         }, 
         wallet?.address,
         {
