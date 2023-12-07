@@ -93,7 +93,7 @@ contract AdventHookNext {
         uint256 tokenId,
         address /* from */,
         address recipient,
-        address /* referrer */,
+        address referrer,
         bytes calldata /* data */,
         uint256 /* minKeyPrice */,
         uint256 /* pricePaid */
@@ -102,27 +102,37 @@ contract AdventHookNext {
         if (day == 0) {
             revert BAD_DAY(day);
         }
+        IERC20 usdc = IERC20(0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913);
+        uint prize = prizeByDay[day];
+
         if (maxNumberOfWinnersByDay[day] > 0) {
             if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
-                uint result = draw(
-                    day,
-                    recipient,
-                    tokenId,
-                    maxNumberOfWinnersByDay[day] - winnersByDay[day].length
-                );
-                emit Draw(day, recipient, result, tokenId);
-                if (result == 0) {
-                    emit Winner(day, tokenId);
-                    winnersByDay[day].push(tokenId);
-                    haswOnByDay[day][tokenId] = true;
-                    uint prize = prizeByDay[day];
-                    if (prize > 0) {
-                        IERC20 usdc = IERC20(
-                            0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
-                        );
+                if (day == 8) {
+                    // We pay the referrer!
+                    if (referrer != address(0)) {
+                        winnersByDay[day].push(tokenId);
                         uint balance = usdc.balanceOf(address(this));
                         if (balance >= prize) {
-                            usdc.transfer(recipient, prize);
+                            usdc.transfer(referrer, prize);
+                        }
+                    }
+                } else {
+                    uint result = draw(
+                        day,
+                        recipient,
+                        tokenId,
+                        maxNumberOfWinnersByDay[day] - winnersByDay[day].length
+                    );
+                    emit Draw(day, recipient, result, tokenId);
+                    if (result == 0) {
+                        emit Winner(day, tokenId);
+                        winnersByDay[day].push(tokenId);
+                        haswOnByDay[day][tokenId] = true;
+                        if (prize > 0) {
+                            uint balance = usdc.balanceOf(address(this));
+                            if (balance >= prize) {
+                                usdc.transfer(recipient, prize);
+                            }
                         }
                     }
                 }

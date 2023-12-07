@@ -55,7 +55,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     functionName: 'purchase',
     chainId: network,
     account: wallet?.address as `0x${string}`,
-    args: [[0], [wallet?.address], [referrer || wallet?.address], [wallet?.address], ['']],
+    args: [[0], [wallet?.address], [referrer || '0x0000000000000000000000000000000000000000'], [wallet?.address], ['']],
     gas: BigInt(700_000), // This is high, just in case they win!
   })
   
