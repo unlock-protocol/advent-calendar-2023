@@ -69,37 +69,37 @@ See you tomorrow!`,
     // Day 8
     title: "Sharing is Caring",
     description:
-      "Did you know: Professional certifications like CDAA (Certified Digital Asset Advisor) and industry leaders like Web3 Academy deliver their on-chain certifications and credentials using Unlock Protocol. It’s very cool, and it just works.",
-    link: "https://unlock-protocol.com/blog/cdaa-unlock-case-study",
-    image: "",
-    youtube: "https://www.youtube.com/embed/MzjiOuXgXSA",
+      "Today’s present is a collab between **you** and the Locksmith community! Today, anyone who shares a link to the advent calendar and includes their unique referral code will will receive an airdrop of $1 USDC **every** time someone else also mints today’s gift via their referral link! **The URLs in the links below are unique to you and contain your unique referrer code.** Sharing is caring!",
+    link: "",  // link still to be added -cfc
+    image: "", 
+    youtube: "", // video still to be added -cfc
   },
   {
     // Day 9
-    title: "Fun Sock Protocol",
+    title: "LabWeek23 Rocked",
     description:
-      "It’s cold in a lot of places, and we want your toesies to be warm! Claim today’s NFT, which will give you access to a form where the first 100 folks can grab a pair of awesome Unlock socks! Click the “Learn More” link below to go to the shipping form (and you need to have today's NFT in your wallet to submit the form). Fun socks!!!",
-    link: "https://forms.bueno.art/unlockprotocolday9",
-    image: "https://i.imgur.com/Q0FV0EG.gif", // better aspect ratio
+      "LabWeek23, organized by Protocol Labs alongside Devconnect Istanbul, was a decentralized, week-long series where the Protocol Labs Network and its community came together. LabWeek hosted over 1,500 builders in a variety of events where attendees shared progress on projects and research, exchanged knowledge, and forged deeper connections through research-focused seminars, engineering workshops, summits, unconferences, and social gatherings. LabWeek’s ticketing membership infrastructure was powered by Unlock Protocol.",
+    link: "https://23.labweek.io/registration-ticketing",
+    image: "/images/labweek-large-share.png", 
     youtube: "",
   },
   {
     // Day 10
-    title: "It’s showtime!",
+    title: "Nym Shipyard Set Sail",
     description:
-      "Dozens of projects and partners that have used Unlock Protocol are featured in our ever-growing showcase! Want to see them? Are you one of them? Want to be one? Let us know!",
-    link: "https://showcase.unlock-protocol.com",
-    image: "/images/showcase-share.png",
+      "Nym Shipyard is a free, six-week privacy bootcamp, designed to train the next generation of activists, builders and operators to create the private internet in the age of AI. It is an intensive Web3 training program featuring weekly masterclasses with the Nym core team and special guests including Chelsea Manning, Harry Halpin, Claudia Diaz and others featuring multiple tracks, hands-on workshops, and mentorship. Over 7,000 memberships and completion NFTs were earned by Shipyard participants in 2023.",
+    link: "https://nymtech.net/learn/shipyard",
+    image: "/images/nym-large-share.png",
     youtube: "",
   },
   {
     // Day 11
-    title: "thirdweb 🤝 Unlock",
+    title: "Darkblock and Unlock Protocol Teamed Up",
     description:
-      "thirdweb is a platform that provides a suite of tools for creators, artists, and entrepreneurs, enabling them to easily build, launch and manage web3 projects. Last week, thirdweb’s Ciara Nightingale created this stellar guide that shows you how to deploy an instance of Unlock’s Lock contract and then integrates this contract into a simple app. Check it out!",
-    link: "https://blog.thirdweb.com/guides/build-a-subscription-with-unlock/",
-    image: "/images/thirdweb-guide-min.png",
-    youtube: "",
+      "In 2023, Darkblock integrated Unlock Protocol to give creators more flexibility in how they deliver exclusive content to their fans. With this integration, creators can now harness the combined power of Unlock and Darkblock to sell recurring subscriptions to their content and enable other time-based access to onchain content. Want to build your own subscription-based magazine, label, or onchain Patreon? This is how you would do it.",
+    link: "https://unlock-protocol.com/guides/how-to-create-subscription-content-with-unlock-protocol-and-darkblock/",
+    image: "",
+    youtube: "https://www.youtube.com/embed/iPeOxC7xVUw",
   },
   {
     // Day 12
