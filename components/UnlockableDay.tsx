@@ -36,8 +36,6 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     enabled: !!(lock && query?.d === day.toString() && query?.r)
   })
 
-  console.log({referrer})
-
   const { data: userBalance } = useBalance({
     address: wallet?.address as `0x${string}`,
   })
