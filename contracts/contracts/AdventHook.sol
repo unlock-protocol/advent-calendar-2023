@@ -104,7 +104,6 @@ contract AdventHookNext {
         }
         IERC20 usdc = IERC20(0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913);
         uint prize = prizeByDay[day];
-
         if (maxNumberOfWinnersByDay[day] > 0) {
             if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
                 if (day == 8) {

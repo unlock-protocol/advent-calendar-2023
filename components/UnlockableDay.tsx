@@ -13,12 +13,21 @@ import { AppConfig } from "../lib/AppConfig";
 import ReCaptcha from 'react-google-recaptcha'
 import { useAuth } from "../hooks/useAuth";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface MintableProps {
   day: number;
   lock: string;
   network: number
   onMinting: (hash:string) => void
+}
+
+const explorer = (network: number, hash: string) => {
+  if (network === 5) {
+    return `https://goerli.etherscan.io/tx/${hash}`
+  } else if (network === 5453) {
+    return `https://basescan.org/tx/${hash}`
+  }
 }
 
 const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
@@ -67,7 +76,13 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         setLoading(true)
         try {
           const {hash} = await writeAsync!()
-          toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
+          const explorerLink = explorer(network, hash)
+          if (explorerLink) {
+            toast.success(<>Your <Link target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</>, {duration: 10000})
+          } else {
+            toast.success(<>Your NFT is being minted! Please stand by!</>, {duration: 10000})
+          }
+          
           onMinting(hash)
         } catch(e) {
           toast.error("It looks like the transaction to mint today\'s NFT could not be submitted! Please try again!")
@@ -109,6 +124,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const response = await service.claim(network, lock, captcha, {
           recipient: wallet?.address,
           data: '',
+          referrer: referrer || '0x0000000000000000000000000000000000000000'
         }, 
         wallet?.address,
         {
