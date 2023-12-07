@@ -67,7 +67,7 @@ See you tomorrow!`,
   },
   {
     // Day 8
-    title: "Certifiably amazing",
+    title: "Sharing is Caring",
     description:
       "Did you know: Professional certifications like CDAA (Certified Digital Asset Advisor) and industry leaders like Web3 Academy deliver their on-chain certifications and credentials using Unlock Protocol. It’s very cool, and it just works.",
     link: "https://unlock-protocol.com/blog/cdaa-unlock-case-study",
