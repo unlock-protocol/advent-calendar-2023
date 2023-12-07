@@ -70,9 +70,9 @@ See you tomorrow!`,
     title: "Sharing is Caring",
     description:
       "Today’s present is a collab between **you** and the Locksmith community! Today, anyone who shares a link to the advent calendar and includes their unique referral code will receive an airdrop of $1 USDC **every** time someone else also mints today’s gift via their referral link! **The URLs in the links below are unique to you and contain your unique referrer code.** Sharing is caring!",
-    link: "",  // link still to be added -cfc
+    link: "https://unlock-protocol.com/blog/referral-fees",
     image: "", 
-    youtube: "", // video still to be added -cfc
+    youtube: "https://www.youtube.com/embed/aSjSEy8mdxI",
   },
   {
     // Day 9
