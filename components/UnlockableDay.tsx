@@ -3,7 +3,7 @@ import UnlockedDay from "./UnlockedDay";
 import LoadingDay from "./LoadingDay";
 import BaseDay from "./BaseDay";
 import FutureDay from "./FutureDay";
-import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import { useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +12,7 @@ import { useWaitForTransaction } from 'wagmi'
 import { AppConfig } from "../lib/AppConfig";
 import ReCaptcha from 'react-google-recaptcha'
 import { useAuth } from "../hooks/useAuth";
+import { useRouter } from "next/router";
 
 interface MintableProps {
   day: number;
@@ -24,9 +25,20 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const { wallet } = useAuth();
   const recaptchaRef = useRef<any>()
+  const {query} = useRouter()
 
+  const {data: referrer} = useContractRead({
+    address: lock as `0x${string}`,
+    abi: contracts.lock.ABI,
+    functionName: "ownerOf",
+    chainId: contracts.network,
+    args: [query?.r],
+    enabled: !!(lock && query?.d === day.toString() && query?.r)
+  })
 
-  const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
+  console.log({referrer})
+
+  const { data: userBalance } = useBalance({
     address: wallet?.address as `0x${string}`,
   })
 
@@ -43,7 +55,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     functionName: 'purchase',
     chainId: network,
     account: wallet?.address as `0x${string}`,
-    args: [[0], [wallet?.address], [wallet?.address], [wallet?.address], ['']],
+    args: [[0], [wallet?.address], [referrer || wallet?.address], [wallet?.address], ['']],
     gas: BigInt(700_000), // This is high, just in case they win!
   })
   
@@ -146,7 +158,7 @@ interface UnlockableDayProps {
 
 const UnlockableDay = ({ user, day, lock, previousDayLock, network }: UnlockableDayProps) => {
   const [hash, setHash] = useState('');
-  
+
   const contractReads = [{
       address: lock as `0x${string}`,
       abi: contracts.lock.ABI,
@@ -195,11 +207,10 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
     return <UnlockedDay lock={lock} network={network} justUnlocked={justUnlocked} user={user} day={day} />;
   }
 
-
   return (
     <Mintable onMinting={(hash: string) => {
       setHash(hash)
-    }} lock={lock} network={network} day={day}/>
+    }} lock={lock} network={network} day={day} />
   );
 };
 

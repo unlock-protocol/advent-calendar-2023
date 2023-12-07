@@ -3,7 +3,7 @@ import { usePrivyWagmi } from "@privy-io/wagmi-connector";
 import { useEffect } from "react";
 
 export function useAuth() {
-  const { linkEmail, user, login, logout } = usePrivy();
+  const { linkEmail, user, login: privyLogin, logout, linkWallet } = usePrivy();
   const { wallet, setActiveWallet } = usePrivyWagmi();
   const { wallets } = useWallets();
 
@@ -53,6 +53,33 @@ export function useAuth() {
       }
     }
   }, [user])
+
+
+  const login = async () => {
+    if (user) {
+      if(user?.wallet?.address !== wallet?.address) {
+        let found = false
+        // If not, circle thru until we find the right one!
+        wallets.forEach((w) => {
+          if (w.address === user?.wallet?.address) {
+            found = true
+            setActiveWallet(w)
+          }
+        })
+        if(!found) {
+          if (user.wallet?.walletClientType !== 'privy'            ) {
+            await linkWallet()
+          } else {
+            // We will have to wait for user to log back in!
+            logout()
+          }
+          
+        }  
+      }
+    } else {
+      privyLogin();
+    }
+  }
 
   return {linkEmail, user, login, logout, wallet}
 }
