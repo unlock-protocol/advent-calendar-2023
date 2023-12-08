@@ -15,7 +15,7 @@ function truncate(text = "", startChars = 5, endChars = 3, maxLength = 11) {
 }
 
 const Header = () => {
-  const { login, logout, wallet} = useAuth();
+  const { login, logout, wallet } = useAuth();
 
   return (
     <nav className="container relative">

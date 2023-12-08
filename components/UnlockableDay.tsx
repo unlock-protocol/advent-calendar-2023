@@ -3,7 +3,7 @@ import UnlockedDay from "./UnlockedDay";
 import LoadingDay from "./LoadingDay";
 import BaseDay from "./BaseDay";
 import FutureDay from "./FutureDay";
-import { useBalance, useContractWrite, usePrepareContractWrite } from 'wagmi'
+import { useBalance, useContractRead, useContractWrite, usePrepareContractWrite } from 'wagmi'
 import contracts from "../lib/contracts";
 import { useContractReads } from "wagmi";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +12,8 @@ import { useWaitForTransaction } from 'wagmi'
 import { AppConfig } from "../lib/AppConfig";
 import ReCaptcha from 'react-google-recaptcha'
 import { useAuth } from "../hooks/useAuth";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface MintableProps {
   day: number;
@@ -20,13 +22,30 @@ interface MintableProps {
   onMinting: (hash:string) => void
 }
 
+const explorer = (network: number, hash: string) => {
+  if (network === 5) {
+    return `https://goerli.etherscan.io/tx/${hash}`
+  } else if (network === 5453) {
+    return `https://basescan.org/tx/${hash}`
+  }
+}
+
 const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
   const { wallet } = useAuth();
   const recaptchaRef = useRef<any>()
+  const {query} = useRouter()
 
+  const {data: referrer} = useContractRead({
+    address: lock as `0x${string}`,
+    abi: contracts.lock.ABI,
+    functionName: "ownerOf",
+    chainId: contracts.network,
+    args: [query?.r],
+    enabled: !!(lock && query?.d === day.toString() && query?.r)
+  })
 
-  const { data: userBalance, isLoading: isBalanceLoading } = useBalance({
+  const { data: userBalance } = useBalance({
     address: wallet?.address as `0x${string}`,
   })
 
@@ -43,7 +62,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
     functionName: 'purchase',
     chainId: network,
     account: wallet?.address as `0x${string}`,
-    args: [[0], [wallet?.address], [wallet?.address], [wallet?.address], ['']],
+    args: [[0], [wallet?.address], [referrer || '0x0000000000000000000000000000000000000000'], [wallet?.address], ['']],
     gas: BigInt(700_000), // This is high, just in case they win!
   })
   
@@ -57,7 +76,13 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         setLoading(true)
         try {
           const {hash} = await writeAsync!()
-          toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
+          const explorerLink = explorer(network, hash)
+          if (explorerLink) {
+            toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
+          } else {
+            toast.success(<p>Your NFT is being minted! Please stand by!</p>, {duration: 10000})
+          }
+          
           onMinting(hash)
         } catch(e) {
           toast.error("It looks like the transaction to mint today\'s NFT could not be submitted! Please try again!")
@@ -99,6 +124,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const response = await service.claim(network, lock, captcha, {
           recipient: wallet?.address,
           data: '',
+          referrer: referrer as string || '0x0000000000000000000000000000000000000000'
         }, 
         wallet?.address,
         {
@@ -146,7 +172,7 @@ interface UnlockableDayProps {
 
 const UnlockableDay = ({ user, day, lock, previousDayLock, network }: UnlockableDayProps) => {
   const [hash, setHash] = useState('');
-  
+
   const contractReads = [{
       address: lock as `0x${string}`,
       abi: contracts.lock.ABI,
@@ -195,11 +221,10 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
     return <UnlockedDay lock={lock} network={network} justUnlocked={justUnlocked} user={user} day={day} />;
   }
 
-
   return (
     <Mintable onMinting={(hash: string) => {
       setHash(hash)
-    }} lock={lock} network={network} day={day}/>
+    }} lock={lock} network={network} day={day} />
   );
 };
 
