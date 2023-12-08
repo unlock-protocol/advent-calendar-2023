@@ -116,18 +116,6 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
             </div>
             <div className="container min-w-full sm:flex-row flex items-center justify-center rounded-b flex-col gap-4">
               
-              {day == 8 && 
-                <button
-                  className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
-                  onClick={copyToClipboard}
-                >
-                  {isCopied ? <FaClipboardCheck className="inline-block mr-2" /> : <FaClipboard className="inline-block mr-2" />}
-                  
-                  Copy URL to share!
-                </button>
-              }
-
-              
               {content.link && (
                 <Link
                 className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
@@ -138,6 +126,17 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
                   Learn more
                 </Link>
               )}
+
+              {day == 8 && 
+                <button
+                  className="border whitespace-nowrap bg-white text-black font-bold py-2 px-4 mt-3 rounded  w-full text-center"
+                  onClick={copyToClipboard}
+                >
+                  {isCopied ? <FaClipboardCheck className="inline-block mr-2" /> : <FaClipboard className="inline-block mr-2" />}
+                  
+                  Copy URL to share!
+                </button>
+              }
 
               <Link
                 target="_blank"
