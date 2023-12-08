@@ -78,9 +78,9 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
           const {hash} = await writeAsync!()
           const explorerLink = explorer(network, hash)
           if (explorerLink) {
-            toast.success(<>Your <Link className="inline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</>, {duration: 10000})
+            toast.success(<p>Your <Link className="inline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
           } else {
-            toast.success(<>Your NFT is being minted! Please stand by!</>, {duration: 10000})
+            toast.success(<p>Your NFT is being minted! Please stand by!</p>, {duration: 10000})
           }
           
           onMinting(hash)
