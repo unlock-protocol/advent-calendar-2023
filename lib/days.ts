@@ -103,11 +103,11 @@ See you tomorrow!`,
   },
   {
     // Day 12
-    title: "Let a billion ideas Bloom",
+    title: "Certified Awesome",
     description:
-      "Bloom Network is an international community of people and projects working toward regenerative cultures. Bloom hubs around the world grow participation in food security, local economies, celebrations of diversity, art as cultural transformation, and aim to inspire a billion acts of regeneration. Bloom Network is part of the Unlock Protocol ecosystem, and for every Advent NFT claimed today, Unlock will make a $1 donation to Bloom Network, up to a maximum total of USD$250.",
-    link: "https://bloomnetwork.org/",
-    image: "/images/bloom-header.png",
+      "Did you know: Professional certifications like CDAA (Certified Digital Asset Advisor) and industry leaders like Web3 Academy deliver their on-chain certifications and credentials using Unlock Protocol. It’s very cool, and it just works.",
+    link: "https://unlock-protocol.com/blog/cdaa-unlock-case-study",
+    image: "/images/cdaa-share.png",
     youtube: "",
   },
   {
