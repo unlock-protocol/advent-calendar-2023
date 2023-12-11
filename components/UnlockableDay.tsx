@@ -32,7 +32,7 @@ const explorer = (network: number, hash: string) => {
 
 const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
   const [loading, setLoading] = useState<boolean>(false)
-  const { wallet } = useAuth();
+  const { wallet, canClaim } = useAuth();
   const recaptchaRef = useRef<any>()
   const {query} = useRouter()
 
@@ -116,6 +116,11 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
           return
         }
         setLoading(true)
+        if (!canClaim) {
+          // Block spammers who can't claim here...
+          toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
+          return false
+        }
         const loginResponse = await service.login({
           message,
           signature,

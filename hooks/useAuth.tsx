@@ -1,6 +1,6 @@
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { usePrivyWagmi } from "@privy-io/wagmi-connector";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export function useAuth() {
   const { linkEmail, user, login: privyLogin, logout, linkWallet } = usePrivy();
@@ -54,6 +54,16 @@ export function useAuth() {
     }
   }, [user])
 
+  const canClaim = useMemo(() => {
+    if (!user?.email?.address) {
+      return false
+    }
+    if (user.email.address.match(/@skiff\.com$/)) {
+      return false
+    }
+    return true
+  }, [user])
+
 
   const login = async () => {
     if (user) {
@@ -81,5 +91,5 @@ export function useAuth() {
     }
   }
 
-  return {linkEmail, user, login, logout, wallet}
+  return {linkEmail, user, login, logout, wallet, canClaim}
 }
