@@ -112,29 +112,29 @@ See you tomorrow!`,
   },
   {
     // Day 13
-    title: "A free learning webinar for you",
+    title: "Protect your Digital Assets with Webacy Pro",
     description:
-      "This week, we're doing a webinar on the Membership Journey! Learn the basics of how to set up an NFT-based membership program and work through the foundational steps of the membership playbook for projects and brands. This free one-hour webinar will cover: Why memberships matter, key use cases for memberships, a dive into the Membership Journey, and a live demo. Join us! (It's free.) Click *Learn more* below to register.",
-    link: "https://us06web.zoom.us/webinar/register/1216708555427/WN_xqpZql2JRLCfKIuOqhIbTg",
-    image: "/images/journey-16x9.png",
-    youtube: "",
+      "Webacy helps you navigate the Web3 world with services that help you stay safe. Assess your risk with Risk Score. Monitor your wallets with Wallet Watch. Act on threats with the Panic Button and Backup Wallet. Webacy’s non-custodial, fully no-access services provide you with the tools you need to stay safe on the blockchain. Today, **Webacy is gifting 10 NFT passes (powered by Unlock Protocol!) to lucky Locksmiths!** These passes grant access to Webacy’s cutting edge blockchain safety services (and might even have a special impact on your ranking on the Webacy Leaderboard 👀).",
+    link: "https://webacy.com/",
+    image: "",
+    youtube: "https://www.youtube.com/embed/ZGdpVHOMaD0",
   },
   {
     // Day 14
-    title: "When do you know it’s really the holidays?",
+    title: "Connect Your Community with Kazm-Powered Gamified Membership",
     description:
-      "Ok, on to the important stuff. We need to know how the Unlock community feels about one of the important questions of the year. Which of these holiday movies is the true sign of the season? Is it when the FRAGILE lamp arrives? When John McClane comes out to the coast to have a few laughs with Hans Gruber at Nakatomi Plaza? When Buddy the Elf discovers the truth? When Clark Griswold plugs in the holiday lights? Hit **Learn more** to see the results and cast your vote!",
-    link: "https://twitter.com/UnlockProtocol/status/1602715987459026944",
-    image: "/images/movie-twitter-poll.png",
+      "Kazm enables next level community engagement & brand loyalty. Easily launch white-label memberships to reward activations across EVERY touchpoint - with no-code, and no limits. **Kazm is giving away three Starter Plan accounts on Kazm's SAAS, white-label, no-code platform with 3 free months:** Launch a membership, club, or gamified community experience for up to 1000 Registered participants ($600 value for each!). Membership programs including Lazy Lions, Surf Junkie Club and others use Kazm + Unlock Protocol for their memberships!",
+    link: "https://join.kazm.com/",
+    image: "/images/kazmgif-1280.gif",
     youtube: "",
   },
   {
     // Day 15
-    title: "Ho Ho ZenGo!",
+    title: "Boost Your Loyalty Game with beyondClub + Unlock!",
     description:
-      "Next-gen tech for a new year. Welcome to the future. We think the ZenGo Wallet team is pretty neat, and they’ve built something incredible! It’s a new kind of wallet that not only does the things you’d expect, but it also has a **huge** focus on security and recovery options, includes a built-in web3 firewall, features a gorgeous NFT gallery, and — get this — they have actual customer support! Amazing.",
-    link: "https://zengo.com/?utm_source=unlock&utm_medium=adventwebsite&utm_campaign=advent15",
-    image: "/images/zengo-nft.png",
+      "Ready to rock the loyalty world? Meet beyondClub, which created a fun NFT loyalty platform powered by Unlock Protocol! It's a breeze to create buzzing fan communities and cool, exclusive experiences. We love how beyondClub makes loyalty fun!",
+    link: "https://beyondclub.xyz",
+    image: "/images/beyondclub-share.png",
     youtube: "",
   },
   {
