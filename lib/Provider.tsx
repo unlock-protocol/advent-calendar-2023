@@ -18,7 +18,11 @@ export const Provider = ({ children }: { children?: ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns">
+      <PrivyProvider appId="clpjz90qo00k2if0fl2coy0ns" config={{
+        embeddedWallets: {
+          noPromptOnSignature: true // defaults to false
+        }
+      }}>
         <PrivyWagmiConnector wagmiChainsConfig={configureChainsConfig}>
           <DefaultSeo {...seo} />
           <RadixToolTip.Provider delayDuration={100}>
