@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@privy-io/react-auth": "^1.49.0",
-    "@privy-io/wagmi-connector": "^0.1.7-beta.7",
+    "@privy-io/react-auth": "^1.51.1",
+    "@privy-io/wagmi-connector": "^0.1.7",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tailwindcss/aspect-ratio": "^0.4.2",
