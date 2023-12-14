@@ -35,8 +35,10 @@ const chains = Object.values(networks)
     } as Chain;
   })
   .filter((chain) => {
-    return chain.id === contracts.network;
+    return chain.id == 1 || chain.id === contracts.network;
   });
+
+  console.log(chains)
 
 export const configureChainsConfig = configureChains(chains, [publicProvider()]);
 
