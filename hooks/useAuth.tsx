@@ -77,7 +77,7 @@ export function useAuth() {
           }
         })
         if(!found) {
-          if (user.wallet?.walletClientType !== 'privy'            ) {
+          if (user.wallet?.walletClientType !== 'privy') {
             await linkWallet()
           } else {
             // We will have to wait for user to log back in!

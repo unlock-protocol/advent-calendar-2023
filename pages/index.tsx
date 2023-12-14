@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Calendar } from "../components/Calendar";
 import { AppConfig } from "../lib/AppConfig";
+import { GetTokens } from "../components/GetTokens";
 // If loading a variable font, you don't need to specify the font weight
 const meowScript = Meow_Script({ weight: "400", subsets: ['latin'] })
 
@@ -63,6 +64,7 @@ export default function Home() {
             <h2 className="text-3xl">By Unlock, December 2023</h2>
             <p>One NFT a day, fun gifts, and some year-in-review highlights — just for you!</p>
           </div>
+          <GetTokens />
           <Calendar />
         </main>
         <footer className="flex-shrink-0 relative pt-16 text-center text-white font-semibold  w-full pb-16 flex flex-col">
