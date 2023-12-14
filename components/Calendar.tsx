@@ -5,7 +5,7 @@ import contracts from "../lib/contracts";
 export const Calendar = () => {
   const days = new Array(24).fill(0).map((d, i) => i + 1);
   
-  const {data: start, isLoading: isLoadingStart} =useContractRead({
+  const {data: start, isLoading: isLoadingStart} = useContractRead({
     address: contracts.hook.address as `0x${string}`,
     abi: contracts.hook.ABI,
     functionName: "start",

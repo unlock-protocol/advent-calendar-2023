@@ -25,9 +25,8 @@ interface MintableProps {
 const explorer = (network: number, hash: string) => {
   if (network === 5) {
     return `https://goerli.etherscan.io/tx/${hash}`
-  } else if (network === 5453) {
-    return `https://basescan.org/tx/${hash}`
   }
+  return `https://basescan.org/tx/${hash}`
 }
 
 const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
@@ -77,11 +76,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         try {
           const {hash} = await writeAsync!()
           const explorerLink = explorer(network, hash)
-          if (explorerLink) {
-            toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
-          } else {
-            toast.success(<p>Your NFT is being minted! Please stand by!</p>, {duration: 10000})
-          }
+          toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
           
           onMinting(hash)
         } catch(e) {
@@ -140,11 +135,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const hash = response.data.transactionHash
 
         const explorerLink = explorer(network, hash)
-        if (explorerLink) {
-          toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
-        } else {
-          toast.success(<p>Your NFT is being minted! Please stand by!</p>, {duration: 10000})
-        }
+        toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
         onMinting(hash)
       }        
     } catch (error) {

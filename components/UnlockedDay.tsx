@@ -60,7 +60,7 @@ const Modal = ({ network, lock, tokenId, day, setShowModal }: ModalProps) => {
     setContent(days[day - 1]);
   }, [day]);
 
-  const {data: hasWon} = useContractRead({
+  const { data: hasWon } = useContractRead({
     address: contracts.hook.address as `0x${string}`,
     abi: contracts.hook.ABI,
     functionName: "haswOnByDay",
@@ -183,7 +183,7 @@ const UnlockedDay = ({ lock, network, user, day, justUnlocked }: UnlockedDayProp
   }, [justUnlocked])
 
 
-  const {data: tokenId} = useContractRead({
+  const { data: tokenId } = useContractRead({
     address: lock as `0x${string}`,
     abi: contracts.lock.ABI,
     functionName: "tokenOfOwnerByIndex",
