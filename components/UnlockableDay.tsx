@@ -108,7 +108,6 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
         const ethersSigner = await ethersProvider.getSigner()
         let signature
         try {
-          toast.error("Please sign the message in your wallet!")
           signature = await ethersSigner.signMessage(message);
         } catch (error) {
           toast.error("Please make sure you sign this message to confirm you want to open today's gift!")
@@ -137,8 +136,16 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
             Authorization: `Bearer ${accessToken}`,
           },
         })
-        toast.success("Your NFT is being minted! Please stand by!", {duration: 10000})
-        onMinting(response.data.transactionHash)
+
+        const hash = response.data.transactionHash
+
+        const explorerLink = explorer(network, hash)
+        if (explorerLink) {
+          toast.success(<p>Your <Link className="inline underline" target="_blank" href={explorerLink}>NFT is being minted</Link>! Please stand by!</p>, {duration: 10000})
+        } else {
+          toast.success(<p>Your NFT is being minted! Please stand by!</p>, {duration: 10000})
+        }
+        onMinting(hash)
       }        
     } catch (error) {
       toast.error("There was an error minting your NFT. Please refresh the page and try again!")
