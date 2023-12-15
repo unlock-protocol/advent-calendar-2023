@@ -13,7 +13,7 @@ const chains = Object.values(networks)
           http: [item?.provider],
         },
         public: {
-          http: [item?.publicProvider],
+          http: [item?.provider],
         },
       },
       name: item.name,
