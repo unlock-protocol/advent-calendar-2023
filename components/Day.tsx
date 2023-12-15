@@ -9,11 +9,13 @@ interface DayProps {
   start?: number;
   isLoading: boolean;
   lock?: string | null;
-  previousDayLock?: string | null;
+  hasPreviousDayMembership?: boolean;
+  hasMembership?: boolean;
   network: number;
+  refetch: any
 }
 
-const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps) => {
+const Day = ({ day, start, isLoading, lock, network, hasMembership, hasPreviousDayMembership, refetch}: DayProps) => {
   const { wallet } = useAuth();
 
   if (isLoading || !start || !lock ) {
@@ -33,7 +35,7 @@ const Day = ({ day, start, isLoading, lock, previousDayLock, network }: DayProps
     return <FutureDay day={day} />;
   }
 
-  return <UnlockableDay user={wallet.address} day={day} network={network} lock={lock} previousDayLock={previousDayLock} />;
+  return <UnlockableDay refetch={refetch} user={wallet.address} day={day} network={network} lock={lock} hasMembership={hasMembership} hasPreviousDayMembership={hasPreviousDayMembership} />;
 };
 
 export default Day;

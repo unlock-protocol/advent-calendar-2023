@@ -25,7 +25,7 @@ export function useAuth() {
             }
           })
           if(!found) {
-            console.error("No wallet matches the user's wallet!")
+            // console.error("No wallet matches the user's wallet!")
             // We have a user that is connected but no matching wallet. What do we do?
           }
         } else {

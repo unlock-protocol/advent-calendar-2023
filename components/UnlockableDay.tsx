@@ -170,59 +170,37 @@ interface UnlockableDayProps {
   user: string;
   day: number;
   lock: string;
-  previousDayLock?: string | null;
   network: number
+  hasPreviousDayMembership?: boolean;
+  hasMembership?: boolean;
+  refetch: any
 }
 
-const UnlockableDay = ({ user, day, lock, previousDayLock, network }: UnlockableDayProps) => {
+const UnlockableDay = ({ refetch, user, day, lock, hasMembership, hasPreviousDayMembership, network }: UnlockableDayProps) => {
   const [hash, setHash] = useState('');
 
-  const contractReads = [{
-    address: lock as `0x${string}`,
-    abi: contracts.lock.ABI,
-    functionName: "getHasValidKey",
-    chainId: contracts.network,
-    args: [user],
-  }]
-
-  if(day > 1) {
-    contractReads.push({
-      address: previousDayLock as `0x${string}`,
-      abi: contracts.lock.ABI,
-      functionName: "getHasValidKey",
-      chainId: contracts.network,
-      args: [user],
-    })
-  }
   
   const { data } = useWaitForTransaction({
     chainId: contracts.network,
     hash: hash as `0x${string}`,
-    enabled: !!hash
+    enabled: !!hash,
+    onSuccess() {
+      refetch();
+    }
   })
 
-  const {
-    data: memberships,
-    isLoading: membershipsLoading,
-  } = useContractReads({
-    watch: !!hash,
-    // @ts-expect-error
-    contracts: contractReads
-  });
-
   const justUnlocked = data?.status == 'success' 
-  const isLoading = membershipsLoading || (hash && !data)
-  const [hasMembership, previousDayMembership] = memberships || []
+  const isLoading = (hash && !data)
 
   if (isLoading) {
     return <LoadingDay day={day} />;
   }
 
-  if (!previousDayMembership?.result && day > 1) {
+  if (!hasPreviousDayMembership && day > 1) {
     return <FutureDay day={day} />;
   }
 
-  if (hasMembership?.result) {
+  if (hasMembership) {
     return <UnlockedDay lock={lock} network={network} justUnlocked={justUnlocked} user={user} day={day} />;
   }
 
