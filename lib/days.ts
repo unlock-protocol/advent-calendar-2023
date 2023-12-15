@@ -211,7 +211,7 @@ See you tomorrow!`,
   },
   {
     // Day 24
-    title: "Last Day",
+    title: "The Last Day",
     description:
       "FINE",
     link: "https://newsletter.unlock-protocol.com",
