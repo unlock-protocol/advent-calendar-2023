@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@privy-io/react-auth": "^1.51.1",
-    "@privy-io/wagmi-connector": "^0.1.7",
+    "@privy-io/wagmi-connector": "0.1.8",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -40,6 +40,6 @@
     "tailwindcss": "^3.2.4",
     "typescript": "5.3.2",
     "use-local-storage-state": "^19.1.0",
-    "wagmi": "1.4.7"
+    "wagmi": "1.4.12"
   }
 }

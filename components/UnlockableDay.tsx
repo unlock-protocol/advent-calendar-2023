@@ -177,13 +177,14 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
   const [hash, setHash] = useState('');
 
   const contractReads = [{
-      address: lock as `0x${string}`,
-      abi: contracts.lock.ABI,
+    address: lock as `0x${string}`,
+    abi: contracts.lock.ABI,
     functionName: "getHasValidKey",
     chainId: contracts.network,
     args: [user],
   }]
-  if(day >1) {
+
+  if(day > 1) {
     contractReads.push({
       address: previousDayLock as `0x${string}`,
       abi: contracts.lock.ABI,
@@ -193,20 +194,20 @@ const UnlockableDay = ({ user, day, lock, previousDayLock, network }: Unlockable
     })
   }
   
-  const {
-    data: memberships,
-    isLoading: membershipsLoading,
-  } = useContractReads({
-    watch: true,
-    // @ts-expect-error
-    contracts: contractReads
-  });
-
   const { data } = useWaitForTransaction({
     chainId: contracts.network,
     hash: hash as `0x${string}`,
     enabled: !!hash
   })
+
+  const {
+    data: memberships,
+    isLoading: membershipsLoading,
+  } = useContractReads({
+    watch: !!hash,
+    // @ts-expect-error
+    contracts: contractReads
+  });
 
   const justUnlocked = data?.status == 'success' 
   const isLoading = membershipsLoading || (hash && !data)

@@ -139,12 +139,12 @@ See you tomorrow!`,
   },
   {
     // Day 16
-    title: "Here comes Polygon",
+    title: "Forta-fied!",
     description:
-      "One of the big leaps forward this year was in the adoption of faster, more environmentally-friendly, less-expensive blockchains across the industry. In particular, our frens at Polygon have been on a tear, providing infrastructure across huge projects like Starbucks Odyssey and many others. While Unlock works across nearly any EVM-compatible blockchain, we’ve seen incredible adoption across Polygon this year, and have just relaunched our own membership smart contract on the Polygon blockchain.",
-    link: "",
-    image: "",
-    youtube: "https://www.youtube.com/embed/qDQkteJMK6E",
+      "The Forta Scam Detector is a monthly subscription service data feed that provides real-time intelligence about EOAs, contracts and URLs involved in a variety of Web3 scams. It is jointly maintained by the Forta Foundation, Nethermind, Blocksec, ChainPatrol and members of the Forta developer community. Unlock is thrilled to be powering the subscription infrastructure for this important set of services!",
+    link: "https://app.forta.network/scam-detector",
+    image: "/images/forta-advent.png",
+    youtube: "",
   },
   {
     // Day 17
