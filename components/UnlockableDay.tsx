@@ -80,6 +80,7 @@ const Mintable = ({lock, network, day, onMinting}: MintableProps) => {
           
           onMinting(hash)
         } catch(e) {
+          console.error(e)
           toast.error("It looks like the transaction to mint today\'s NFT could not be submitted! Please try again!")
         }
       } else {
