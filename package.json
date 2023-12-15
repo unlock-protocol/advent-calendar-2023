@@ -22,6 +22,7 @@
     "@unlock-protocol/networks": "^0.0.19",
     "@unlock-protocol/paywall": "^0.6.8",
     "@unlock-protocol/unlock-js": "^0.40.3",
+    "@vercel/analytics": "^1.1.1",
     "autoprefixer": "^10.4.13",
     "eslint": "8.54.0",
     "eslint-config-next": "14.0.3",

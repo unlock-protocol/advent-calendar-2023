@@ -1,6 +1,6 @@
+import { Analytics } from '@vercel/analytics/react';
+
 import Head from "next/head";
-import { ethers } from "ethers";
-import { useQuery } from "@tanstack/react-query";
 
 import Header from "../components/Header";
 import { Meow_Script } from 'next/font/google'
@@ -71,6 +71,7 @@ export default function Home() {
         </footer>
         </div>
       </div>
+      <Analytics />      
     </>
   );
 }
