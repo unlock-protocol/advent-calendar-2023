@@ -148,12 +148,12 @@ See you tomorrow!`,
   },
   {
     // Day 17
-    title: "You can OpenSea your Unlock memberships anywhere",
+    title: "Own The Narrative with Coinage (Literally)",
     description:
-      "Since Unlock memberships and subscriptions are at their core ERC-721 NFTs, they just work anywhere you’d expect an NFT to work. For example, every Unlock membership key NFT is visible in its collection on OpenSea within minutes after minting or airdropping. And want to configure those collections? If you’re the creator or manager of that collection on Unlock, you can! Here’s how. (Yes, that was a terrible pun in the title. We regret nothing!)",
-    link: "",
-    image: "",
-    youtube: "https://www.youtube.com/embed/tWh597nk3uM",
+      "Coinage, the first community-owned Web3 media outlet governed by NFT holders, created the first-ever Onchain Scavenger Hunt in partnership with Unlock Protocol this year. Players had a chance to win 5 ETH and other prizes along the way. Every day for 12 days, players competed to solve a daily clue, and mint a free digital trophy (NFT) to celebrate their Web3 knowledge. At the end of 12 days, players who unlocked all 12 words were eligible to automatically unlock the grand prize. It was a ridiculous amount of retro fun! More importantly, Coinage does some of the best reporting in the game, period.",
+    link: "https://coinage.media",
+    image: "/images/coinage-scavenger.gif",
+    youtube: "",
   },
   {
     // Day 18
@@ -211,7 +211,7 @@ See you tomorrow!`,
   },
   {
     // Day 24
-    title: "Last Day",
+    title: "The Last Day",
     description:
       "FINE",
     link: "https://newsletter.unlock-protocol.com",
