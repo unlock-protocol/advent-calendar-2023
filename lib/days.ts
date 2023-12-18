@@ -177,7 +177,7 @@ See you tomorrow!`,
     // Day 20
     title: "20 on 20: Enter to win free tickets to CoinDesk's Consensus 2024",
     description:
-      "For Day 20 of Unlock's Advent Calendar, Consensus is giving away 20 Pro Passes to randomly selected winners who complete the form linked below by Dec. 21 at 11:59 p.m EST. Please click the "Learn More" button and enter the info below for a chance to win a pair of pro passes to Consensus 2024 in Austin, Texas on May 29-31. All fields are required to be considered a valid entry. Good luck!",
+      "For Day 20 of Unlock's Advent Calendar, Consensus is giving away 20 Pro Passes to randomly selected winners who complete the form linked below by Dec. 21 at 11:59 p.m EST. Please click the \"Learn More\" button and enter the info below for a chance to win a pair of pro passes to Consensus 2024 in Austin, Texas on May 29-31. All fields are required to be considered a valid entry. Good luck!",
     link: "https://airtable.com/appBFFx7vdL4ng7c0/pagKMudjgHwUHn8Hh/form",
     image: "/images/consensus-share.png",
     youtube: "",
