@@ -161,6 +161,7 @@ See you tomorrow!`,
     description:
       "The ALANA Project empowers creators and believes everyone should to be able to learn, co-create, and build. Everyone has the ability to create, and access to the right tools and resources is vital to unlocking the full potential of one's creativity. The ALANA Project has six branches including a magazine, a boutique, AI, adventures, and more. Unlock is a proud partner of The ALANA Project.",
     link: "https://www.the-alana-project.xyz/",
+    image: "",
     youtube: "https://www.youtube.com/embed/bg86iZAAzQw",
   },
   {
