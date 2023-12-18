@@ -157,12 +157,12 @@ See you tomorrow!`,
   },
   {
     // Day 18
-    title: "You can do token-gated events with Beem (feat. Unlock!)",
+    title: "The ALANA Project",
     description:
       "Want to set up a token-gated event? Tess from Beem shows you how to do it in under two minutes, click that **Learn more** link to see how to Beem your fans, followers, and attendees in from anywhere!",
-    link: "https://twitter.com/0xcyp/status/1603035069878521857",
-    image: "/images/beem-demo.png",
-    youtube: "",
+    link: "https://www.the-alana-project.xyz/",
+    image: "",
+    youtube: "https://www.youtube.com/embed/bg86iZAAzQw",
   },
   {
     // Day 19
