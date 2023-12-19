@@ -166,12 +166,12 @@ See you tomorrow!`,
   },
   {
     // Day 19
-    title: "Set up a smart contract in about two minutes",
+    title: "Enter 2024 in style with Privy 😎",
     description:
-      "Have a New Year's Eve party, happy hour, meetup, or other event coming up? It's a snap to set up NFT ticketing for it with Unlock. In just over two minutes, you can set up and deploy a smart contract using Unlock and have your ticketing done the web3 way! Want to check out the full guide? Hit that **Learn more** link below!",
-    link: "https://unlock-protocol.com/guides/how-to-sell-nft-tickets-for-an-event/",
+      "2023 has been a year of crypto glow-ups! We've seen a wave of exciting consumer products for mainstream users, with engaging app experiences, seamless onboarding, and smooth wallet UX. Celebrate the year by claiming a Privy shirt, available to the first 25 people to fill out the **Learn more** form. (The Unlock team loves working with Privy, and the advent calendar uses Privy extensively!)",
+    link: "https://50fzxaracbi.typeform.com/to/Bm1sYwKS",
     image: "",
-    youtube: "https://www.youtube.com/embed/1EGjCGfn7aE",
+    youtube: "",
   },
   {
     // Day 20
