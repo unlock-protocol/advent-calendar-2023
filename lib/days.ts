@@ -166,20 +166,20 @@ See you tomorrow!`,
   },
   {
     // Day 19
-    title: "Set up a smart contract in about two minutes",
+    title: "Enter 2024 in style with Privy 😎",
     description:
-      "Have a New Year's Eve party, happy hour, meetup, or other event coming up? It's a snap to set up NFT ticketing for it with Unlock. In just over two minutes, you can set up and deploy a smart contract using Unlock and have your ticketing done the web3 way! Want to check out the full guide? Hit that **Learn more** link below!",
-    link: "https://unlock-protocol.com/guides/how-to-sell-nft-tickets-for-an-event/",
-    image: "",
-    youtube: "https://www.youtube.com/embed/1EGjCGfn7aE",
+      "2023 has been a year of crypto glow-ups! We've seen a wave of exciting consumer products for mainstream users, with engaging app experiences, seamless onboarding, and smooth wallet UX. Celebrate the year by claiming a Privy shirt, available to the first 25 people to fill out the **Learn more** form. (The Unlock team loves working with Privy, and the advent calendar uses Privy extensively!)",
+    link: "https://50fzxaracbi.typeform.com/to/Bm1sYwKS",
+    image: "/images/privy-shirt.png",
+    youtube: "",
   },
   {
     // Day 20
-    title: "Unlock mints digital collectibles with membership superpowers",
+    title: "20 on 20: Enter to win free tickets to CoinDesk's Consensus 2024",
     description:
-      "You already knew Unlock has always been about memberships, subscriptions, NFT ticketing, on-chain certification, and other real-world use cases. But did you know Unlock makes it easy to mint digital collectibles with membership superpowers as well? It’s true! Here’s how you can set up unique digital art for every piece in a collection — every one of which inherits all the advanced capabilities of Unlock Protocol. It’s kinda like holiday magic. ✨",
-    link: "https://unlock-protocol.com/guides/how-to-use-different-images/?utm_source=unlock&utm_medium=adventwebsite&utm_campaign=advent20",
-    image: "/images/collectibles-16x9.png",
+      "For Day 20 of Unlock's Advent Calendar, Consensus is giving away 20 Pro Passes to randomly selected winners who complete the form linked below by Dec. 21 at 11:59 p.m EST. Please click the \"Learn More\" button and enter the info below for a chance to win a pair of pro passes to Consensus 2024 in Austin, Texas on May 29-31. All fields are required to be considered a valid entry. Good luck!",
+    link: "https://airtable.com/appBFFx7vdL4ng7c0/pagKMudjgHwUHn8Hh/form",
+    image: "/images/consensus-share.png",
     youtube: "",
   },
   {
