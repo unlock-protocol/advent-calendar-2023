@@ -170,7 +170,7 @@ See you tomorrow!`,
     description:
       "2023 has been a year of crypto glow-ups! We've seen a wave of exciting consumer products for mainstream users, with engaging app experiences, seamless onboarding, and smooth wallet UX. Celebrate the year by claiming a Privy shirt, available to the first 25 people to fill out the **Learn more** form. (The Unlock team loves working with Privy, and the advent calendar uses Privy extensively!)",
     link: "https://50fzxaracbi.typeform.com/to/Bm1sYwKS",
-    image: "",
+    image: "/images/privy-shirt.png",
     youtube: "",
   },
   {
