@@ -8,7 +8,7 @@ import FutureDay from "./FutureDay";
 export const Calendar = () => {
 
   const {days, lockAddresses, validKeys, isLoading, start, refetch}  = useCalendar()
-  return <div className="place-content-center grid grid-cols-[repeat(7,45px)] sm:grid-cols-[repeat(7,72px)] gap-2 sm:gap-4 my-8">
+  return <div className="place-content-center grid grid-cols-[repeat(7,45px)] sm:grid-cols-[repeat(7,72px)] gap-2 sm:gap-4">
   <div className="col-span-4" />
   {days.map((day, index) => {
       if (!lockAddresses || !lockAddresses![day-1]) {

@@ -58,7 +58,7 @@ export default function Home() {
       <div className=" bg-black bg-[url('/images/background.svg')] bg-cover h-screen flex flex-col">
         <div className="bg-[url('/images/background.svg')] bg-cover ">
         <Header />
-        <main className="container relative flex-1 flex flex-col gap-8 ">
+        <main className="container relative flex-1 flex flex-col gap-4">
           <div className="text-center text-white flex flex-col">
             <h1 className={`${meowScript.className} text-8xl bg-gradient-to-b text-transparent from-[#FCF6BA] to-[#BF953F] bg-clip-text `}>Advent Calendar</h1>
             <h2 className="text-3xl">By Unlock, December 2023</h2>
