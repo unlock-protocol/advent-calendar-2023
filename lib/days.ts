@@ -184,11 +184,11 @@ See you tomorrow!`,
   },
   {
     // Day 21
-    title: "A tasty treat",
+    title: "A Big Thanks to Base!",
     description:
-      "Cookbook.dev is a hub for smart contracts where you can find, deploy, and collaborate on any contract in EVM. You can view audits, documentation, and usage, as well as deploy and manage the contracts from the user interface. And the Cookbook community membership is deliciously powered by Unlock — yum! 🍪",
-    link: "https://twitter.com/UnlockProtocol/status/1605050465615429633",
-    image: "/images/cookbook-preview.png",
+      "The Unlock Protocol community wanted to give a special shout-out today to the amazing team over at Base for being a part of the advent calendar fun this year! We so appreciate their support and wanted to share our congrats with them on an amazing 2023. We look forward to collaborating more with them in 2024!",
+    link: "https://base.org",
+    image: "/images/base-share.png",
     youtube: "",
   },
   {
