@@ -193,18 +193,18 @@ See you tomorrow!`,
   },
   {
     // Day 22
-    title: "Holiday pints",
+    title: "A New Kind of Christmas Card 🦉💳",
     description:
-      "Boxcar is UK’s best-kept secret in craft beer, known to beer geeks and enthusiasts for pioneering, innovative, and fastidiously well-made beers. In the spirit of innovation and community, Boxcar decided to involve everyone who loves their beers and ethos to join in on the journey and launched the Boxcar Collective, which allows members to join them their journey with a unique membership program powered by Unlock NFTs.",
-    link: "https://twitter.com/jroebuck/status/1595739801809977344",
-    image: "/images/boxcar.gif",
+      "The team at Gnosis Pay created a Christmas card to connect our web3 and IRL selves together! To get into the festive spirit, Santa 🎅 is delivering Gnosis Cards, worth EUR 30+ each, to three Locksmiths, so you can spend some crypto in the real world in 2024!",
+    link: "https://gnosispay.com/app/signup",
+    image: "/images/gnosis-share.png",
     youtube: "",
   },
   {
     // Day 23
     title: "Tomorrow is the big day!",
     description:
-      "Tomorrow’s going to be a big day, with incredible gifts for a few lucky Locksmiths. But it’s the last day of the calendar, and we’re going to miss connecting with you every day. We’d love to stay in touch! If you’d like to as well, please [sign up for our newsletter](https://newsletter.unlock-protocol.com) — and see you tomorrow!",
+      "Tomorrow’s going to be a big day, with one 1000 USD gift for one lucky Locksmith. But it’s the last day of the calendar, and we’re going to miss connecting with you every day. We’d love to stay in touch! If you’d like to as well, please [sign up for our newsletter](https://newsletter.unlock-protocol.com) — and see you tomorrow!",
     link: "https://newsletter.unlock-protocol.com",
     image: "/images/santa-newsletter.png",
     youtube: "",
