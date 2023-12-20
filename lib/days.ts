@@ -204,7 +204,7 @@ See you tomorrow!`,
     // Day 23
     title: "Tomorrow is the big day!",
     description:
-      "Tomorrow’s going to be a big day, with one 1000 USD gift for one lucky Locksmith. But it’s the last day of the calendar, and we’re going to miss connecting with you every day. We’d love to stay in touch! If you’d like to as well, please [sign up for our newsletter](https://newsletter.unlock-protocol.com) — and see you tomorrow!",
+      "Tomorrow’s going to be a big day, with one 1000 USDC gift for one lucky Locksmith. But it’s the last day of the calendar, and we’re going to miss connecting with you every day. We’d love to stay in touch! If you’d like to as well, please [sign up for our newsletter](https://newsletter.unlock-protocol.com) — and see you tomorrow!",
     link: "https://newsletter.unlock-protocol.com",
     image: "/images/santa-newsletter.png",
     youtube: "",
