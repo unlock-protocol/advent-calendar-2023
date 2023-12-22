@@ -211,11 +211,11 @@ See you tomorrow!`,
   },
   {
     // Day 24
-    title: "The Last Day",
+    title: "Happy Holidays from Unlock Protocol!",
     description:
-      "FINE",
-    link: "https://newsletter.unlock-protocol.com",
-    image: "/images/santa-newsletter.png",
+      "Today is the big day — one lucky winner will be drawn from today’s participants and win 1000 USDC to brighten up their holidays! Thank you again for being a part of the Unlock Protocol Locksmith community in 2023, and we are wishing you a safe, healthy, and prosperous 2024. Day 24 opens at 12:00:00 Eastern Time (Noon) on December 24, and closes at 11:59:59 Eastern Time (just before Noon) on December 25th, when the drawing will be held.",
+    link: "",
+    image: "/images/day24-share.png",
     youtube: "",
   },
 ];
