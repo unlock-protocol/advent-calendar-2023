@@ -135,9 +135,11 @@ describe("AdventHook", function () {
       start.getTime() / 1000
     );
 
-    await expect(hook.connect(anotherUser).setPrize(1, 10)).to.reverted;
+    await expect(
+      hook.connect(anotherUser).setPrize(1, 10, ethers.constants.AddressZero)
+    ).to.reverted;
 
-    await hook.connect(user).setPrize(1, 10);
+    await hook.connect(user).setPrize(1, 10, ethers.constants.AddressZero);
     expect(await hook.prizeByDay(1)).to.equal(10);
   });
 
@@ -163,6 +165,104 @@ describe("AdventHook", function () {
         )
       );
       expect(await hook.draw(3, user.address, 1, 1)).to.equal(0);
+    });
+  });
+
+  describe.only("last day", async () => {
+    it("should not let the lock manager set the salt if day 24 has started!", async () => {
+      let [user] = await ethers.getSigners();
+
+      const now = await getCurrentTime();
+      const start = new Date(now * 1000); // now!
+      // deploy all locks
+      const [locks, hook] = await deploy(
+        unlock,
+        undefined,
+        start.getTime() / 1000
+      );
+      await moveToTime(new Date(start.getTime() + 1000 * 60 * 60 * 24 * 24));
+
+      const trustedSalt = "sealed salt!";
+      await expect(
+        hook.setSealedSeed(
+          24,
+          ethers.utils.keccak256(ethers.utils.toUtf8Bytes(trustedSalt))
+        )
+      ).to.reverted;
+    });
+    it.only("should handle the last day correctly", async () => {
+      let [user, ...morePlayers] = await ethers.getSigners();
+
+      const now = await getCurrentTime();
+      const start = new Date(now * 1000); // now!
+      // deploy all locks
+      const [locks, hook] = await deploy(
+        unlock,
+        undefined,
+        start.getTime() / 1000
+      );
+
+      const trustedSalt = "sealed salt!";
+      await hook.setSealedSeed(
+        24,
+        ethers.utils.keccak256(ethers.utils.toUtf8Bytes(trustedSalt))
+      );
+      expect(await hook.sealedSeed()).to.equal(
+        ethers.utils.keccak256(ethers.utils.toUtf8Bytes(trustedSalt))
+      );
+
+      await hook.setMaxNumberOfWinners(24, 1);
+      expect(await hook.maxNumberOfWinnersByDay(24)).to.equal(1);
+
+      // All good!
+      // Let's now buy all the days left!
+      for (let i = 1; i < 25; i++) {
+        await moveToTime(
+          new Date(start.getTime() + 1000 * 60 * 60 * 24 * (i - 1))
+        );
+        console.log(`Buy ${i}`);
+        await expect(
+          locks[i - 1]
+            .connect(user)
+            .purchase([0], [user.address], [user.address], [user.address], [[]])
+        ).not.to.reverted;
+
+        morePlayers.forEach(async (player) => {
+          await expect(
+            locks[i - 1]
+              .connect(player)
+              .purchase(
+                [0],
+                [player.address],
+                [player.address],
+                [player.address],
+                [[]]
+              )
+          ).not.to.reverted;
+        });
+
+        // too early!
+        await expect(hook.revealWinner(trustedSalt)).to.reverted;
+      }
+      // Move to next day
+      await moveToTime(new Date(start.getTime() + 1000 * 60 * 60 * 24 * 25));
+
+      // Bad reveal should fail!
+      await expect(hook.revealWinner("using a bad seed!")).to.reverted;
+
+      // Good reveal should work!
+      await expect(await hook.revealWinner(trustedSalt)).not.to.reverted;
+
+      const winner = await hook.winnersByDay(24, 0);
+      expect(winner).to.be.gte(1);
+      expect(winner).to.be.lte(morePlayers.length + 1);
+      expect(await hook.haswOnByDay(24, winner)).to.equal(true);
+
+      // 2nd reveal should not change the winner!
+      await expect(await hook.revealWinner(trustedSalt)).not.to.reverted;
+      expect(await hook.winnersByDay(24, 0)).to.equal(winner);
+
+      console.log("OK DONE!");
     });
   });
 });

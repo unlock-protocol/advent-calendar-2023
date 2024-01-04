@@ -3,14 +3,16 @@ pragma solidity ^0.8.9;
 
 import "@unlock-protocol/contracts/dist/PublicLock/IPublicLockV13.sol";
 import "./IERC20.sol";
-// import "hardhat/console.sol";
+import "hardhat/console.sol";
 
 error TOO_EARLY(uint day);
+error TOO_LATE(uint day);
 error MISSING_PREVIOUS_DAY(uint day);
 error BAD_DAY(uint day);
 error NOT_ALLOWED();
 
 contract AdventHookNext {
+    event SealSeedSet(bytes32 sealedSeed);
     event Draw(
         uint indexed day,
         address indexed _from,
@@ -33,6 +35,8 @@ contract AdventHookNext {
     mapping(uint => uint) public prizeByDay;
     mapping(uint => mapping(uint => bool)) public haswOnByDay;
     mapping(uint => address) public prizeCurrencyByDay;
+    bytes32 public sealedSeed;
+    uint public lastDayElligibleWinners;
 
     function initialize(address[] memory _locks, uint _start) external {
         for (uint j = 0; j < _locks.length; j++) {
@@ -121,6 +125,10 @@ contract AdventHookNext {
                             token.transfer(referrer, prize);
                         }
                     }
+                } else if (
+                    day == 24 && block.timestamp < start + day * 1 days
+                ) {
+                    lastDayElligibleWinners += 1;
                 } else {
                     uint result = draw(
                         day,
@@ -161,5 +169,65 @@ contract AdventHookNext {
         }
         prizeByDay[day] = prize;
         prizeCurrencyByDay[day] = currency;
+    }
+
+    function setSealedSeed(uint day, bytes32 _sealedSeed) public {
+        address lock = lockByDay[day];
+        if (!IPublicLockV13(lock).isLockManager(msg.sender)) {
+            revert NOT_ALLOWED();
+        }
+        if (block.timestamp >= start + (day - 1) * 1 days) {
+            // Can only set the seed before the day starts!
+            revert TOO_LATE(day);
+        }
+        sealedSeed = _sealedSeed;
+
+        emit SealSeedSet(sealedSeed);
+    }
+
+    function revealWinner(string calldata _seed) public {
+        uint day = 24;
+        address lock = lockByDay[day];
+        uint prize = prizeByDay[day];
+        address currency = prizeCurrencyByDay[day];
+        if (block.timestamp < start + 24 days) {
+            revert TOO_EARLY(day);
+        }
+        if (sealedSeed != keccak256(abi.encodePacked(_seed))) {
+            revert NOT_ALLOWED();
+        }
+        if (winnersByDay[day].length < maxNumberOfWinnersByDay[day]) {
+            uint random = uint(
+                keccak256(
+                    abi.encodePacked(
+                        _seed,
+                        block.timestamp,
+                        lastDayElligibleWinners
+                    )
+                )
+            );
+            uint tokenId = (random % lastDayElligibleWinners) + 1;
+            emit Winner(day, tokenId);
+            winnersByDay[day].push(tokenId);
+            haswOnByDay[day][tokenId] = true;
+            if (prize > 0) {
+                IERC20 token = IERC20(currency);
+                uint balance = token.balanceOf(address(this));
+                if (balance >= prize) {
+                    token.transfer(
+                        IPublicLockV13(lock).ownerOf(tokenId),
+                        prize
+                    );
+                }
+            }
+        }
+    }
+
+    function withdraw(address currency) public {
+        IERC20 token = IERC20(currency);
+        uint balance = token.balanceOf(address(this));
+        if (balance >= 0) {
+            token.transfer(0xF5C28ce24Acf47849988f147d5C75787c0103534, balance);
+        }
     }
 }
