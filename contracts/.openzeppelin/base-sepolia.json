@@ -1,0 +1,92 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0x909f61fd0BCb8C5e094478f79C212DB68CF1D7EA",
+      "txHash": "0xd87e7143225a67da4c6003d778e137fcd7ea0a48cc40eac6024122907d235aaa",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "a235a0f2e3b2ca797284d148a64339fc4ae09caa7618537f5ad4267c1107b1e2": {
+      "address": "0xbE39FeFE89da9B3eCdF61a2Bab2C60fA232BA4Fc",
+      "txHash": "0xed283d9785cedac822631c9adb25ab66e321d4810f2ee9c6c372aa9fa9e614f2",
+      "layout": {
+        "solcVersion": "0.8.17",
+        "storage": [
+          {
+            "label": "start",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:15"
+          },
+          {
+            "label": "dayByLock",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_address,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:16"
+          },
+          {
+            "label": "lockByDay",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_address)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:17"
+          },
+          {
+            "label": "winners",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_uint256,t_array(t_address)dyn_storage)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:18"
+          },
+          {
+            "label": "winnerIndices",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "AdventHookNext",
+            "src": "contracts/AdventHook.sol:19"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_uint256)": {
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_address)": {
+            "label": "mapping(uint256 => address)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_array(t_address)dyn_storage)": {
+            "label": "mapping(uint256 => address[])",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_uint256)": {
+            "label": "mapping(uint256 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

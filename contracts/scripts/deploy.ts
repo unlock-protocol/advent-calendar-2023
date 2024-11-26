@@ -8,24 +8,26 @@ import deploy from "../lib/deploy";
 async function main() {
   const [user] = await ethers.getSigners();
   const { chainId } = await ethers.provider.getNetwork();
-  console.log(`Deploying from ${user.address} on ${chainId}`);
+  console.log(`Deploying from ${await user.getAddress()} on ${chainId}`);
 
-  if (chainId === 5) {
-    const [locks, hook] = await deploy(
-      unlock,
-      "0x29eE24817a3aA5A89be094728558A3E3511a1eb6"
-    );
-  } else if (chainId === 8453) {
+  console.log(chainId);
+  if (Number(chainId) === 8453) {
     const [locks, hook] = await deploy(
       unlock,
       "0x9cE8D6B62b8980Bf8579CFe5f1AF1cC7576aEC20",
-      new Date("2023-12-01 12:00:00").getTime() / 1000
+      new Date("2024-12-01 12:00:00").getTime() / 1000
     );
-  } else if (chainId === 31337) {
+  } else if (Number(chainId) === 84532) {
     const [locks, hook] = await deploy(
       unlock,
-      undefined, // No network yet!
-      new Date("2023-11-01").getTime() / 1000
+      "0x909f61fd0BCb8C5e094478f79C212DB68CF1D7EA",
+      new Date("2024-11-25").getTime() / 1000
+    );
+  } else if (Number(chainId) === 31337) {
+    const [locks, hook] = await deploy(
+      unlock,
+      undefined, // No hook yet!
+      new Date("2024-11-25").getTime() / 1000
     );
   }
 }
